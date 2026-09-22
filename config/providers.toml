@@ -40,3 +40,14 @@ install_dir = "alternatives/lm-studio"
 base_url = "http://127.0.0.1:1234/v1"
 endpoint = "/chat/completions"
 model = "set-this-after-loading-a-local-model"
+
+[providers.jev_reference]
+kind = "systemone_http"
+enabled = true
+install_dir = ""
+base_url = "https://api.typesafe.ai"
+endpoint = "/v1/systemone"
+model = "jev-latest"
+api_key_file = "C:/Users/cacan/.codex/secrets/jev"
+reference_only = true
+training_use = false

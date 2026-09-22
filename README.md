@@ -9,9 +9,12 @@ uv sync --extra dev
 uv run pytest
 uv run jevx validate-suite benchmarks/smoke.jsonl
 uv run jevx show-config
+uv run jevx benchmark-jev --suite benchmarks/smoke.jsonl
 ```
 
 The smoke suite validates the fixture contract only. It does not claim model quality until a provider is installed and a run is recorded under `results/`.
+
+The Jev reference baseline reads the API key from the machine-local path configured in `config/providers.toml`; the key is never committed or printed. Reference outputs are evaluation-only and must not be used as training or distillation labels.
 
 ## Layout
 

@@ -42,3 +42,7 @@ The checked-in smoke suite is only a wiring test. A real comparison needs a held
 ## Integration posture
 
 The workspace has a dedicated Qdrant collection for durable research notes. Google API access and Gmail are disabled for this project. Browser research, when needed, must use the shared `analytics@stellar-insights.com` Profile 40 route, never another signed-in profile. Hindsight is deferred until a dedicated project bank exists.
+
+## Jev reference baseline
+
+The workspace has a reference-only provider for the hosted Jev API. It reads the API key from the machine-local path supplied by the user and runs only on the synthetic/approved benchmark fixtures. Jev outputs must not be used as training or distillation labels for the alternatives. See [`benchmarks/BASELINE.md`](../../benchmarks/BASELINE.md).

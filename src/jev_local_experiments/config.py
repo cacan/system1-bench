@@ -31,6 +31,9 @@ class ProviderConfig:
     base_url: str
     endpoint: str
     model: str
+    api_key_file: Path | None = None
+    reference_only: bool = False
+    training_use: bool = True
 
 
 def _read_toml(path: str | Path) -> tuple[Path, dict[str, Any]]:
@@ -77,5 +80,12 @@ def load_provider_config(path: str | Path) -> dict[str, ProviderConfig]:
             base_url=str(values.get("base_url", "")),
             endpoint=str(values.get("endpoint", "")),
             model=str(values.get("model", "")),
+            api_key_file=(
+                Path(str(values["api_key_file"])).expanduser()
+                if values.get("api_key_file")
+                else None
+            ),
+            reference_only=bool(values.get("reference_only", False)),
+            training_use=bool(values.get("training_use", True)),
         )
     return providers

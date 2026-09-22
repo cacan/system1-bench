@@ -23,3 +23,8 @@ ga4 = false
 chrome = true
 qdrant = true
 hindsight = false
+
+[benchmark]
+reference_provider = "jev_reference"
+reference_only = true
+do_not_use_reference_outputs_as_training_labels = true

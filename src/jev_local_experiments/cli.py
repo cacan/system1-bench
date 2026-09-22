@@ -7,6 +7,7 @@ import json
 import sys
 from pathlib import Path
 
+from .baseline import BaselineError, JevReferenceClient, build_systemone_request, run_jev_baseline
 from .config import load_provider_config, load_workspace_config
 from .schema import ValidationError, load_suite
 
@@ -50,11 +51,54 @@ def _show_config(workspace_path: Path, providers_path: Path) -> int:
                 "base_url": provider.base_url,
                 "endpoint": provider.endpoint,
                 "model": provider.model,
+                "api_key_file": str(provider.api_key_file) if provider.api_key_file else None,
+                "reference_only": provider.reference_only,
+                "training_use": provider.training_use,
             }
             for provider_id, provider in providers.items()
         },
     }
     print(json.dumps(output, indent=2))
+    return 0
+
+
+def _benchmark_jev(
+    suite_path: Path,
+    providers_path: Path,
+    output_path: Path,
+    timeout: float,
+    dry_run: bool,
+) -> int:
+    try:
+        cases = load_suite(suite_path.resolve())
+        provider = load_provider_config(providers_path.resolve()).get("jev_reference")
+        if provider is None or not provider.enabled:
+            raise BaselineError("enabled providers.jev_reference configuration is required")
+        if dry_run:
+            print(
+                json.dumps(
+                    [build_systemone_request(case, model=provider.model) for case in cases],
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            return 0
+        client = JevReferenceClient.from_provider_config(provider, timeout=timeout)
+        rows = run_jev_baseline(cases, client, output_path.resolve())
+    except (OSError, ValueError, BaselineError) as exc:
+        print(f"Jev baseline failed: {exc}", file=sys.stderr)
+        return 2
+    print(
+        json.dumps(
+            {
+                "provider": "jev_reference",
+                "model": provider.model,
+                "case_count": len(rows),
+                "output": str(output_path.resolve()),
+                "reference_only": True,
+            }
+        )
+    )
     return 0
 
 
@@ -68,6 +112,13 @@ def build_parser() -> argparse.ArgumentParser:
     show_config = subparsers.add_parser("show-config", help="show resolved non-secret workspace config")
     show_config.add_argument("--workspace-config", type=Path, default=_default_path("config/workspace.toml"))
     show_config.add_argument("--providers", type=Path, default=_default_path("config/providers.toml"))
+
+    benchmark = subparsers.add_parser("benchmark-jev", help="run the reference-only Jev baseline")
+    benchmark.add_argument("--suite", type=Path, default=_default_path("benchmarks/smoke.jsonl"))
+    benchmark.add_argument("--providers", type=Path, default=_default_path("config/providers.toml"))
+    benchmark.add_argument("--output", type=Path, default=_default_path("results/jev-baseline.jsonl"))
+    benchmark.add_argument("--timeout", type=float, default=60.0)
+    benchmark.add_argument("--dry-run", action="store_true", help="print requests without reading the key or calling Jev")
     return parser
 
 
@@ -77,6 +128,8 @@ def main(argv: list[str] | None = None) -> int:
         return _validate_suite(args.path)
     if args.command == "show-config":
         return _show_config(args.workspace_config, args.providers)
+    if args.command == "benchmark-jev":
+        return _benchmark_jev(args.suite, args.providers, args.output, args.timeout, args.dry_run)
     raise AssertionError(f"unhandled command: {args.command}")
 
 

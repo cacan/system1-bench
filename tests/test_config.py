@@ -19,3 +19,13 @@ def test_load_provider_config_keeps_alternative_install_boundary():
 
     assert providers["kev"].install_dir == (ROOT / "alternatives" / "kev").resolve()
     assert providers["kev"].enabled is False
+
+
+def test_load_provider_config_exposes_reference_only_jev_baseline():
+    providers = load_provider_config(ROOT / "config" / "providers.toml")
+
+    jev = providers["jev_reference"]
+    assert jev.enabled is True
+    assert jev.model == "jev-latest"
+    assert jev.api_key_file == Path(r"C:\Users\cacan\.codex\secrets\jev")
+    assert jev.reference_only is True
