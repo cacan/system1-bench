@@ -21,7 +21,9 @@ This document is the operator map for the Jev-alternative lab. It separates file
 | Benchmark fixtures | `benchmarks/` | Yes | JSONL cases and baseline instructions |
 | Research and decisions | `docs/` | Yes | Plans, research, benchmark summaries, and this inventory |
 | Run outputs | `results/` | No | Raw baseline/evaluation JSONL; only `.gitkeep` is tracked |
+| User-owned exploration notes | `findings.md`, `progress.md`, `task_plan.md` | No | Existing untracked Jev Lab exploration/planning notes; preserved and not automatically staged or ingested |
 | Workspace integrations | `.agent/` | Yes | Identity references, Chrome route, Qdrant config, validation ledger |
+| Initializer scaffold | `.agent/WORKSPACE-MODE.md`, `.agent/*GTM*`, `.agent/projects/_templates/` | Yes | Standard `gtm-initialize` conventions; GTM/GA4 files are dormant templates only |
 | Hindsight Codex wiring | `.codex/config.toml` | No/absent | Deliberately absent; no project-specific Hindsight bank exists |
 
 The Git repository is on branch `master`. The current working tree was clean when this inventory was generated.

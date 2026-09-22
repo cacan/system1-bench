@@ -3,6 +3,8 @@ id = "jev-local-experiments"
 name = "JEV Local Experiments"
 mode = "local_open_source_evaluation"
 benchmark_profile = "generic_typed_decisions"
+initializer_scaffold = "gtm-initialize"
+service_scope = "non_gtm_non_ga4"
 
 [paths]
 alternatives = "alternatives"
