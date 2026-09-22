@@ -1,0 +1,42 @@
+# Provider endpoints are disabled until the corresponding alternative is installed.
+# Keep credentials in environment variables or the provider's own local config.
+
+[providers.kev]
+kind = "systemone_http"
+enabled = false
+install_dir = "alternatives/kev"
+base_url = "http://127.0.0.1:8009"
+endpoint = "/v1/systemone"
+model = "kev-latest"
+
+[providers.openjev_verdict]
+kind = "systemone_http"
+enabled = false
+install_dir = "alternatives/openjev-verdict"
+base_url = "http://127.0.0.1:8010"
+endpoint = "/v1/systemone"
+model = "openjev-verdict-2"
+
+[providers.nanojev]
+kind = "systemone_http"
+enabled = false
+install_dir = "alternatives/nanojev"
+base_url = "http://127.0.0.1:8011"
+endpoint = "/v1/systemone"
+model = "nanojev"
+
+[providers.open_jev]
+kind = "systemone_http"
+enabled = false
+install_dir = "alternatives/open-jev"
+base_url = "http://127.0.0.1:8012"
+endpoint = "/v1/systemone"
+model = "open-jev-local"
+
+[providers.lm_studio]
+kind = "openai_compatible"
+enabled = false
+install_dir = "alternatives/lm-studio"
+base_url = "http://127.0.0.1:1234/v1"
+endpoint = "/chat/completions"
+model = "set-this-after-loading-a-local-model"

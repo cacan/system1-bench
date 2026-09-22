@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "workspace_id": "jev-local-experiments",
+  "identity_model": "account-bundle-ref",
+  "identity_ref": "stellar-insights-analytics",
+  "identity_label": "stellar-insights-analytics",
+  "account_bundle_root": "C:/Users/cacan/.codex/google-identities",
+  "account_bundle_path": "C:/Users/cacan/.codex/google-identities/accounts/stellar-insights-analytics/identity.json",
+  "google_account": "analytics@stellar-insights.com",
+  "account_type": "workspace-user",
+  "status": "Blocked",
+  "status_reason": "The shared identity bundle is validated, but the connected BrowserSkill browser does not expose an exact Profile 40 identity. Google APIs, Gmail, GTM, and GA4 are intentionally disabled for this workspace.",
+  "validation_date": "2026-09-22",
+  "gws_profile": "stellar-insights-analytics",
+  "gws_config_dir": "C:/Users/cacan/.codex/gws-profiles/stellar-insights-analytics",
+  "oauth_client_json": "C:/Users/cacan/.codex/gws-profiles/stellar-insights-analytics/client_secret.json",
+  "chrome_profile": "C:/Users/cacan/AppData/Local/Google/Chrome/User Data/Profile 40",
+  "chrome_control": {
+    "recommended": true,
+    "profile_name": "analytics@stellar-insights.com",
+    "profile_directory": "Profile 40",
+    "profile_path": "C:/Users/cacan/AppData/Local/Google/Chrome/User Data/Profile 40",
+    "extension_name": "ChatGPT",
+    "extension_id": "hehggadaopoacecdllhhajmbjkdcmajg",
+    "availability_status": "Blocked: connected browser identity is unidentified; exact Profile 40 match required",
+    "last_validated": "2026-08-25",
+    "last_checked": "2026-09-22",
+    "browserskill": {
+      "daemon_port": 22840,
+      "bsk_home": "C:/Users/cacan/.bsk/stellar-insights",
+      "allowed_domains": [
+        "github.com",
+        "huggingface.co",
+        "jevtypesafeai.com",
+        "systemonemodels.org",
+        "arxiv.org"
+      ],
+      "allow_interactive_domain_whitelisting": true,
+      "machine_routes": {
+        "cacan": {
+          "bsk_home": "C:/Users/cacan/.bsk/stellar-insights",
+          "profile_directory": "Profile 40"
+        }
+      }
+    }
+  },
+  "enabled_services": [],
+  "share_policy": {
+    "scope": "account-bundle",
+    "workspace_owns_tokens": false,
+    "reuse_tokens_for_same_identity_ref": true,
+    "authoritative_access_path": "shared account bundle metadata only"
+  },
+  "mutation_policy": {
+    "google_api": "disabled",
+    "gmail": "disabled",
+    "browser": "read-only research by default"
+  },
+  "validation_evidence": [
+    {
+      "date": "2026-09-22",
+      "check": "shared account bundle metadata",
+      "result": "Resolved stellar-insights-analytics for analytics@stellar-insights.com; no workspace-local credentials copied"
+    },
+    {
+      "date": "2026-09-22",
+      "check": "BrowserSkill preflight",
+      "result": "Daemon reached on port 22840 with one connected browser, but its identity label was empty; no tab was borrowed"
+    },
+    {
+      "date": "2026-09-22",
+      "check": "service boundary",
+      "result": "Confirmed no GTM/GA4/GWS services enabled in this manifest"
+    }
+  ]
+}

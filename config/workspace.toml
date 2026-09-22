@@ -1,0 +1,25 @@
+[workspace]
+id = "jev-local-experiments"
+name = "JEV Local Experiments"
+mode = "local_open_source_evaluation"
+benchmark_profile = "generic_typed_decisions"
+
+[paths]
+alternatives = "alternatives"
+benchmarks = "benchmarks"
+docs = "docs"
+results = "results"
+
+[hardware]
+gpu = "NVIDIA GeForce RTX 4060 Ti"
+vram_gib = 16
+ram_gib = 128
+os = "Windows"
+
+[integrations]
+google_api = false
+gtm = false
+ga4 = false
+chrome = true
+qdrant = true
+hindsight = false

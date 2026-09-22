@@ -1,0 +1,30 @@
+# Python and local tooling
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Experiment outputs and model artifacts
+/results/*
+!/results/.gitkeep
+/models/
+/runs/
+
+# Third-party alternatives are installed locally and are not vendored here.
+/alternatives/*
+!/alternatives/README.md
+!/alternatives/manifest.toml
+
+# Local editor/OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

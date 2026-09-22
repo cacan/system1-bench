@@ -1,0 +1,46 @@
+schema_version = 1
+
+[[alternatives]]
+id = "kev"
+repo = "https://github.com/jaredpalmer/kev"
+install_dir = "alternatives/kev"
+status = "candidate"
+recommended_start = "Kev-0.8B or Kev-4B"
+hardware_fit = "Likely on the RTX 4060 Ti 16 GB; verify the selected dtype and quantization."
+notes = "System One-compatible local API with Choice, Noul, and Score."
+
+[[alternatives]]
+id = "openjev-verdict"
+repo = "https://github.com/heman10x-ngu/openJev-verdict-2.0"
+install_dir = "alternatives/openjev-verdict"
+status = "candidate"
+recommended_start = "151M checkpoint"
+hardware_fit = "Comfortable locally; useful calibration-oriented small baseline."
+notes = "Independent non-autoregressive decision model; rerun reported metrics locally."
+
+[[alternatives]]
+id = "nanojev"
+repo = "https://github.com/TianyuCodings/NanoJev"
+install_dir = "alternatives/nanojev"
+status = "candidate"
+recommended_start = "Released 0.6B checkpoint"
+hardware_fit = "Likely comfortable locally; verify runtime and checkpoint license."
+notes = "Jev-style probability output with a training pipeline."
+
+[[alternatives]]
+id = "open-jev"
+repo = "https://github.com/daseinlabs/open-jev"
+install_dir = "alternatives/open-jev"
+status = "candidate"
+recommended_start = "Local logit-scoring server"
+hardware_fit = "Depends on the selected base model; start with a 3B–4B quantized model."
+notes = "Scores written options in a batched forward pass and exposes a Jev-compatible API."
+
+[[alternatives]]
+id = "modernbert-setfit"
+repo = "https://systemonemodels.org/examples/alternatives/"
+install_dir = "alternatives/modernbert-setfit"
+status = "baseline"
+recommended_start = "ModernBERT or SetFit fixed-label classifier"
+hardware_fit = "CPU/GPU friendly; use as a non-generative accuracy/latency baseline."
+notes = "Adjacent classifier baselines, not Jev-compatible APIs by themselves."
