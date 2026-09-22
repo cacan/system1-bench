@@ -22,6 +22,7 @@ The Jev reference baseline reads the API key from the machine-local path configu
 - `benchmarks/` — versioned JSONL fixtures and benchmark notes.
 - `config/` — non-secret workspace and provider parameters.
 - `docs/` — research, plans, and durable experiment notes.
+- [`docs/WORKSPACE-INVENTORY.md`](docs/WORKSPACE-INVENTORY.md) — storage map for project files, secrets, runtimes, and external services.
 - `.agent/` — identity, Chrome, Qdrant, and integration metadata.
 - `src/jev_local_experiments/` — provider-neutral schema/config/validation code.
 - `results/` — local reports and raw run outputs; ignored by default.
