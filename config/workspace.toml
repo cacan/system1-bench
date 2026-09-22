@@ -26,6 +26,18 @@ chrome = true
 qdrant = true
 hindsight = false
 
+[memory.hindsight]
+enabled = false
+status = "blocked_bank_provisioning"
+bank_id = "codex-jev-local-experiments"
+base_url = "http://192.168.31.229:8888"
+llm_provider = "lmstudio"
+llm_base_url = "http://192.168.31.13:1234/v1"
+llm_model = "qwen3.6-35b-a3b-mtp"
+embedding_url = "http://192.168.31.13:1234/v1"
+embedding_model = "text-embedding-bge-m3"
+embedding_dimensions = 1024
+
 [benchmark]
 reference_provider = "jev_reference"
 reference_only = true

@@ -22,7 +22,7 @@ The initial benchmark is generic and covers:
 - Treat upstream benchmark numbers as claims until this workspace reruns them on shared fixtures.
 - Record provider/model/runtime/device revisions with every durable result.
 - Ingest durable research and decisions into the dedicated Qdrant collection only. Do not ingest secrets, temporary logs, or raw credentials.
-- Hindsight is optional and currently deferred because no project-specific bank exists. Do not reuse another project’s bank or create one implicitly.
+- Hindsight is project-scoped and intended for this workspace, but provisioning is currently blocked by the remote service's PostgreSQL shared-memory error. Do not reuse another project's bank or create a broken binding; follow `.agent/Hindsight-Workspace-Memory.md`.
 
 ## Commands
 

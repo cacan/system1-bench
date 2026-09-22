@@ -105,7 +105,7 @@ python C:/Users/cacan/.codex/skills/qdrant-ingest/scripts/ingest.py --config .ag
 
 ### Hindsight
 
-This workspace does not have a Hindsight bank or `.codex/config.toml`. Existing Hindsight banks must not be reused for this project.
+This workspace does not yet have a Hindsight bank or `.codex/config.toml`. A dedicated bank is intended, but existing Hindsight banks must not be reused for this project.
 
 The known shared Hindsight service, documented by Hermes, is:
 
@@ -116,6 +116,7 @@ The known shared Hindsight service, documented by Hermes, is:
 - Service environment inside CT120: `/opt/hindsight/hindsight.env`
 - Systemd unit inside CT120: `/etc/systemd/system/hindsight.service`
 - Existing profile banks include `hermes-default-hal` and `hermes-sysadmin`; this workspace has no `codex-jev-local-experiments` bank.
+- Provisioning attempt: HTTP 500 while PostgreSQL tried to resize shared memory; see `.agent/Hindsight-Workspace-Memory.md` for the exact blocker and recovery boundary.
 
 These are external infrastructure locations, not files owned by this repository. Do not create, rename, or repoint a Hindsight bank from this workspace without an explicit decision and a project-specific bank.
 

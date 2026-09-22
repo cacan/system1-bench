@@ -8,6 +8,6 @@
 | Google Workspace APIs | Disabled | `.agent/google-workspace-identity.json` | Identity is metadata-only for this project |
 | Gmail | Disabled | `.agent/google-workspace-identity.json` | No mailbox reads are permitted here |
 | GTM/GA4 | Disabled | `.agent/google-workspace-identity.json` | This is intentionally not a GTM/GA4 workspace |
-| Hindsight | Deferred | No `.codex/config.toml` yet | No dedicated bank exists; do not reuse another project's bank or create one implicitly |
+| Hindsight | Blocked | `.agent/Hindsight-Workspace-Memory.md` | Dedicated bank `codex-jev-local-experiments` requested; API returned PostgreSQL shared-memory `No space left on device`; no bank or binding was created |
 
 Durable Markdown under `docs/` is the Qdrant ingest source. Keep credentials and transient run output out of that tree.
