@@ -128,39 +128,39 @@ All benchmark fixtures are versioned JSONL files in the `benchmarks/` directory:
 
 This repository provides built-in CLI tools to inspect, explain, and evaluate decisions:
 
-### 1. Explain Any Test Case (`jevx explain-case`)
+### 1. Explain Any Test Case (`s1b explain-case`)
 Inspect input context, question types, rubric legends, and ground-truth answers:
 ```powershell
-uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl
+uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl
 ```
 
 Compare a specific test case against a candidate model's actual predictions and error loss:
 ```powershell
-uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl --results results/hearim-qwen35-4b-smoke.jsonl
+uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl --results results/hearim-qwen35-4b-smoke.jsonl
 ```
 
-### 2. Explain Metrics & Methodology (`jevx explain-metrics`)
+### 2. Explain Metrics & Methodology (`s1b explain-metrics`)
 Print a terminal reference of mathematical formulas, calibration rules, and primitives:
 ```powershell
-uv run jevx explain-metrics
+uv run s1b explain-metrics
 ```
 
-### 3. Validate Suite Contracts (`jevx validate-suite`)
+### 3. Validate Suite Contracts (`s1b validate-suite`)
 Ensure all test cases in a `.jsonl` file follow the strict schema:
 ```powershell
-uv run jevx validate-suite benchmarks/jev_core.jsonl
+uv run s1b validate-suite benchmarks/jev_core.jsonl
 ```
 
-### 4. Side-by-Side Model Comparison (`jevx compare-results`)
+### 4. Side-by-Side Model Comparison (`s1b compare-results`)
 Compare two models with per-question win/loss delta:
 ```powershell
-uv run jevx compare-results --baseline results/runs/jev-core-baseline.jsonl --candidate results/runs/hearim-qwen35-4b-core.jsonl --suite benchmarks/jev_core.jsonl
+uv run s1b compare-results --baseline results/runs/jev-core-baseline.jsonl --candidate results/runs/hearim-qwen35-4b-core.jsonl --suite benchmarks/jev_core.jsonl
 ```
 
 ### 5. Interactive Visual Dashboard (`results/dashboard.html`)
 Generate a self-contained, interactive HTML dashboard with interactive charts, confusion matrices, and testing guides:
 ```powershell
-uv run jevx dashboard --output results/dashboard.html
+uv run s1b dashboard --output results/dashboard.html
 ```
 
 ---
@@ -181,10 +181,10 @@ To evaluate a new model or local inference server:
 
 2. **Run Benchmark**:
    ```powershell
-   uv run jevx benchmark-provider --provider my_model --suite benchmarks/jev_core.jsonl --output results/my_model-core.jsonl
+   uv run s1b benchmark-provider --provider my_model --suite benchmarks/jev_core.jsonl --output results/my_model-core.jsonl
    ```
 
 3. **Evaluate Results**:
    ```powershell
-   uv run jevx evaluate --results results/my_model-core.jsonl --suite benchmarks/jev_core.jsonl
+   uv run s1b evaluate --results results/my_model-core.jsonl --suite benchmarks/jev_core.jsonl
    ```

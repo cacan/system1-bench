@@ -132,7 +132,7 @@ wheels = [
 ]
 
 [[package]]
-name = "system1-alternatives-benchmark"
+name = "system1-bench"
 version = "0.1.0"
 source = { editable = "." }
 

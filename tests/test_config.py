@@ -10,7 +10,7 @@ ROOT = Path(__file__).parents[1]
 def test_load_workspace_config_resolves_paths_from_workspace_root():
     config = load_workspace_config(ROOT / "config" / "workspace.toml")
 
-    assert config.workspace_id == "system1-alternatives-benchmark"
+    assert config.workspace_id == "system1-bench"
     assert config.paths["alternatives"] == (ROOT / "alternatives").resolve()
     assert config.integrations["gtm"] is False
 

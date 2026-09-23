@@ -1,6 +1,6 @@
 [workspace]
-id = "system1-alternatives-benchmark"
-name = "System1 Alternatives Benchmark"
+id = "system1-bench"
+name = "System1-Bench"
 mode = "local_open_source_evaluation"
 benchmark_profile = "generic_typed_decisions"
 service_scope = "system1_evaluation"

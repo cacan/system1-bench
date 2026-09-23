@@ -1,11 +1,13 @@
-# System1-Alternatives-Benchmark: Open-Source Typed Decision Benchmarks
+# System1-Bench: Open-Source System 1 Decision Benchmarks
 
 [![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
 [![Zero Secrets](https://img.shields.io/badge/security-audited-success.svg)]()
 
-A reproducible evaluation harness and benchmark lab comparing open-source and free alternatives for **System 1** typed decisions (constrained fast decision heads, evaluated against hosted reference baselines).
+> **Benchmarking open-source System 1 decision alternatives.**
+
+A reproducible evaluation harness and benchmark lab comparing open-source and free alternatives for **System 1** typed decisions (fast constrained decision heads, evaluated against hosted reference baselines).
 
 ---
 
@@ -64,18 +66,18 @@ This repository provides built-in CLI tools to inspect, explain, and understand 
 ### 1. Inspect Any Benchmark Case
 View the input scenario, questions, rubric scale, ground truth, and analyze model prediction errors:
 ```powershell
-uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl
+uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl
 ```
 
 With model error analysis:
 ```powershell
-uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl --results results/runs/hearim-qwen35-4b-core.jsonl
+uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl --results results/runs/hearim-qwen35-4b-core.jsonl
 ```
 
 ### 2. Educational Metrics Guide
 Print a comprehensive reference of decision primitives, Brier score calibration, MAE formulas, and evaluation contracts:
 ```powershell
-uv run jevx explain-metrics
+uv run s1b explain-metrics
 ```
 
 ### 3. Read the Methodology Guide
@@ -87,8 +89,8 @@ Read [`docs/HOW_TESTING_WORKS.md`](docs/HOW_TESTING_WORKS.md) for full mathemati
 
 ### 1. Clone & Install
 ```powershell
-git clone https://github.com/your-org/System1-Alternatives-Benchmark.git
-cd System1-Alternatives-Benchmark
+git clone https://github.com/your-org/system1-bench.git
+cd system1-bench
 
 # Install dependencies using uv
 uv sync --extra dev
@@ -101,13 +103,13 @@ uv run pytest
 
 ### 3. Validate Benchmark Fixtures
 ```powershell
-uv run jevx validate-suite benchmarks/smoke.jsonl
-uv run jevx validate-suite benchmarks/jev_core.jsonl
+uv run s1b validate-suite benchmarks/smoke.jsonl
+uv run s1b validate-suite benchmarks/jev_core.jsonl
 ```
 
 ### 4. View Leaderboard
 ```powershell
-uv run jevx leaderboard
+uv run s1b leaderboard
 ```
 
 ---
@@ -123,7 +125,7 @@ uv run jevx leaderboard
 ## 📂 Repository Layout
 
 ```
-System1-Alternatives-Benchmark/
+system1-bench/
 ├── benchmarks/               # Versioned JSONL test suites (smoke, core, complete, etc.)
 ├── config/                   # Non-secret configuration & templates (.example.toml)
 ├── data/registries/          # Token scoring profiles for open-source models
@@ -134,7 +136,7 @@ System1-Alternatives-Benchmark/
 │   ├── leaderboard.md        # Summary leaderboard table
 │   └── runs/                 # Canonical evaluation run JSONL files
 ├── scripts/                  # Security scan and utility scripts
-├── src/                      # Core package and CLI (jevx)
+├── src/                      # Core package and CLI (s1b / jevx)
 ├── tests/                    # Automated pytest suite
 ├── LICENSE                   # MIT License
 └── pyproject.toml            # Project metadata and dependencies

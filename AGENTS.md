@@ -1,4 +1,4 @@
-# System1-Alternatives-Benchmark - Agent Guidelines
+# System1-Bench - Agent Guidelines
 
 ## Purpose
 
@@ -28,15 +28,15 @@ uv sync --extra dev
 uv run pytest
 
 # Validate benchmark fixtures
-uv run jevx validate-suite benchmarks/smoke.jsonl
+uv run s1b validate-suite benchmarks/smoke.jsonl
 
 # Inspect configuration
-uv run jevx show-config
+uv run s1b show-config
 
 # Explain test cases and metrics
-uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl
-uv run jevx explain-metrics
+uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl
+uv run s1b explain-metrics
 
 # View leaderboard
-uv run jevx leaderboard
+uv run s1b leaderboard
 ```

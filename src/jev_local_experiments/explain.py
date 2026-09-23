@@ -262,11 +262,11 @@ The repository provides versioned JSONL fixtures in 'benchmarks/':
 
 5. HOW TO RUN & VERIFY BENCHMARKS
 --------------------------------------------------------------------------------
-- Validate a suite:      uv run jevx validate-suite benchmarks/smoke.jsonl
-- Inspect a test case:   uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl
-- Run evaluation:        uv run jevx benchmark-provider --provider hearim_qwen35_4b --suite benchmarks/smoke.jsonl
-- Compare models:        uv run jevx compare-results --baseline results/jev-core-baseline.jsonl --candidate results/hearim-qwen35-4b-core.jsonl
-- View Leaderboard:      uv run jevx leaderboard
+- Validate a suite:      uv run s1b validate-suite benchmarks/smoke.jsonl
+- Inspect a test case:   uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl
+- Run evaluation:        uv run s1b benchmark-provider --provider hearim_qwen35_4b --suite benchmarks/smoke.jsonl
+- Compare models:        uv run s1b compare-results --baseline results/runs/jev-core-baseline.jsonl --candidate results/runs/hearim-qwen35-4b-core.jsonl
+- View Leaderboard:      uv run s1b leaderboard
 - Open Dashboard:        Open 'results/dashboard.html' in your browser!
 ================================================================================
 """

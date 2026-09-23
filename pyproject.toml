@@ -3,9 +3,9 @@ requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "system1-alternatives-benchmark"
+name = "system1-bench"
 version = "0.1.0"
-description = "Reproducible evaluation harness for System 1 typed-decision alternatives."
+description = "Benchmarking open-source System 1 decision alternatives."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
@@ -19,6 +19,7 @@ http = [
 ]
 
 [project.scripts]
+s1b = "jev_local_experiments.cli:main"
 s1bench = "jev_local_experiments.cli:main"
 jevx = "jev_local_experiments.cli:main"
 
