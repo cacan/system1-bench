@@ -89,7 +89,7 @@ Read [`docs/HOW_TESTING_WORKS.md`](docs/HOW_TESTING_WORKS.md) for full mathemati
 
 ### 1. Clone & Install
 ```powershell
-git clone https://github.com/cacan/system1-bench.git
+git clone https://github.com/<your-username>/system1-bench.git
 cd system1-bench
 
 # Install dependencies using uv
