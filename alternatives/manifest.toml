@@ -1,6 +1,25 @@
 schema_version = 1
 
 [[alternatives]]
+id = "hearim"
+repo = "https://github.com/ziozzang/hearim"
+install_dir = "alternatives/hearim"
+status = "installed"
+recommended_start = "Gemma 4 via LAN LM Studio on port 8013"
+hardware_fit = "Native Go gateway (<50 MB RAM); inference runs via LAN LM Studio on RTX 4060 Ti 16 GB."
+notes = "Multi-backend System One gateway in Go; single-token logprob scoring with Phase 0 probe passing."
+
+[[alternatives]]
+id = "laya"
+repo = "https://github.com/NandhaKishorM/laya"
+install_dir = "alternatives/laya"
+status = "installed"
+recommended_start = "Laya typed-decisions on port 8014"
+hardware_fit = "ModernBERT-large 421M (<1.5 GB VRAM); runs directly on local RTX 4060 Ti 16 GB."
+notes = "Non-autoregressive System 1 decision engine with calibrated probabilities."
+
+
+[[alternatives]]
 id = "kev"
 repo = "https://github.com/jaredpalmer/kev"
 install_dir = "alternatives/kev"

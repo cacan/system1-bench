@@ -37,10 +37,9 @@ The main harness stays provider-neutral. Each alternative is installed under `al
 
 ## Integrations
 
-- Google identity: reference the existing `stellar-insights-analytics` account bundle for `analytics@stellar-insights.com`; do not mint workspace-local credentials.
-- Chrome: bind future browser work to Profile 40 via BrowserSkill port 22840 and `~/.bsk/stellar-insights`. The current daemon is not running, so browser readiness is recorded as blocked until that exact route connects.
-- Qdrant: use a dedicated `project_memory_jev_local_experiments` collection with the reachable LAN Qdrant and LM Studio embedding endpoints. Ingest only durable Markdown research/decision files.
-- Hindsight: keep optional and project-scoped. No bank currently exists for this workspace, so no existing project's bank is reused and no remote bank is provisioned implicitly.
+- Provider boundaries: each alternative is called through an adapter or HTTP endpoint configured in `config/providers.toml`.
+- API keys: loaded strictly from environment variables; never committed to the repository.
+- Research memory: optional local vector storage or documentation sync.
 
 ## Evaluation contract
 

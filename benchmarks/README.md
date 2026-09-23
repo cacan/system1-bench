@@ -1,16 +1,40 @@
 # Benchmark fixtures
 
-Fixtures are JSON Lines. Each line is a case with:
+Fixtures are JSON Lines (`.jsonl`). Each line represents one test case with:
 
-- `id`: stable case identifier;
-- `state`: text/object/array presented to the provider;
+- `id`: stable case identifier (e.g. `support-001`, `scope-S1`);
+- `state`: text, object, or array presented to the decision provider;
 - `questions`: one or more typed decisions;
-- `labels`: optional expected answers used for evaluation.
+- `labels`: ground-truth expected answers used for evaluation.
 
-Question types:
+## Available Benchmark Suites
 
-- `noul`: binary decision; label is a JSON boolean.
-- `choice`: finite named options; criteria is an object mapping option names to descriptions; label is an option name.
-- `score`: ordered levels; criteria is a list of at least two levels; label is a zero-based integer.
+| Suite File | Cases | Experiments | Description |
+|------------|-------|-------------|-------------|
+| [`jev_complete.jsonl`](jev_complete.jsonl) | 164 | 27 | Full canonical suite spanning all 27 typed-decision experiments |
+| [`jev_core.jsonl`](jev_core.jsonl) | 36 | 4 | Core interactive playground presets (Support triage, Semantic ranking, Citation verification, Feedback signals) |
+| [`jev_agentic.jsonl`](jev_agentic.jsonl) | 36 | 9 | Agent reasoning, plan scope, behavioral contracts, boundaries, stopping signals |
+| [`jev_governance.jsonl`](jev_governance.jsonl) | 60 | 10 | Safety, hallucination severity, terminology, instruction creep, freshness, policy |
+| [`jev_patterns.jsonl`](jev_patterns.jsonl) | 32 | 4 | Architectural patterns: speculative fan-out, confidence gating, composite scoring, intent handlers |
+| [`smoke.jsonl`](smoke.jsonl) | 2 | 2 | Minimal synthetic smoke suite for offline harness wiring checks |
 
-The smoke fixture is intentionally small. Keep public benchmark data and private/customer data in separate files, and do not ingest private data into Qdrant without an explicit source policy.
+For full taxonomy, descriptions of all 27 experiments, and the 50 use-cases catalog, see [`JEV_LAB_EXPLORATION.md`](JEV_LAB_EXPLORATION.md).
+
+## Question Types
+
+- `noul`: binary decision; label is a JSON boolean (`true` or `false`).
+- `choice`: finite named options; `criteria` is an object mapping option names to descriptions; label is an option name string.
+- `score`: ordered levels; `criteria` is a list of at least two levels; label is a zero-based integer index.
+
+## Validation
+
+Validate any suite file using the workspace CLI:
+
+```powershell
+uv run jevx validate-suite benchmarks/jev_complete.jsonl
+uv run jevx validate-suite benchmarks/jev_core.jsonl
+```
+
+## Policy
+
+Keep public benchmark data and private/customer data in separate files, and do not ingest private data into Qdrant without an explicit source policy. Reference Jev API outputs must remain evaluation-only baselines and must not be used for model distillation or training.

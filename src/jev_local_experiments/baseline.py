@@ -13,13 +13,26 @@ from .config import ProviderConfig
 from .schema import BenchmarkCase
 
 
+import os
+
 class BaselineError(RuntimeError):
     """Raised when the Jev reference baseline cannot be executed safely."""
 
 
+def resolve_api_key(api_key_file: str | Path | None = None) -> str:
+    """Resolve API key from environment variables or file without printing it."""
+    env_key = os.environ.get("JEV_API_KEY")
+    if env_key and env_key.strip():
+        return env_key.strip()
+
+    file_path = os.environ.get("JEV_API_KEY_FILE") or api_key_file
+    if not file_path:
+        raise BaselineError("Jev API key not configured. Set JEV_API_KEY or JEV_API_KEY_FILE.")
+    return load_api_key(file_path)
+
+
 def load_api_key(path: str | Path) -> str:
     """Read a runtime API key without ever returning it from CLI output."""
-
     key_path = Path(path).expanduser()
     if not key_path.is_file():
         raise BaselineError(f"Jev API key file does not exist: {key_path}")
@@ -56,18 +69,18 @@ class JevReferenceClient:
         base_url: str,
         endpoint: str,
         model: str,
-        api_key_file: str | Path,
+        api_key_file: str | Path | None = None,
+        api_key: str | None = None,
         timeout: float = 60.0,
     ) -> None:
         self.url = f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}"
         self.model = model
-        self.api_key_file = Path(api_key_file)
+        self.api_key_file = Path(api_key_file) if api_key_file else None
+        self.api_key = api_key
         self.timeout = timeout
 
     @classmethod
     def from_provider_config(cls, provider: ProviderConfig, *, timeout: float = 60.0) -> "JevReferenceClient":
-        if not provider.api_key_file:
-            raise BaselineError("jev_reference.api_key_file is required")
         if not provider.reference_only or provider.training_use:
             raise BaselineError("jev_reference must be reference_only=true and training_use=false")
         return cls(
@@ -79,12 +92,13 @@ class JevReferenceClient:
         )
 
     def evaluate(self, case: BenchmarkCase) -> dict[str, Any]:
+        key = self.api_key or resolve_api_key(self.api_key_file)
         request_body = json.dumps(build_systemone_request(case, model=self.model)).encode("utf-8")
         request = urllib.request.Request(
             self.url,
             data=request_body,
             headers={
-                "Authorization": f"Bearer {load_api_key(self.api_key_file)}",
+                "Authorization": f"Bearer {key}",
                 "Content-Type": "application/json",
             },
             method="POST",

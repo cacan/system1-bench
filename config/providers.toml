@@ -1,6 +1,245 @@
 # Provider endpoints are disabled until the corresponding alternative is installed.
 # Keep credentials in environment variables or the provider's own local config.
 
+[providers.hearim]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "gemma4"
+reference_only = false
+training_use = true
+
+[providers.hearim_gemma26b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "gemma-26b"
+reference_only = false
+training_use = true
+
+[providers.hearim_kwei]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "kwei"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen27b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen-27b"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen35b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen-35b"
+reference_only = false
+[providers.hearim_ornith35b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "ornith-35b"
+reference_only = false
+training_use = true
+
+[providers.hearim_gemma31b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "gemma-31b"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen35_4b_mtp]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen35-4b-mtp"
+reference_only = false
+training_use = true
+
+[providers.hearim_gemma4_e4b_q8]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "gemma4-e4b-q8"
+reference_only = false
+training_use = true
+
+[providers.hearim_gemma4_e4b_pure]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "gemma4-e4b-pure"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen3_thinking4b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen3-thinking4b"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen38_flash]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen38-flash"
+reference_only = false
+training_use = true
+
+[providers.hearim_minicpm5]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "minicpm5"
+reference_only = false
+training_use = true
+
+[providers.hearim_minicpm5_1b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "minicpm5-1b"
+reference_only = false
+training_use = true
+
+[providers.hearim_minicpm5_2b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "minicpm5-2b"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen35_9b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen35-9b"
+reference_only = false
+training_use = true
+
+[providers.hearim_orpheus3b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "orpheus-3b"
+reference_only = false
+training_use = true
+
+[providers.hearim_llama31_8b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "llama-3.1-8b"
+reference_only = false
+training_use = true
+
+[providers.hearim_spark4b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "spark-4b"
+reference_only = false
+training_use = true
+
+
+
+
+
+
+[providers.hearim_bonsai27b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "bonsai-27b"
+reference_only = false
+training_use = true
+
+
+
+[providers.hearim_qwen3_2507]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen3-2507"
+reference_only = false
+training_use = true
+
+[providers.hearim_qwen35_4b]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/hearim"
+base_url = "http://127.0.0.1:8013"
+endpoint = "/v1/systemone"
+model = "qwen35-4b"
+reference_only = false
+training_use = true
+
+
+
+
+[providers.laya]
+kind = "systemone_http"
+enabled = true
+install_dir = "alternatives/laya"
+base_url = "http://127.0.0.1:8014"
+endpoint = "/v1/systemone"
+model = "laya-typed-decisions"
+reference_only = false
+training_use = true
+
+
 [providers.kev]
 kind = "systemone_http"
 enabled = false
@@ -48,6 +287,6 @@ install_dir = ""
 base_url = "https://api.typesafe.ai"
 endpoint = "/v1/systemone"
 model = "jev-latest"
-api_key_file = "C:/Users/cacan/.codex/secrets/jev"
+api_key_file = "~/.codex/secrets/jev"
 reference_only = true
 training_use = false

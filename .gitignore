@@ -7,23 +7,49 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 
-# Local secrets and environment overrides
+# Local secrets, keys, and credentials
 .env
 .env.*
 !.env.example
+*.key
+*.pem
+*.secret
+credentials.json
+client_secret*.json
+config/providers.local.toml
 
-# Experiment outputs and model artifacts
-/results/*
-!/results/.gitkeep
-/models/
-/runs/
+# Internal agent workflows and scratchpad files
+.agent/
+scratch/
+scratch_*.py
+task_plan.md
+findings.md
+progress.md
+docs/WORKSPACE-INVENTORY.md
 
-# Third-party alternatives are installed locally and are not vendored here.
+# Third-party alternatives: installed locally, never vendored
 /alternatives/*
 !/alternatives/README.md
 !/alternatives/manifest.toml
 
-# Local editor/OS files
+# Experiment database and raw ad-hoc runs
+/results/*
+!/results/.gitkeep
+!/results/runs/
+!/results/runs/*
+!/results/dashboard.html
+!/results/leaderboard.md
+!/results/leaderboard.json
+!/results/README.md
+*.db
+*.sqlite
+*.sqlite3
+
+# Models and run caches
+/models/
+/runs/
+
+# Local editor / OS files
 .DS_Store
 Thumbs.db
 .idea/

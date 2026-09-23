@@ -10,4 +10,4 @@ Recommended workflow:
 4. Record the exact commit, model revision, serving command, and endpoint in the manifest and in the run metadata.
 5. Run the shared smoke suite before larger benchmarks.
 
-The parent repository ignores child directories by default so model caches, virtual environments, and upstream checkouts remain local.
+The parent repository ignores child directories by default so model caches, virtual environments, and upstream checkouts remain local. See [`docs/SOP-POLICIES.md`](../docs/SOP-POLICIES.md) for full installation boundary policies and onboarding procedures.

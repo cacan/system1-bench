@@ -1,5 +1,0 @@
-{"date":"2026-09-22","check":"account bundle reference","result":"Resolved existing stellar-insights-analytics bundle for analytics@stellar-insights.com; no token material copied"}
-{"date":"2026-09-22","check":"BrowserSkill status","result":"Daemon reachable on port 22840 with one browser, but identity label was empty; exact Profile 40 match not proven and no tab was borrowed"}
-{"date":"2026-09-22","check":"Qdrant endpoint","result":"HTTP 200 from http://192.168.31.228:6333/collections"}
-{"date":"2026-09-22","check":"LM Studio embedding endpoint","result":"HTTP 200 and text-embedding-bge-m3 listed at http://192.168.31.13:1234/v1/models"}
-{"date":"2026-09-22","check":"service boundary","result":"No Google API, Gmail, GTM, or GA4 services enabled in workspace manifest"}

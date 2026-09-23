@@ -1,16 +1,16 @@
 [workspace]
-id = "jev-local-experiments"
-name = "JEV Local Experiments"
+id = "system1-alternatives-benchmark"
+name = "System1 Alternatives Benchmark"
 mode = "local_open_source_evaluation"
 benchmark_profile = "generic_typed_decisions"
-initializer_scaffold = "gtm-initialize"
-service_scope = "non_gtm_non_ga4"
+service_scope = "system1_evaluation"
 
 [paths]
 alternatives = "alternatives"
 benchmarks = "benchmarks"
 docs = "docs"
 results = "results"
+database = "results/benchmark_lab.db"
 
 [hardware]
 gpu = "NVIDIA GeForce RTX 4060 Ti"
@@ -28,13 +28,13 @@ hindsight = false
 
 [memory.hindsight]
 enabled = false
-status = "blocked_bank_provisioning"
-bank_id = "codex-jev-local-experiments"
-base_url = "http://192.168.31.229:8888"
+status = "disabled"
+bank_id = "jev-local-experiments"
+base_url = "http://127.0.0.1:8888"
 llm_provider = "lmstudio"
-llm_base_url = "http://192.168.31.13:1234/v1"
-llm_model = "qwen3.6-35b-a3b-mtp"
-embedding_url = "http://192.168.31.13:1234/v1"
+llm_base_url = "http://127.0.0.1:1234/v1"
+llm_model = "local-model"
+embedding_url = "http://127.0.0.1:1234/v1"
 embedding_model = "text-embedding-bge-m3"
 embedding_dimensions = 1024
 

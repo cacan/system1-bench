@@ -1,0 +1,31 @@
+{
+  "scoring_profile": "2d28941d3bc23d49679f7aab6f70c51fc18024c85d466a9575c9a5262d7af7bb",
+  "backend_model": "qwen3.5-4b",
+  "tokenizer_revision": "",
+  "endpoint": "chat_completions",
+  "template_version": "systemone-v1",
+  "delimiter": "\n",
+  "boundary_policy": "probe-only",
+  "alphabets": {
+    "numeric": [
+      {
+        "label": "1",
+        "token_id": -1,
+        "token_text": "1"
+      },
+      {
+        "label": "0",
+        "token_id": -1,
+        "token_text": "0"
+      }
+    ]
+  },
+  "preferred_alphabet": "numeric",
+  "max_single_token_labels": 2,
+  "max_exact_candidates": 20,
+  "top_n": 4,
+  "top_n_cap": 20,
+  "top_n_recovered": 2,
+  "verified": true,
+  "built_at": "2026-09-22T21:40:49Z"
+}

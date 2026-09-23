@@ -1,36 +1,147 @@
-# JEV Local Experiments
+# System1-Alternatives-Benchmark: Open-Source Typed Decision Benchmarks
 
-This repository is a local lab for testing open-source and free alternatives to Jev's typed-decision interface. Jev itself is hosted and closed; this workspace compares independent local implementations and simpler classifier/logit-scoring baselines under one reproducible fixture and measurement contract.
+[![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
+[![Zero Secrets](https://img.shields.io/badge/security-audited-success.svg)]()
 
-## Quick start
+A reproducible evaluation harness and benchmark lab comparing open-source and free alternatives for **System 1** typed decisions (constrained fast decision heads, evaluated against hosted reference baselines).
 
+---
+
+## ⚡ What are Typed Decisions?
+
+Traditional LLM workflows force language models to output free-form text or JSON strings via auto-regressive decoding. This approach suffers from non-deterministic latency, high token costs, JSON syntax errors, and hallucinations.
+
+**Typed Decisions** constrain the model directly at inference time, outputting mathematically rigorous structured predictions:
+
+- **Noul (Binary)**: Continuous probability \(p \in [0.0, 1.0]\) evaluated via Brier score calibration and decision thresholds.
+- **Choice (Categorical)**: Exact probability distribution over mutually exclusive criteria.
+- **Score (Ordered Rubric)**: Class probabilities and continuous expected score evaluated against rubrics via Mean Absolute Error (MAE).
+
+---
+
+## 🏆 Benchmark Highlights (`jev_core`)
+
+Evaluation of top open-source models versus the proprietary Jev 1.13 reference baseline across 37 customer support triage cases:
+
+| Model | Provider | Categorical Accuracy | Score MAE | Latency p50 | Throughput | Notes |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **`jev-1.13.0`** | `jev_reference` | **100.0%** | **0.000** | 744 ms | 1.4 RPS | Closed / Hosted API Baseline |
+| **`ornith-35b`** | `hearim` | **100.0%** | 0.167 | 5,813 ms | 0.2 RPS | Full accuracy parity |
+| **`kwei`** | `hearim` | **98.2%** | 0.061 | 5,212 ms | 0.2 RPS | High calibration |
+| **`gemma-26b`** | `hearim` | **96.4%** | **0.000** | 1,212 ms | 0.8 RPS | Exact rubric match |
+| **`laya-typed`** | `laya` | **96.4%** | 0.671 | **54 ms** | **16.9 RPS** | **14x faster** than hosted baseline |
+| **`qwen35-9b`** | `hearim` | **94.6%** | 0.146 | 646 ms | 1.6 RPS | Balanced open model |
+| **`qwen35-4b`** | `hearim` | **89.3%** | 0.100 | 686 ms | 1.5 RPS | Lightweight edge candidate |
+
+*Full results, metrics, and raw runs are available in [`results/leaderboard.md`](results/leaderboard.md) and [`results/runs/`](results/runs/).*
+
+---
+
+## 📊 Interactive Comparison Dashboard
+
+This repository includes a standalone, zero-dependency interactive HTML comparison dashboard in [`results/dashboard.html`](results/dashboard.html).
+
+It features:
+- **Leaderboard & KPIs**: Speed, accuracy, and MAE across all tested providers.
+- **Decision Disagreements Table**: Filterable win/loss matrix comparing any candidate against the baseline.
+- **Case Explorer**: Full inspection of state inputs, question instructions, and rubric criteria.
+- **Testing & Evaluation Guide**: Built-in visual guide explaining metrics and formulas.
+
+To view locally:
 ```powershell
-uv sync --extra dev
-uv run pytest
-uv run jevx validate-suite benchmarks/smoke.jsonl
-uv run jevx show-config
-uv run jevx benchmark-jev --suite benchmarks/smoke.jsonl
+# Open in your default browser
+Start-Process results/dashboard.html
 ```
 
-The smoke suite validates the fixture contract only. It does not claim model quality until a provider is installed and a run is recorded under `results/`.
+---
 
-The Jev reference baseline reads the API key from the machine-local path configured in `config/providers.toml`; the key is never committed or printed. Reference outputs are evaluation-only and must not be used as training or distillation labels.
+## 🛠️ Tools that Explain Testing
 
-## Layout
+This repository provides built-in CLI tools to inspect, explain, and understand testing:
 
-- `alternatives/` — local third-party checkouts/installations; ignored by default.
-- `benchmarks/` — versioned JSONL fixtures and benchmark notes.
-- `config/` — non-secret workspace and provider parameters.
-- `docs/` — research, plans, and durable experiment notes.
-- [`docs/WORKSPACE-INVENTORY.md`](docs/WORKSPACE-INVENTORY.md) — storage map for project files, secrets, runtimes, and external services.
-- `.agent/` — identity, Chrome, Qdrant, and integration metadata.
-- `src/jev_local_experiments/` — provider-neutral schema/config/validation code.
-- `results/` — local reports and raw run outputs; ignored by default.
+### 1. Inspect Any Benchmark Case
+View the input scenario, questions, rubric scale, ground truth, and analyze model prediction errors:
+```powershell
+uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl
+```
 
-## First candidates
+With model error analysis:
+```powershell
+uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl --results results/runs/hearim-qwen35-4b-core.jsonl
+```
 
-The initial shortlist is recorded in [`alternatives/manifest.toml`](alternatives/manifest.toml): Kev, OpenJev Verdict, NanoJev, open-jev/logit scoring, and ModernBERT/SetFit baselines. Install one candidate at a time under its declared directory and capture its exact revision in the run metadata.
+### 2. Educational Metrics Guide
+Print a comprehensive reference of decision primitives, Brier score calibration, MAE formulas, and evaluation contracts:
+```powershell
+uv run jevx explain-metrics
+```
 
-## Integrations
+### 3. Read the Methodology Guide
+Read [`docs/HOW_TESTING_WORKS.md`](docs/HOW_TESTING_WORKS.md) for full mathematical definitions, benchmark suite hierarchies, and evaluation procedures.
 
-Qdrant and the configured LM Studio embedding endpoint are available on the local network. The workspace references the existing `analytics@stellar-insights.com` account bundle and Profile 40 for future browser research, but does not enable Google APIs or Gmail access. Hindsight remains optional until a dedicated project bank exists.
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+```powershell
+git clone https://github.com/your-org/System1-Alternatives-Benchmark.git
+cd System1-Alternatives-Benchmark
+
+# Install dependencies using uv
+uv sync --extra dev
+```
+
+### 2. Run Tests
+```powershell
+uv run pytest
+```
+
+### 3. Validate Benchmark Fixtures
+```powershell
+uv run jevx validate-suite benchmarks/smoke.jsonl
+uv run jevx validate-suite benchmarks/jev_core.jsonl
+```
+
+### 4. View Leaderboard
+```powershell
+uv run jevx leaderboard
+```
+
+---
+
+## 🔒 Security & Privacy Boundary
+
+- **Zero-Secret Policy**: No API keys, authentication tokens, private IPs, or personal filesystem paths are committed to this repository.
+- **Automated Audit**: Run `uv run python scripts/check_secrets.py` to verify repository sanitization.
+- **Credential Handling**: If evaluating against external reference APIs, pass keys strictly via environment variables (`JEV_API_KEY` or `JEV_API_KEY_FILE`).
+
+---
+
+## 📂 Repository Layout
+
+```
+System1-Alternatives-Benchmark/
+├── benchmarks/               # Versioned JSONL test suites (smoke, core, complete, etc.)
+├── config/                   # Non-secret configuration & templates (.example.toml)
+├── data/registries/          # Token scoring profiles for open-source models
+├── docs/                     # Testing methodology, research reviews, and guides
+│   └── HOW_TESTING_WORKS.md  # Detailed guide on typed decisions and metrics
+├── results/                  # Curated benchmark results & artifacts
+│   ├── dashboard.html        # Interactive zero-dependency HTML dashboard
+│   ├── leaderboard.md        # Summary leaderboard table
+│   └── runs/                 # Canonical evaluation run JSONL files
+├── scripts/                  # Security scan and utility scripts
+├── src/                      # Core package and CLI (jevx)
+├── tests/                    # Automated pytest suite
+├── LICENSE                   # MIT License
+└── pyproject.toml            # Project metadata and dependencies
+```
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](LICENSE).
