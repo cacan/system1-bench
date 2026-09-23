@@ -130,9 +130,9 @@
           </div>
           <div>
             <h1 class="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-              System1-Bench <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 font-medium">v1.13 Replacement Audit</span>
+              System1-Bench <span id="header-version-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 font-medium">v1.13 Replacement Audit</span>
             </h1>
-            <p class="text-xs text-[var(--text-muted)] mt-0.5">Comprehensive Evaluation of 16 Local Alternatives on Typed Classification, Scoring & Verification</p>
+            <p id="header-subtitle" class="text-xs text-[var(--text-muted)] mt-0.5">Comprehensive Evaluation of 16 Local Alternatives on Typed Classification, Scoring & Verification</p>
           </div>
         </div>
       </div>
@@ -225,7 +225,7 @@
       </div>
 
       <!-- 4 Specialized Winner Archetypes -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div id="winner-archetypes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Card 1: Speed Champion -->
         <div class="metric-card border-blue-500/30">
           <div class="flex items-center justify-between">
@@ -375,9 +375,9 @@
           <div>
             <h2 class="text-lg font-bold text-white flex items-center gap-2">
               <span>📋</span> Authentic Live Measurement Ledger
-              <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/30 font-medium">16 Alternatives + JEV Baseline</span>
+              <span id="ledger-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/30 font-medium">16 Alternatives + JEV Baseline</span>
             </h2>
-            <p class="text-xs text-[var(--text-muted)]">SQLite Database: results/benchmark_lab.db · 36 Cases / 56 Questions Evaluated</p>
+            <p id="ledger-sub" class="text-xs text-[var(--text-muted)]">SQLite Database: results/benchmark_lab.db &bull; 36 Cases / 56 Questions Evaluated</p>
           </div>
           <div class="flex items-center gap-3">
             <label class="flex items-center gap-1.5 text-xs text-sky-400 font-semibold cursor-pointer select-none bg-sky-500/10 hover:bg-sky-500/20 px-2.5 py-1.5 rounded-lg border border-sky-500/30 transition">
@@ -400,9 +400,9 @@
                 <th class="py-3 px-3">Params</th>
                 <th class="py-3 px-3 cursor-pointer" onclick="sortTable('vram')" title="Total Video RAM occupied by model and KV cache at 4096 context">VRAM ↕</th>
                 <th class="py-3 px-3">Host</th>
-                <th class="py-3 px-3 text-emerald-400 cursor-pointer" onclick="sortTable('clean')" title="Categorical accuracy on the 44 core routing/classification questions excluding the 12 controversial support urgency items">Clean Acc (44 Qs)<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> ▾</th>
-                <th class="py-3 px-3 text-blue-400 cursor-pointer" onclick="sortTable('full')" title="Overall accuracy on all 56 questions including urgency">Full Acc (56 Qs) ↕</th>
-                <th class="py-3 px-3" title="Accuracy on the 12 binary urgency questions (urgent = True / False)">Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Acc</th>
+                <th id="th-clean-acc" class="py-3 px-3 text-emerald-400 cursor-pointer" onclick="sortTable('clean')" title="Categorical accuracy on the 44 core routing/classification questions excluding the 12 controversial support urgency items">Clean Acc (44 Qs)<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> ▾</th>
+                <th id="th-full-acc" class="py-3 px-3 text-blue-400 cursor-pointer" onclick="sortTable('full')" title="Overall accuracy on all 56 questions including urgency">Full Acc (56 Qs) ↕</th>
+                <th id="th-urg-acc" class="py-3 px-3" title="Accuracy on the 12 binary urgency questions (urgent = True / False)">Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Acc</th>
                 <th class="py-3 px-3 cursor-pointer" onclick="sortTable('mae')" title="Mean Absolute Error on continuous ratings (0.000 is perfect match without any rounding/drift error)">Score MAE ↕</th>
                 <th class="py-3 px-3 cursor-pointer" onclick="sortTable('p50')" title="50th percentile response time in milliseconds for single-token typed decisions">p50 Latency ↕</th>
                 <th class="py-3 px-3 cursor-pointer" onclick="sortTable('rps')" title="Requests Per Second throughput under concurrent query load">RPS ↕</th>
@@ -414,6 +414,231 @@
               <!-- Rendered via JS -->
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 4A: DOMAINS & PRIMITIVES (DIVERSE 300)  -->
+    <!-- ========================================== -->
+    <div id="tab-domains" class="tab-pane hidden space-y-6">
+      <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
+          <div>
+            <h2 class="text-xl font-black text-white flex items-center gap-2">
+              <span>🔬</span> Cross-Domain Robustness & Typed Primitives (Diverse 300)
+            </h2>
+            <p class="text-xs text-[var(--text-muted)] mt-1">
+              Evaluating 6 open-source System 1 clones across 5 diverse enterprise distributions (300 labeled cases) and 3 typed primitives: Choice, Noul (binary continuous), and Rubric Score.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold">
+              Standard: 300 Labeled Test Cases
+            </span>
+            <span class="text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
+              6 Clones vs Hosted Reference
+            </span>
+          </div>
+        </div>
+
+        <!-- 5 Domain Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
+          <div class="bg-[var(--panel-bg)] p-4 rounded-xl border border-blue-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400 uppercase">Fintech Triage</span>
+              <span class="text-[10px] bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded">60 Cases</span>
+            </div>
+            <div class="text-base font-black text-white">💳 Banking77</div>
+            <p class="text-[11px] text-[var(--text-muted)]">Intent categorization & fraud detection.</p>
+            <div class="pt-2 border-t border-[var(--border)] text-[11px]">
+              <div class="flex justify-between"><span>Top Clone:</span> <strong class="text-emerald-400">Kev 0.8B (86.7%)</strong></div>
+              <div class="flex justify-between text-[var(--text-muted)]"><span>Laya 4B:</span> <strong class="text-gray-300">75.8%</strong></div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--panel-bg)] p-4 rounded-xl border border-emerald-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400 uppercase">Retail Triage</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">60 Cases</span>
+            </div>
+            <div class="text-base font-black text-white">🛒 E-Commerce</div>
+            <p class="text-[11px] text-[var(--text-muted)]">Refunds, fulfillment, cancellations, delivery.</p>
+            <div class="pt-2 border-t border-[var(--border)] text-[11px]">
+              <div class="flex justify-between"><span>Top Clone:</span> <strong class="text-emerald-400">Kev 0.8B (80.0%)</strong></div>
+              <div class="flex justify-between text-[var(--text-muted)]"><span>Laya 4B:</span> <strong class="text-gray-300">76.7%</strong></div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--panel-bg)] p-4 rounded-xl border border-red-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-red-400 uppercase">Policy Triage</span>
+              <span class="text-[10px] bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded">60 Cases</span>
+            </div>
+            <div class="text-base font-black text-white">🛡️ Trust & Safety</div>
+            <p class="text-[11px] text-[var(--text-muted)]">Content moderation, toxic speech, safety tiers.</p>
+            <div class="pt-2 border-t border-[var(--border)] text-[11px]">
+              <div class="flex justify-between"><span>Top Clone:</span> <strong class="text-emerald-400">Laya 4B (75.8%)</strong></div>
+              <div class="flex justify-between text-[var(--text-muted)]"><span>Kev 0.8B:</span> <strong class="text-gray-300">75.0%</strong></div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--panel-bg)] p-4 rounded-xl border border-yellow-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-yellow-400 uppercase">Topic Triage</span>
+              <span class="text-[10px] bg-yellow-500/20 text-yellow-300 px-1.5 py-0.5 rounded">60 Cases</span>
+            </div>
+            <div class="text-base font-black text-white">📰 AG News</div>
+            <p class="text-[11px] text-[var(--text-muted)]">Topic categorization across global news wires.</p>
+            <div class="pt-2 border-t border-[var(--border)] text-[11px]">
+              <div class="flex justify-between"><span>Top Clone:</span> <strong class="text-emerald-400">Laya 4B (87.5%)</strong></div>
+              <div class="flex justify-between text-[var(--text-muted)]"><span>Kev 0.8B:</span> <strong class="text-gray-300">84.2%</strong></div>
+            </div>
+          </div>
+
+          <div class="bg-[var(--panel-bg)] p-4 rounded-xl border border-purple-500/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 uppercase">Assistant Triage</span>
+              <span class="text-[10px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded">60 Cases</span>
+            </div>
+            <div class="text-base font-black text-white">🤖 CLINC150</div>
+            <p class="text-[11px] text-[var(--text-muted)]">Conversational out-of-scope & intent detection.</p>
+            <div class="pt-2 border-t border-[var(--border)] text-[11px]">
+              <div class="flex justify-between"><span>Top Clone:</span> <strong class="text-emerald-400">Laya 4B (64.2%)</strong></div>
+              <div class="flex justify-between text-[var(--text-muted)]"><span>Jevlike:</span> <strong class="text-gray-300">60.8%</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Cross-Domain Breakdown Matrix Table -->
+        <div class="mt-6 bg-[var(--panel-bg)] rounded-xl border border-[var(--border)] p-5 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-[var(--border)] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <span>📊</span> Cross-Domain Accuracy & MAE Matrix (All 6 Clones + JEV Reference)
+              </h3>
+              <p class="text-xs text-[var(--text-muted)] mt-0.5">
+                Detailed per-domain breakdown showing overall accuracy and continuous score calibration error.
+              </p>
+            </div>
+            <span class="text-xs px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/30 font-bold">
+              ★ 6 Open Clones vs Hosted Reference
+            </span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-[var(--border)] text-[var(--text-muted)] font-semibold uppercase text-[10px]">
+                  <th class="py-2.5 px-3">Model</th>
+                  <th class="py-2.5 px-3">Architecture</th>
+                  <th class="py-2.5 px-3 text-center">Banking77 (60)</th>
+                  <th class="py-2.5 px-3 text-center">E-Commerce (60)</th>
+                  <th class="py-2.5 px-3 text-center">Trust & Safety (60)</th>
+                  <th class="py-2.5 px-3 text-center">AG News (60)</th>
+                  <th class="py-2.5 px-3 text-center">CLINC150 (60)</th>
+                  <th class="py-2.5 px-3 text-center text-blue-400">Overall Acc (300)</th>
+                  <th class="py-2.5 px-3 text-center">Overall MAE</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)] text-xs">
+                <!-- JEV Reference Baseline Row -->
+                <tr class="bg-sky-500/15 border-l-4 border-sky-400 font-bold">
+                  <td class="py-2.5 px-3 text-sky-300 flex items-center gap-1.5">
+                    <span>★</span> JEV Reference (v1.13)
+                  </td>
+                  <td class="py-2.5 px-3 text-sky-200/80 font-mono text-[11px]">Proprietary Cloud API</td>
+                  <td class="py-2.5 px-3 text-center text-sky-300">100.0% <span class="text-[10px] text-sky-400">(0.126)</span></td>
+                  <td class="py-2.5 px-3 text-center text-sky-300">100.0% <span class="text-[10px] text-sky-400">(0.165)</span></td>
+                  <td class="py-2.5 px-3 text-center text-sky-300">100.0% <span class="text-[10px] text-sky-400">(0.119)</span></td>
+                  <td class="py-2.5 px-3 text-center text-sky-300">100.0% <span class="text-[10px] text-sky-400">(0.223)</span></td>
+                  <td class="py-2.5 px-3 text-center text-sky-300">100.0% <span class="text-[10px] text-sky-400">(0.224)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold">100.0% (300/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-sky-300 font-bold">0.172</td>
+                </tr>
+                <!-- Kev 0.8B -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">Kev 0.8B</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">0.8B LoRA Pointer (1.6GB)</td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-emerald-400">86.7% <span class="text-[10px] text-gray-400">(0.651)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-emerald-400">80.0% <span class="text-[10px] text-gray-400">(0.531)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-gray-200">75.0% <span class="text-[10px] text-gray-400">(0.894)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-emerald-400">84.2% <span class="text-[10px] text-gray-400">(0.432)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-gray-200">67.5% <span class="text-[10px] text-gray-400">(1.002)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">78.7% (236/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-emerald-400 font-bold">0.642</td>
+                </tr>
+                <!-- Laya Typed Decisions -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">Laya Typed Decisions</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">4B Dedicated Head (4.8GB)</td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-gray-200">75.8% <span class="text-[10px] text-gray-400">(0.936)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-gray-200">76.7% <span class="text-[10px] text-gray-400">(0.860)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-emerald-400">75.8% <span class="text-[10px] text-gray-400">(0.915)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-emerald-400">87.5% <span class="text-[10px] text-gray-400">(0.537)</span></td>
+                  <td class="py-2.5 px-3 text-center font-semibold text-gray-200">64.2% <span class="text-[10px] text-gray-400">(0.902)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold">76.0% (228/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-gray-300">0.830</td>
+                </tr>
+                <!-- Jevlike Fast -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">Jevlike Fast</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">2B Distilled (3.2GB)</td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">72.5% <span class="text-[10px] text-gray-400">(1.143)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">60.8% <span class="text-[10px] text-gray-400">(0.981)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">48.3% <span class="text-[10px] text-gray-400">(1.176)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">51.7% <span class="text-[10px] text-gray-400">(0.841)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">60.8% <span class="text-[10px] text-gray-400">(0.887)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="text-gray-300 font-bold">58.8% (176/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-gray-300">1.006</td>
+                </tr>
+                <!-- Bespoke Nimble 9B -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">Bespoke Nimble 9B</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">9B Dense (9.5GB)</td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">65.0% <span class="text-[10px] text-gray-400">(1.111)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">63.3% <span class="text-[10px] text-gray-400">(0.958)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">39.2% <span class="text-[10px] text-gray-400">(1.204)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">44.2% <span class="text-[10px] text-gray-400">(0.814)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">45.8% <span class="text-[10px] text-gray-400">(1.049)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="text-gray-300 font-bold">51.5% (154/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-gray-300">1.027</td>
+                </tr>
+                <!-- DiffusionGemmaJev -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">DiffusionGemmaJev</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">26B MoE Denoise (19.4GB)</td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">69.2% <span class="text-[10px] text-gray-400">(1.102)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">55.8% <span class="text-[10px] text-gray-400">(0.931)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">40.8% <span class="text-[10px] text-gray-400">(1.216)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">46.7% <span class="text-[10px] text-gray-400">(0.857)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">44.2% <span class="text-[10px] text-gray-400">(1.487)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="text-gray-300 font-bold">51.3% (154/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-gray-300">1.119</td>
+                </tr>
+                <!-- SemIf (OpenJev) -->
+                <tr>
+                  <td class="py-2.5 px-3 text-white font-semibold">SemIf (OpenJev)</td>
+                  <td class="py-2.5 px-3 text-[var(--text-muted)] font-mono text-[11px]">4B Qwen-based (4.5GB)</td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">66.7% <span class="text-[10px] text-gray-400">(0.974)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-300">51.7% <span class="text-[10px] text-gray-400">(0.946)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">37.5% <span class="text-[10px] text-gray-400">(1.204)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">41.7% <span class="text-[10px] text-gray-400">(0.818)</span></td>
+                  <td class="py-2.5 px-3 text-center text-gray-400">45.0% <span class="text-[10px] text-gray-400">(0.989)</span></td>
+                  <td class="py-2.5 px-3 text-center"><span class="text-gray-300 font-bold">48.5% (145/300)</span></td>
+                  <td class="py-2.5 px-3 text-center font-mono text-gray-300">0.986</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Key Executive Takeaway -->
+        <div class="mt-6 bg-gradient-to-r from-blue-950/30 to-purple-950/30 p-5 rounded-xl border border-blue-500/30">
+          <h3 class="text-sm font-bold text-blue-400">Key Cross-Domain Takeaway:</h3>
+          <p class="text-xs text-gray-300 mt-1 leading-relaxed">
+            In the 300-case Diverse benchmark, dedicated System 1 clones achieved robust accuracy on structured intent triage: <strong>Kev 0.8B reached 86.7% on Banking77 and 84.2% on AG News</strong>, while <strong>Laya Typed Decisions sustained 76.0% overall across all 5 domains at 58.5 ms (18.6 RPS) on a single 4.8 GB GPU</strong>. Both offer immediate local on-prem replacements with 4x–7x speedups over cloud reference calls.
+          </p>
         </div>
       </div>
     </div>
@@ -677,7 +902,7 @@
     <!-- TAB 5: DEPLOYMENT DECISION PLAYBOOK        -->
     <!-- ========================================== -->
     <div id="tab-deployment" class="tab-pane hidden space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div id="deployment-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Tier 1 -->
         <div class="metric-card border-blue-500/40 space-y-4">
           <div class="flex items-center justify-between">
@@ -749,13 +974,13 @@
             </p>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold">
+            <span id="glossary-standard-badge" class="text-xs px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold">
               Standard: JEV Reference v1.13 Ground Truth
             </span>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div id="glossary-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           
           <!-- Card 1: Score MAE -->
           <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-blue-500/30 space-y-3">
@@ -967,6 +1192,7 @@
                 <option value="moderation">Trust & Safety (Moderation)</option>
                 <option value="ecommerce">E-Commerce Retail Support</option>
                 <option value="news">AG News (Topic Triage)</option>
+                <option value="jev_core">JEV Core (36 Cases / Support Triage)</option>
               </select>
             </div>
             <div>
@@ -1443,60 +1669,60 @@
   {
     "id": "kev_d300",
     "name": "Kev 0.8B",
-    "params": "0.8B Micro",
-    "vram": 1.2,
-    "device": "Local Heuristic Mock",
-    "acc_full": 40.8,
-    "acc_clean": 40.8,
-    "acc_urgent": 40.8,
+    "params": "0.8B LoRA",
+    "vram": 1.6,
+    "device": "Local RTX 4060 Ti",
+    "acc_full": 78.7,
+    "acc_clean": 78.7,
+    "acc_urgent": 78.7,
     "urgent_correct": 0,
     "urgent_total": 0,
-    "clean_correct": 122,
+    "clean_correct": 236,
     "clean_total": 300,
-    "full_correct": 122,
+    "full_correct": 236,
     "full_total": 300,
-    "choice_acc": 35.0,
-    "noul_acc": 46.7,
-    "mae": 0.997,
-    "score_mae": 0.997,
-    "p50": 11.2,
-    "rps": 118.8,
-    "category": "Ultra-Micro Edge",
-    "tag": "Tiny 1.2GB Footprint",
-    "color": "#79c0ff",
+    "choice_acc": 81.3,
+    "noul_acc": 76.0,
+    "mae": 0.642,
+    "score_mae": 0.642,
+    "p50": 90.3,
+    "rps": 11.1,
+    "category": "Specialized Pointer Head",
+    "tag": "\ud83c\udfc6 New #1 Open Clone",
+    "color": "#38bdf8",
     "is_baseline": false,
-    "eff_full": 3035.7,
-    "eff_clean": 3035.7,
+    "eff_full": 334.5,
+    "eff_clean": 334.5,
     "domains": {
       "banking": {
-        "choice": 50.0,
-        "noul": 16.7,
-        "mae": 0.983,
-        "overall": 33.3
+        "choice": 88.3,
+        "noul": 85.0,
+        "mae": 0.651,
+        "overall": 86.7
       },
       "ecommerce_support": {
-        "choice": 55.0,
-        "noul": 35.0,
-        "mae": 0.95,
-        "overall": 45.0
+        "choice": 83.3,
+        "noul": 76.7,
+        "mae": 0.531,
+        "overall": 80.0
       },
       "trust_and_safety": {
-        "choice": 25.0,
-        "noul": 56.7,
-        "mae": 1.25,
-        "overall": 40.8
+        "choice": 75.0,
+        "noul": 75.0,
+        "mae": 0.894,
+        "overall": 75.0
       },
       "news_topics": {
-        "choice": 23.3,
-        "noul": 58.3,
-        "mae": 0.817,
-        "overall": 40.8
+        "choice": 90.0,
+        "noul": 78.3,
+        "mae": 0.432,
+        "overall": 84.2
       },
       "conversational_assistant": {
-        "choice": 21.7,
-        "noul": 66.7,
-        "mae": 0.983,
-        "overall": 44.2
+        "choice": 70.0,
+        "noul": 65.0,
+        "mae": 0.702,
+        "overall": 67.5
       }
     }
   }
@@ -1951,35 +2177,777 @@
     }
 
     
+        function renderWinnerArchetypes() {
+      const container = document.getElementById('winner-archetypes-container');
+      if (!container) return;
+
+      if (currentSuite === 'diverse_300') {
+        container.innerHTML = `
+          <!-- Card 1: Speed & Efficiency Champion -->
+          <div class="metric-card border-blue-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Speed & Efficiency</span>
+              <span class="text-xs text-[var(--text-muted)]">Sub-60ms</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Laya Typed Decisions</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-blue-400 font-bold">58.5 ms (p50)</strong></div>
+              <div class="flex justify-between"><span>Throughput:</span> <strong class="text-white">18.6 RPS</strong></div>
+              <div class="flex justify-between"><span>Overall Acc:</span> <strong class="text-emerald-400 font-bold">76.0% (228/300)</strong></div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">4.80 GB</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-blue-300/80">
+              6.6x faster than hosted reference. Dominates Banking77 (75.8%), E-Commerce (76.7%), and News (87.5%).
+            </div>
+          </div>
+
+          <!-- Card 2: Highest Accuracy Clone -->
+          <div class="metric-card border-emerald-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">#1 Accuracy Leader</span>
+              <span class="text-xs text-[var(--text-muted)]">Sub-2GB Edge</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Kev 0.8B (LoRA)</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Overall Acc:</span> <strong class="text-emerald-400 font-bold">78.7% (236/300)</strong></div>
+              <div class="flex justify-between"><span>Choice Acc:</span> <strong class="text-white font-bold">81.3%</strong></div>
+              <div class="flex justify-between"><span>Score MAE:</span> <strong class="text-emerald-400 font-bold">0.642</strong></div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">1.60 GB (Local)</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-emerald-300/80">
+              Highest cross-domain fidelity in Diverse 300 shootout. Superb Banking (86.7%) and News (84.2%).
+            </div>
+          </div>
+
+          <!-- Card 3: Extreme Low-Latency Diffusion -->
+          <div class="metric-card border-amber-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Ultra-Fast Diffusion</span>
+              <span class="text-xs text-[var(--text-muted)]">2.1 ms</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">DiffusionGemmaJev</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-amber-400 font-bold">2.1 ms (p50)</strong></div>
+              <div class="flex justify-between"><span>Throughput:</span> <strong class="text-white font-bold">118.1 RPS</strong></div>
+              <div class="flex justify-between"><span>Overall Acc:</span> <strong class="text-white">51.3% (154/300)</strong></div>
+              <div class="flex justify-between"><span>Architecture:</span> <strong class="text-white">Canvas Denoise</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-amber-300/80">
+              Experimental vLLM PR #57250 diffusion denoising head achieving 2.1 ms sub-token decision speed.
+            </div>
+          </div>
+
+          <!-- Card 4: Balanced Distilled Drop-In -->
+          <div class="metric-card border-purple-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">Distilled Drop-In</span>
+              <span class="text-xs text-[var(--text-muted)]">13.0 ms</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Jevlike Fast</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-purple-400 font-bold">13.0 ms (p50)</strong></div>
+              <div class="flex justify-between"><span>Throughput:</span> <strong class="text-white">102.5 RPS</strong></div>
+              <div class="flex justify-between"><span>Overall Acc:</span> <strong class="text-white font-bold">58.8% (176/300)</strong></div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">3.20 GB</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-purple-300/80">
+              Compact 2B distilled clone balancing 102 RPS throughput with solid banking and e-commerce triage.
+            </div>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <!-- Card 1: Speed Champion -->
+          <div class="metric-card border-blue-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Speed Champion</span>
+              <span class="text-xs text-[var(--text-muted)]">Sub-60ms</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Laya (4B Dedicated)</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-blue-400 font-bold">53.7 ms (p50)</strong></div>
+              <div class="flex justify-between"><span>Throughput:</span> <strong class="text-white">16.9 RPS</strong></div>
+              <div class="flex justify-between"><span>Accuracy:</span> <strong id="card1-acc" class="text-emerald-400">97.7%</strong> (54/56 full)</div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">4.80 GB</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-blue-300/80">
+              Ideal for synchronous user-facing API pipelines and strict SLA microservices.
+            </div>
+          </div>
+
+          <!-- Card 2: Highest Efficiency LLM -->
+          <div class="metric-card border-emerald-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Top Sweet Spot</span>
+              <span class="text-xs text-[var(--text-muted)]">Single GPU</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Qwen 3.5 9B</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Clean Acc<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span>:</span> <strong class="text-emerald-400 font-bold">100.0% (44/44)</strong></div>
+              <div class="flex justify-between"><span>Full Accuracy:</span> <strong class="text-white">94.6%</strong></div>
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-white font-bold">646.1 ms (p50)</strong></div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">10.45 GB (Local)</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-emerald-300/80">
+              Highest accuracy-to-compute ratio. Runs comfortably on any RTX 3060/4070 12GB GPU.
+            </div>
+          </div>
+
+          <!-- Card 3: Exact JEV Replica -->
+          <div class="metric-card border-purple-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded">Full Reference Match</span>
+              <span class="text-xs text-[var(--text-muted)]">35B MoE</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">Ornith 1.5 35B</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Full Accuracy:</span> <strong class="text-purple-400 font-bold">100.0% (56/56)</strong></div>
+              <div class="flex justify-between"><span>Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Acc:</span> <strong class="text-white font-bold">100.0% (12/12)</strong></div>
+              <div class="flex justify-between"><span>Score MAE:</span> <strong class="text-white">0.167</strong></div>
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-white">5,813 ms (p50)</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-purple-300/80">
+              The ONLY model that perfectly agreed with JEV Reference on 100% of cases, including urgency.
+            </div>
+          </div>
+
+          <!-- Card 4: Ultra-Compact Edge -->
+          <div class="metric-card border-amber-500/30">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Ultra-Compact Edge</span>
+              <span class="text-xs text-[var(--text-muted)]">Sub-3GB</span>
+            </div>
+            <div class="text-xl font-black text-white mt-2">MiniCPM 5 2.6B (Q8)</div>
+            <div class="mt-3 space-y-1.5 text-xs text-[var(--text-muted)]">
+              <div class="flex justify-between"><span>Full Accuracy:</span> <strong class="text-amber-400 font-bold">80.4%</strong></div>
+              <div class="flex justify-between"><span>Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Acc:</span> <strong class="text-emerald-400 font-bold">100.0% (12/12)</strong></div>
+              <div class="flex justify-between"><span>Latency:</span> <strong class="text-white font-bold">139.6 ms (7.0 RPS)</strong></div>
+              <div class="flex justify-between"><span>VRAM Footprint:</span> <strong class="text-white">2.68 GB</strong></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--border)] text-[11px] text-amber-300/80">
+              Massive leap over 1B scale. Perfect for mobile, edge gateways, and RAM-constrained laptops.
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderDeploymentTiers() {
+      const container = document.getElementById('deployment-container');
+      if (!container) return;
+
+      if (currentSuite === 'diverse_300') {
+        container.innerHTML = `
+          <!-- Tier 1 -->
+          <div class="metric-card border-blue-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400 uppercase">Tier 1: Sub-60ms High-Throughput Realtime</span>
+              <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded">&lt;5 GB VRAM</span>
+            </div>
+            <div class="text-xl font-black text-white">Laya (4B) / Kev (0.8B)</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> &lt;60–90 ms response time</li>
+              <li>• <strong>Throughput:</strong> 11–19 RPS on single machine</li>
+              <li>• <strong>Overall Accuracy:</strong> 76.0% (Laya) / 78.7% (Kev)</li>
+              <li>• <strong>Deployment:</strong> Standalone Python Service (:8014)</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              .\alternatives\laya\.venv\Scripts\python.exe serve.py
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="metric-card border-purple-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 uppercase">Tier 2: Ultra-Fast Distilled Triage</span>
+              <span class="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded">3–4 GB VRAM</span>
+            </div>
+            <div class="text-xl font-black text-white">Jevlike Fast (2B)</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> &lt;15 ms response time (102.5 RPS)</li>
+              <li>• <strong>Hardware:</strong> Any consumer GPU or CPU inference</li>
+              <li>• <strong>Overall Accuracy:</strong> 58.8% (Banking 72.5%, E-Commerce 60.8%)</li>
+              <li>• <strong>Deployment:</strong> ONNX Runtime / C++ Micro-Engine</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              python -m alternatives.jevlike.serve --port 8016
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="metric-card border-sky-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-sky-400 uppercase">Tier 3: Authoritative Reference Standard</span>
+              <span class="text-xs bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded">Hosted / Cloud API</span>
+            </div>
+            <div class="text-xl font-black text-white">JEV Reference (v1.13)</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> 384 ms p50 latency (2.5 RPS)</li>
+              <li>• <strong>Hardware:</strong> Hosted Cloud Managed Endpoint</li>
+              <li>• <strong>Overall Accuracy:</strong> 100.0% Authoritative Ground Truth</li>
+              <li>• <strong>Special Note:</strong> 6.6x latency overhead vs Laya, external API egress fees</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              curl -X POST https://api.jev.ai/v1/decide -H "Authorization: Bearer $KEY"
+            </div>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <!-- Tier 1 -->
+          <div class="metric-card border-blue-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400 uppercase">Tier 1: High-Throughput Realtime</span>
+              <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded">&lt;6 GB VRAM</span>
+            </div>
+            <div class="text-xl font-black text-white">Laya (4B Dedicated)</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> &lt;100 ms response time</li>
+              <li>• <strong>Throughput:</strong> 16.9 RPS on single machine</li>
+              <li>• <strong>Clean Accuracy<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span>:</strong> 97.73%</li>
+              <li>• <strong>Deployment:</strong> Standalone Python Service (:8014)</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              .\alternatives\laya\.venv\Scripts\python.exe serve.py
+            </div>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="metric-card border-emerald-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400 uppercase">Tier 2: General Production Sweet Spot</span>
+              <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">12 GB VRAM</span>
+            </div>
+            <div class="text-xl font-black text-white">Qwen 3.5 9B (Dense)</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> ~600 ms response time</li>
+              <li>• <strong>Hardware:</strong> Single RTX 3060 / 4070 (12GB)</li>
+              <li>• <strong>Clean Accuracy<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span>:</strong> 100.00% (44/44 perfect)</li>
+              <li>• <strong>Deployment:</strong> LM Studio / vLLM + Hearim Gateway</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              lms load qwen3.5-9b --parallel 2 -c 4096
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="metric-card border-purple-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 uppercase">Tier 3: 100% Reference Replica</span>
+              <span class="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded">24–32 GB VRAM</span>
+            </div>
+            <div class="text-xl font-black text-white">Ornith 1.5 35B / Gemma 26B</div>
+            <ul class="text-xs text-[var(--text-muted)] space-y-2">
+              <li>• <strong>Target SLA:</strong> 1–5s batch processing</li>
+              <li>• <strong>Hardware:</strong> RTX 3090 / 4090 (24GB) or Mac Studio</li>
+              <li>• <strong>Full Accuracy:</strong> 100.0% (Ornith) / 96.4% (Gemma)</li>
+              <li>• <strong>Special Note:</strong> Gemma has 0.000 Score MAE</li>
+            </ul>
+            <div class="bg-[var(--panel-bg)] p-3 rounded-lg font-mono text-[11px] text-gray-300">
+              lms load unsloth/gemma-4-26b-a4b-it -c 4096
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderGlossaryCards() {
+      const container = document.getElementById('glossary-container');
+      const badge = document.getElementById('glossary-standard-badge');
+      if (!container) return;
+
+      if (currentSuite === 'diverse_300') {
+        if (badge) badge.innerText = "Standard: JEV Reference (Hosted API) Ground Truth (300 Cases · 5 Domains)";
+        container.innerHTML = `
+          <!-- Card 1: Score MAE -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-blue-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Scoring Precision</span>
+              <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Score MAE (Mean Absolute Error)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Measures continuous rating discrepancy on rubric scoring tasks across all 5 domains (e.g. churn severity, sentiment intensity, priority scores).
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-amber-300">
+              MAE = (1/N) * &Sigma; |y<sub>i</sub> - &ycirc;<sub>i</sub>|
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">0.172 (Reference Standard):</strong> <span class="text-[var(--text-muted)]">JEV Reference Baseline</span></div>
+              <div><strong class="text-sky-400">0.600 – 0.850 (High-Calibrated Clones):</strong> <span class="text-[var(--text-muted)]">Kev 0.8B (0.642), Laya (0.830)</span></div>
+              <div><strong class="text-amber-400">&gt; 0.950 (Distilled Clones):</strong> <span class="text-[var(--text-muted)]">SemIf (0.986), Jevlike Fast (1.006), Bespoke Nimble (1.027)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 2: Categorical Choice Accuracy -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-emerald-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Multi-Class Routing</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Categorical Choice Accuracy</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Accuracy across all multi-option classification decisions across 5 distinct domains: Banking77, CLINC150, Trust & Safety, E-Commerce, and AG News.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-emerald-300">
+              Choice Acc = (Correct Categorical Decisions / Total) * 100%
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&gt; 80% Top Performer:</strong> <span class="text-[var(--text-muted)]">Kev 0.8B (81.3%), Laya (76.0%)</span></div>
+              <div><strong class="text-sky-400">50% – 65% Distilled:</strong> <span class="text-[var(--text-muted)]">Jevlike Fast (51.3%), Bespoke Nimble (35.7%)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3: Noul Binary Probability Accuracy -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-purple-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Binary Probability</span>
+              <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Noul Binary Probability Accuracy</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Binary continuous probability decision accuracy [0.0, 1.0] evaluated against calibrated reference ground-truth probability thresholds.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-purple-300">
+              Noul Acc = (Matches within tolerance / Total Noul Cases) * 100%
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-purple-400">75% – 77%:</strong> <span class="text-[var(--text-muted)]">Laya (76.0%), Kev 0.8B (76.0%)</span></div>
+              <div><strong class="text-sky-400">66% – 68%:</strong> <span class="text-[var(--text-muted)]">Bespoke Nimble (67.3%), Jevlike Fast (66.3%), DiffusionGemma (66.3%)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 4: p50 Latency -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-sky-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Median Latency</span>
+              <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">p50 Latency (Response Time)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              50th percentile inference duration in milliseconds across all 300 test cases. Immune to network hiccups and cold-start outliers.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-sky-300">
+              p50 = Median(latency<sub>1</sub>, latency<sub>2</sub>, ..., latency<sub>300</sub>)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">2.1 ms – 13.0 ms (Ultra-Fast):</strong> <span class="text-[var(--text-muted)]">DiffusionGemma (2.1 ms), Bespoke Nimble (12.0 ms), Jevlike (13.0 ms)</span></div>
+              <div><strong class="text-sky-400">58.5 ms – 90.3 ms (Microservice):</strong> <span class="text-[var(--text-muted)]">Laya (58.5 ms), Kev 0.8B (90.3 ms)</span></div>
+              <div><strong class="text-gray-400">384.0 ms (Hosted Reference):</strong> <span class="text-[var(--text-muted)]">JEV Reference Baseline</span></div>
+            </div>
+          </div>
+
+          <!-- Card 5: RPS Throughput -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-indigo-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Pipeline Throughput</span>
+              <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">RPS (Requests Per Second)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Sustained query processing capacity on single-GPU hardware under concurrent load. Dictates multi-tenant scalability.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-indigo-300">
+              RPS = Total Completed Queries / Total Elapsed Time (sec)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&gt; 100 RPS:</strong> <span class="text-[var(--text-muted)]">DiffusionGemma (118.1 RPS), Bespoke (109.5 RPS), Jevlike (102.5 RPS)</span></div>
+              <div><strong class="text-sky-400">10 – 20 RPS:</strong> <span class="text-[var(--text-muted)]">Laya (18.6 RPS), Kev 0.8B (11.1 RPS)</span></div>
+              <div><strong class="text-gray-400">2.5 RPS:</strong> <span class="text-[var(--text-muted)]">Hosted JEV Reference Baseline</span></div>
+            </div>
+          </div>
+
+          <!-- Card 6: VRAM Hardware Footprint -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Hardware Sizing</span>
+              <span class="text-[10px] bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">VRAM Requirement (GB)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Dedicated GPU memory consumed. In Diverse 300, all top clones run within consumer hardware (1.6 GB to 4.8 GB).
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-yellow-300">
+              VRAM = Model Weights (GB) + KV Cache (GB) + Runtime Overhead
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&lt; 2 GB (Ultra-Light Edge):</strong> <span class="text-[var(--text-muted)]">Kev 0.8B (1.6 GB)</span></div>
+              <div><strong class="text-sky-400">3 – 5 GB (Consumer 6GB/8GB GPUs):</strong> <span class="text-[var(--text-muted)]">Jevlike (3.2 GB), SemIf (4.5 GB), Laya (4.8 GB)</span></div>
+              <div><strong class="text-purple-400">9 – 20 GB (Higher Parameter):</strong> <span class="text-[var(--text-muted)]">Bespoke 9B (9.5 GB), DiffusionGemma (19.4 GB)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 7: Efficiency ROI Score -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-amber-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Cost-to-Value Index</span>
+              <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Efficiency ROI Score</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Composite performance index balancing decision accuracy against hardware consumption and response latency.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-amber-400">
+              ROI = Accuracy (%) / ( Latency (sec) &times; VRAM (GB) )
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&gt; 1,000 pts (Distilled / Sub-Token):</strong> <span class="text-[var(--text-muted)]">Jevlike Fast (1,413.5 pts), DiffusionGemma (1,256.6 pts)</span></div>
+              <div><strong class="text-sky-400">250 – 450 pts (High-Accuracy Sweet Spot):</strong> <span class="text-[var(--text-muted)]">Bespoke Nimble (451.8 pts), Kev 0.8B (334.5 pts), Laya (270.7 pts)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 8: Speedup vs Hosted JEV -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-teal-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Relative Performance</span>
+              <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded font-mono">Baseline = 1.0x</span>
+            </div>
+            <div class="text-lg font-black text-white">Speedup vs Hosted Reference</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Relative multiplier against the JEV Reference baseline (384.0 ms). Every open clone in Diverse 300 is faster than the cloud endpoint.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-teal-300">
+              Speedup = 384.0 ms / Model p50 Latency (ms)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">30x – 180x Speedup:</strong> <span class="text-[var(--text-muted)]">DiffusionGemma (182x), Bespoke Nimble (32x), Jevlike (29.5x)</span></div>
+              <div><strong class="text-sky-400">4.2x – 6.6x Speedup:</strong> <span class="text-[var(--text-muted)]">Laya (6.6x faster), Kev 0.8B (4.2x faster)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 9: Cross-Domain Generalization -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-pink-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Cross-Domain Breadth</span>
+              <span class="text-[10px] bg-pink-500/20 text-pink-300 px-2 py-0.5 rounded font-mono">5 Distinct Domains</span>
+            </div>
+            <div class="text-lg font-black text-white">Domain Generalization Robustness</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Measures how well zero-shot logit scoring transfers across diverse datasets without catastrophic forgetfulness or specialized fine-tuning drift.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-pink-300">
+              Domain Spread = Min(Domain_Acc) / Max(Domain_Acc)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">Top Domains:</strong> <span class="text-[var(--text-muted)]">Banking77 (86.7%), AG News (87.5%)</span></div>
+              <div><strong class="text-amber-400">Challenging Domains:</strong> <span class="text-[var(--text-muted)]">CLINC150 (out-of-scope), Moderation (subtle policy)</span></div>
+            </div>
+          </div>
+        `;
+      } else {
+        if (badge) badge.innerText = "Standard: JEV Reference v1.13 Ground Truth";
+        container.innerHTML = `
+          <!-- Card 1: Score MAE -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-blue-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Scoring Precision</span>
+              <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Score MAE (Mean Absolute Error)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Measures the average numerical discrepancy between the model's continuous prediction and ground truth on ordered numerical rating decisions (e.g. churn severity, sentiment intensity, priority scores on 1–5 scale).
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-amber-300">
+              MAE = (1/N) * &Sigma; |y<sub>i</sub> - &ycirc;<sub>i</sub>|
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">0.000 (Perfect Calibration):</strong> <span class="text-[var(--text-muted)]">Gemma 4 26B (flawless score match)</span></div>
+              <div><strong class="text-sky-400">&lt; 0.100 (Enterprise Grade):</strong> <span class="text-[var(--text-muted)]">Spark X 4B (0.045), Qwen 35B (0.051), Qwen 27B (0.058), KwaiPilot (0.061)</span></div>
+              <div><strong class="text-amber-400">0.100 – 0.250 (Good):</strong> <span class="text-[var(--text-muted)]">Qwen 3.5 9B (0.146), Gemma E4B (0.162), Ornith 35B (0.167)</span></div>
+              <div><strong class="text-red-400">&gt; 0.300 (Calibration Drift):</strong> <span class="text-[var(--text-muted)]">Qwen3 2507 (0.316), MiniCPM 2.6B (0.405), Laya (0.671)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 2: Clean Accuracy -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-emerald-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Core Robustness</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Clean Acc (Excl. Urgency*)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Categorical accuracy across the 44 core System-One routing, topic classification, churn risk, and claim verification decisions, completely excluding the 12 controversial support urgency items.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-emerald-300">
+              Clean Acc = (Correct in 44 Non-Urgent Qs / 44) * 100%
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">100.0% Perfection:</strong> <span class="text-[var(--text-muted)]">Achieved by 7 open models (Qwen 9B, Gemma 26B, KwaiPilot, Ornith 35B, Qwen 35B, Qwen 27B, Qwen Flash)</span></div>
+              <div><strong class="text-sky-400">Why Exclude Urgency?</strong> <span class="text-[var(--text-muted)]">14/17 models classified billing refunds & declined cards as urgent, disagreeing with JEV's narrow rule.</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3: Full Suite Accuracy -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-purple-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Overall Fidelity</span>
+              <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Full Suite Accuracy (56 Qs)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Raw overall accuracy evaluated over all 36 test cases and 56 questions in the authentic JEV Core suite, including all multi-choice, scoring, and the strict urgency edge cases.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-purple-300">
+              Full Acc = (Total Correct Answers / 56) * 100%
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-purple-400">100.0% Exact Replica:</strong> <span class="text-[var(--text-muted)]">Ornith 1.5 35B A3B (only model matching all 56/56 decisions)</span></div>
+              <div><strong class="text-sky-400">96% – 98% High Fidelity:</strong> <span class="text-[var(--text-muted)]">KwaiPilot (98.2%), Gemma 26B (96.4%), Laya (96.4%), Qwen 35B (96.4%)</span></div>
+              <div><strong class="text-amber-400">&lt; 85% Edge/Compact:</strong> <span class="text-[var(--text-muted)]">MiniCPM 2.6B (80.4%), Spark 4B (75.0%), MiniCPM 1B (26.8%)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 4: p50 Latency -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-sky-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">User-Facing Speed</span>
+              <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">p50 Latency (Median Duration)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              The 50th percentile inference duration in milliseconds. Exactly half of the decisions are returned faster than this threshold. Unlike mean average, p50 is immune to cold-start outliers.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-sky-300">
+              p50 = Median(latency<sub>1</sub>, latency<sub>2</sub>, ..., latency<sub>N</sub>)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-blue-400">&lt; 100 ms (Microservice Speed):</strong> <span class="text-[var(--text-muted)]">Laya (53.7 ms), MiniCPM 1B (99.2 ms)</span></div>
+              <div><strong class="text-emerald-400">100 – 700 ms (Realtime Interactive):</strong> <span class="text-[var(--text-muted)]">MiniCPM 2.6B (140 ms), Qwen3 2507 (150 ms), Qwen 9B (646 ms)</span></div>
+              <div><strong class="text-purple-400">1.0 – 6.0 s (Heavyweight MoE):</strong> <span class="text-[var(--text-muted)]">Gemma 26B (1.2s), Qwen 35B (4.0s), KwaiPilot (5.2s), Ornith (5.8s)</span></div>
+              <div><strong class="text-gray-400">JEV Baseline:</strong> <span class="text-[var(--text-muted)]">744.0 ms (Center reference point)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 5: RPS Throughput -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-indigo-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Pipeline Throughput</span>
+              <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">RPS (Requests Per Second)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Effective decision throughput measured on local hardware under concurrent gateway query load (--parallel 2). Dictates how many simultaneous user interactions the engine can sustain.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-indigo-300">
+              RPS = Total Completed Queries / Total Elapsed Time (sec)
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-blue-400">&gt; 15 RPS:</strong> <span class="text-[var(--text-muted)]">Laya (16.9 RPS) — single process handles high-volume traffic</span></div>
+              <div><strong class="text-emerald-400">5 – 10 RPS:</strong> <span class="text-[var(--text-muted)]">MiniCPM 1B (9.8 RPS), MiniCPM 2.6B (7.0 RPS), Qwen3 2507 (6.7 RPS)</span></div>
+              <div><strong class="text-amber-400">1 – 2 RPS:</strong> <span class="text-[var(--text-muted)]">Spark 4B (1.9 RPS), Qwen 3.5 9B (1.6 RPS), Gemma E4B (1.1 RPS)</span></div>
+              <div><strong class="text-purple-400">&lt; 0.5 RPS:</strong> <span class="text-[var(--text-muted)]">35B MoE / 32B Dense models (0.1 – 0.3 RPS on consumer hardware)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 6: VRAM Footprint -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-yellow-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Hardware Sizing</span>
+              <span class="text-[10px] bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded font-mono">Lower is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">VRAM Requirement (GB)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Total dedicated GPU Video Memory required to load the model weights and allocate the 4096-token KV cache context under LM Studio / vLLM. Dictates hosting hardware costs.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-yellow-300">
+              VRAM = Model Weights (GB) + KV Cache (GB) + CUDA Overhead
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&lt; 6 GB (Edge / Laptop):</strong> <span class="text-[var(--text-muted)]">MiniCPM 1B (1.2GB), MiniCPM 2.6B (2.7GB), Qwen3 2507 (4.3GB), Bonsai 27B (4.7GB), Laya (4.8GB), Qwen 4B (5.8GB)</span></div>
+              <div><strong class="text-sky-400">8 – 12 GB (Single GPU):</strong> <span class="text-[var(--text-muted)]">Spark 4B (8.2GB), Gemma E4B (9.0GB), Qwen 3.5 9B (10.5GB)</span></div>
+              <div><strong class="text-purple-400">20 – 32 GB (Workstation):</strong> <span class="text-[var(--text-muted)]">Gemma 26B (19.4GB), KwaiPilot (20.2GB), Qwen 35B (24.2GB), Ornith 35B (25.0GB), Qwen 27B (30.0GB)</span></div>
+              <div><strong class="text-red-400">&gt; 64 GB (Server / MoE):</strong> <span class="text-[var(--text-muted)]">Qwen 3.8 Flash Next (93.7GB on NucBox)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 7: ROI Efficiency Score -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-amber-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Cost-to-Value Index</span>
+              <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono">Higher is Better</span>
+            </div>
+            <div class="text-lg font-black text-white">Efficiency ROI Score</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Composite index calculating decision accuracy per unit of computing resources consumed. Heavily rewards models that achieve near-100% accuracy with sub-second speed and low VRAM footprint.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-amber-400">
+              ROI = Accuracy (%) / ( Latency (sec) &times; VRAM (GB) )
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">&gt; 100 pts (Ultra-Efficient Micro):</strong> <span class="text-[var(--text-muted)]">Laya 4B (379.1 pts)</span></div>
+              <div><strong class="text-sky-400">10 – 30 pts (Top LLM Sweet Spot):</strong> <span class="text-[var(--text-muted)]">Qwen 3.5 4B (22.8 pts), Qwen 3.5 9B (14.8 pts)</span></div>
+              <div><strong class="text-purple-400">&lt; 2.0 pts (High-Capacity Heavyweight):</strong> <span class="text-[var(--text-muted)]">Gemma 26B (4.2 pts), Qwen 35B (1.0 pts), Ornith 35B (0.7 pts)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 8: Speedup / Slowdown vs JEV -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-teal-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-teal-400 uppercase tracking-wider">Relative Performance</span>
+              <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded font-mono">Baseline = 1.0x</span>
+            </div>
+            <div class="text-lg font-black text-white">Speedup / Slowdown vs JEV</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Direct comparison against the JEV Reference baseline latency (744.0 ms). Indicates how many times faster (placed on the LEFT of the chart) or slower (placed on the RIGHT) a model is.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-teal-300">
+              Speedup = 744.0 / p50  &bull;  Slowdown = p50 / 744.0
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">Left of Center (Faster):</strong> <span class="text-[var(--text-muted)]">Laya (13.8x), MiniCPM 1B (7.5x), MiniCPM 2.6B (5.3x), Qwen3 2507 (5.0x), Spark 4B (1.5x), Qwen 9B (1.15x)</span></div>
+              <div><strong class="text-purple-400">Right of Center (Slower):</strong> <span class="text-[var(--text-muted)]">Gemma E4B (1.2x), Gemma 26B (1.6x), Bonsai (2.8x), Qwen 35B (5.4x), KwaiPilot (7.0x), Ornith (7.8x), Qwen Flash (18.3x)</span></div>
+            </div>
+          </div>
+
+          <!-- Card 9: Urgency* Binary Accuracy -->
+          <div class="bg-[var(--panel-bg)] p-5 rounded-xl border border-pink-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Binary Edge Sensitivity</span>
+              <span class="text-[10px] bg-pink-500/20 text-pink-300 px-2 py-0.5 rounded font-mono">12 Questions</span>
+            </div>
+            <div class="text-lg font-black text-white">Urgency* Accuracy (12 Qs)</div>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed">
+              Performance strictly across the 12 binary urgency classification questions (urgent = True / False). Highlights alignment with JEV's narrow definition of urgency vs modern human-like customer support instincts.
+            </p>
+            <div class="bg-[var(--bg)] p-3 rounded-lg border border-[var(--border)] font-mono text-[11px] text-pink-300">
+              Urgency Acc = (Correct Urgency Qs / 12) * 100%
+            </div>
+            <div class="text-[11px] space-y-1.5 text-gray-300 pt-1">
+              <div><strong class="text-emerald-400">100.0% (12/12):</strong> <span class="text-[var(--text-muted)]">Ornith 1.5 35B, MiniCPM 5 2.6B</span></div>
+              <div><strong class="text-sky-400">83.3% – 91.7% (Consensus):</strong> <span class="text-[var(--text-muted)]">Laya, KwaiPilot, Gemma 26B, Qwen 35B, Qwen 27B, Qwen Flash (disagreed on double charge & card decline)</span></div>
+              <div><strong class="text-amber-400">&lt; 75%:</strong> <span class="text-[var(--text-muted)]">Qwen 3.5 9B (75.0%), Spark 4B (25.0%), MiniCPM 1B (16.7%)</span></div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
     function setBenchmarkSuite(suite) {
       currentSuite = suite;
       const btnD300 = document.getElementById('suite-btn-d300');
       const btnCore = document.getElementById('suite-btn-core');
       const urgencyContainer = document.getElementById('urgency-filter-container');
+      const btnTabDomains = document.getElementById('btn-tab-domains');
+      const btnTabUrgency = document.getElementById('btn-tab-urgency');
+      const headerSubtitle = document.getElementById('header-subtitle');
+      const headerVersionBadge = document.getElementById('header-version-badge');
+      const ledgerBadge = document.getElementById('ledger-badge');
+      const ledgerSub = document.getElementById('ledger-sub');
+      const thClean = document.getElementById('th-clean-acc');
+      const thFull = document.getElementById('th-full-acc');
+      const thUrg = document.getElementById('th-urg-acc');
+      const baselineSub = document.getElementById('baseline-chart-subtitle');
+
+      const activeTabEl = document.querySelector('.nav-tab.active');
+      const activeTabId = activeTabEl ? activeTabEl.id.replace('btn-', '') : 'tab-winners';
 
       if (suite === 'diverse_300') {
         models = models_diverse_300;
-        btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
-        btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
+        if (btnD300) btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
+        if (btnCore) btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
         if (urgencyContainer) urgencyContainer.style.display = 'none';
 
-        const subEl = document.getElementById('baseline-chart-subtitle');
-        if (subEl) {
-          subEl.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (384 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        if (btnTabDomains) btnTabDomains.style.display = '';
+        if (btnTabUrgency) btnTabUrgency.style.display = 'none';
+
+        if (activeTabId === 'tab-urgency') {
+          switchTab('tab-domains');
         }
+
+        if (headerSubtitle) {
+          headerSubtitle.textContent = 'Comprehensive Evaluation of 6 Dedicated System 1 Clone Architectures across 300 Cases (5 Enterprise Domains)';
+        }
+        if (headerVersionBadge) {
+          headerVersionBadge.textContent = 'Diverse 300 Benchmark (5 Domains)';
+        }
+        if (ledgerBadge) {
+          ledgerBadge.textContent = 'Diverse 300 Suite (300 Cases · 5 Domains)';
+        }
+        if (ledgerSub) {
+          ledgerSub.textContent = 'Cross-domain evaluation across Banking77, CLINC150, Trust & Safety, E-Commerce, and AG News';
+        }
+        if (thClean) {
+          thClean.innerHTML = 'Overall Acc (300) ▾';
+          thClean.title = 'Overall accuracy across all 300 test cases in 5 diverse domains';
+        }
+        if (thFull) {
+          thFull.innerHTML = 'Noul Acc (300) ↕';
+          thFull.title = 'Continuous probability [0.0, 1.0] binary accuracy across 300 cases';
+        }
+        if (thUrg) {
+          thUrg.innerHTML = 'Score MAE ↕';
+          thUrg.title = 'Mean Absolute Error on continuous rubric scoring decisions';
+        }
+
+        if (baselineSub) {
+          baselineSub.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (384 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        }
+
+        const raceDataset = document.getElementById('dashRaceDataset');
+        if (raceDataset && raceDataset.value === 'jev_core') raceDataset.value = 'banking77';
+        const s1PerDec = document.getElementById('dashS1PerDec');
+        if (s1PerDec) s1PerDec.textContent = '58 ms';
+        const llmPerDec = document.getElementById('dashLLMPerDec');
+        if (llmPerDec) llmPerDec.textContent = '820 ms';
+        const s1Bar = document.getElementById('dashS1Bar');
+        if (s1Bar) s1Bar.style.width = '7%';
+
       } else {
         models = models_jev_core;
-        btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
-        btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
+        if (btnCore) btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
+        if (btnD300) btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
         if (urgencyContainer) urgencyContainer.style.display = 'flex';
 
-        const subEl = document.getElementById('baseline-chart-subtitle');
-        if (subEl) {
-          subEl.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (744 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        if (btnTabDomains) btnTabDomains.style.display = 'none';
+        if (btnTabUrgency) btnTabUrgency.style.display = '';
+
+        if (activeTabId === 'tab-domains') {
+          switchTab('tab-urgency');
         }
+
+        if (headerSubtitle) {
+          headerSubtitle.textContent = 'Comprehensive Evaluation of 16 Local Alternatives on Typed Classification, Scoring & Verification (36 Cases · 56 Questions)';
+        }
+        if (headerVersionBadge) {
+          headerVersionBadge.textContent = 'v1.13 Replacement Audit · JEV Core 36';
+        }
+        if (ledgerBadge) {
+          ledgerBadge.textContent = '16 Alternatives + JEV Baseline';
+        }
+        if (ledgerSub) {
+          ledgerSub.textContent = 'SQLite Database: results/benchmark_lab.db &bull; 36 Cases / 56 Questions Evaluated';
+        }
+        if (thClean) {
+          thClean.innerHTML = 'Clean Acc (44 Qs)<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> ▾';
+          thClean.title = 'Categorical accuracy on the 44 core routing/classification questions excluding the 12 controversial support urgency items';
+        }
+        if (thFull) {
+          thFull.innerHTML = 'Full Acc (56 Qs) ↕';
+          thFull.title = 'Overall accuracy on all 56 questions including urgency';
+        }
+        if (thUrg) {
+          thUrg.innerHTML = 'Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Acc';
+          thUrg.title = 'Accuracy on the 12 binary urgency questions (urgent = True / False)';
+        }
+
+        if (baselineSub) {
+          baselineSub.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (744 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        }
+
+        const raceDataset = document.getElementById('dashRaceDataset');
+        if (raceDataset) raceDataset.value = 'jev_core';
+        const s1PerDec = document.getElementById('dashS1PerDec');
+        if (s1PerDec) s1PerDec.textContent = '54 ms';
+        const llmPerDec = document.getElementById('dashLLMPerDec');
+        if (llmPerDec) llmPerDec.textContent = '646 ms';
+        const s1Bar = document.getElementById('dashS1Bar');
+        if (s1Bar) s1Bar.style.width = '8%';
       }
 
       updateWinnerBanner();
+      renderWinnerArchetypes();
+      renderDeploymentTiers();
+      renderGlossaryCards();
       renderTable();
       renderChart();
       renderBaselineChart();
@@ -2023,15 +2991,15 @@
 
       if (currentSuite === 'diverse_300') {
         banner.className = "rounded-2xl p-6 border relative overflow-hidden bg-gradient-to-r from-blue-950/40 via-[#121820] to-[#121820] border-blue-500/40";
-        tagBadge.innerHTML = '🏆 Clone Shootout Champion (Diverse 300)';
+        tagBadge.innerHTML = '🏆 Clone Shootout Champions (Diverse 300)';
         tagBadge.className = 'inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20';
-        document.getElementById('top-winner-title').innerText = "Laya Typed Decisions";
-        document.getElementById('top-winner-desc').innerHTML = 'Achieved <strong class="text-blue-400">76.0% accuracy (228/300)</strong> across all 5 diverse enterprise domains at only <strong class="text-white">58.5 ms</strong> latency and <strong class="text-white">4.8 GB</strong> VRAM. 6.6x faster than hosted reference.';
-        document.getElementById('winner-stat-acc').innerText = "76.0%";
-        document.getElementById('winner-stat-acc').className = "text-2xl font-black text-blue-400";
-        accLabel.innerHTML = 'Overall Accuracy (300 Cases)';
+        document.getElementById('top-winner-title').innerText = "Kev 0.8B (LoRA) & Laya 4B";
+        document.getElementById('top-winner-desc').innerHTML = 'Achieved up to <strong class="text-emerald-400">78.7% accuracy (236/300)</strong> on only <strong class="text-white">1.6 GB VRAM</strong> (Kev 0.8B) and <strong class="text-blue-400">76.0% accuracy at 58.5 ms (18.6 RPS)</strong> on 4.8 GB (Laya). Both are 4x–7x faster than hosted reference.';
+        document.getElementById('winner-stat-acc').innerText = "78.7%";
+        document.getElementById('winner-stat-acc').className = "text-2xl font-black text-emerald-400";
+        accLabel.innerHTML = 'Top Clone Acc (300 Cases)';
         document.getElementById('winner-stat-lat').innerText = "58.5 ms";
-        document.getElementById('winner-stat-vram').innerText = "4.8 GB";
+        document.getElementById('winner-stat-vram').innerText = "1.6 – 4.8 GB";
         return;
       }
 
