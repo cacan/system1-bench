@@ -1,13 +1,39 @@
 # System1-Bench: Open-Source System 1 Decision Benchmarks
 
-[![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
 [![Zero Secrets](https://img.shields.io/badge/security-audited-success.svg)]()
+[![Dashboard: Interactive](https://img.shields.io/badge/dashboard-interactive_HTML-blue.svg)](index.html)
 
 > **Benchmarking open-source System 1 decision alternatives.**
+> 
+> An open, reproducible benchmark evaluation suite and interactive dashboard comparing open-source alternatives for **System 1 typed decisions** (fast constrained decision heads, evaluated against hosted reference baselines).
 
-A reproducible evaluation harness and benchmark lab comparing open-source and free alternatives for **System 1** typed decisions (fast constrained decision heads, evaluated against hosted reference baselines).
+---
+
+## 📊 Interactive Comparison Dashboard
+
+The complete benchmark evaluation is available as a zero-dependency, self-contained interactive dashboard in **[`index.html`](index.html)** (also mirrored at [`results/dashboard.html`](results/dashboard.html)).
+
+### Key Features:
+- 🏆 **Winners Matrix**: Clear identification of Pareto champions, accuracy leaders, and ultra-fast edge candidates.
+- ⚡ **Model Race Simulation**: Side-by-side visual race illustrating single forward-pass logit scoring (~54 ms) versus autoregressive token generation (~780 ms).
+- 📊 **Diverging Latency Waterfall**: Latency comparison relative to the 744 ms reference baseline (speedups in green, overhead in purple).
+- 🗺️ **2D Accuracy vs. Speedup Map**: Interactive quadrant scatter plot mapping categorical accuracy against speedup factor.
+- 📋 **Master Leaderboard Table**: Searchable, filterable table covering p50 latency, throughput (RPS), categorical accuracy, rubric MAE, and VRAM footprints.
+- 🔍 **Urgency Anomaly Deep-Dive**: Analysis of edge cases (e.g., billing disputes) where instruct models diverge from conservative baseline ground truth.
+
+### How to View:
+Simply open `index.html` in any web browser:
+```powershell
+# Windows
+Start-Process index.html
+
+# macOS
+open index.html
+
+# Linux
+xdg-open index.html
+```
 
 ---
 
@@ -25,133 +51,63 @@ Traditional LLM workflows force language models to output free-form text or JSON
 
 ## 🏆 Benchmark Highlights (`jev_core`)
 
-Evaluation of top open-source models versus the proprietary Jev 1.13 reference baseline across 37 customer support triage cases:
+Evaluation of top open-source models versus the reference baseline across 36 enterprise triage cases (56 decision questions):
 
-| Model | Provider | Categorical Accuracy | Score MAE | Latency p50 | Throughput | Notes |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **`jev-1.13.0`** | `jev_reference` | **100.0%** | **0.000** | 744 ms | 1.4 RPS | Closed / Hosted API Baseline |
-| **`ornith-35b`** | `hearim` | **100.0%** | 0.167 | 5,813 ms | 0.2 RPS | Full accuracy parity |
-| **`kwei`** | `hearim` | **98.2%** | 0.061 | 5,212 ms | 0.2 RPS | High calibration |
-| **`gemma-26b`** | `hearim` | **96.4%** | **0.000** | 1,212 ms | 0.8 RPS | Exact rubric match |
-| **`laya-typed`** | `laya` | **96.4%** | 0.671 | **54 ms** | **16.9 RPS** | **14x faster** than hosted baseline |
-| **`qwen35-9b`** | `hearim` | **94.6%** | 0.146 | 646 ms | 1.6 RPS | Balanced open model |
-| **`qwen35-4b`** | `hearim` | **89.3%** | 0.100 | 686 ms | 1.5 RPS | Lightweight edge candidate |
+| Model | Provider | Clean Accuracy (44 Qs)* | Full Accuracy (56 Qs) | Score MAE | Latency p50 | Throughput | Notes |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **`jev-1.13.0`** | `jev_reference` | **100.0%** | **100.0%** | **0.000** | 744 ms | 1.4 RPS | Hosted Baseline Standard |
+| **`ornith-35b`** | `hearim` | **100.0%** | **100.0%** | 0.167 | 5,813 ms | 0.2 RPS | Full accuracy parity across all cases |
+| **`kwei`** | `hearim` | **100.0%** | 98.2% | 0.061 | 5,212 ms | 0.2 RPS | High calibration & reasoning depth |
+| **`gemma-26b`** | `hearim` | **100.0%** | 96.4% | **0.000** | 1,212 ms | 0.8 RPS | Exact rubric match (0.000 MAE) |
+| **`laya-typed`** | `laya` | **100.0%** | 96.4% | 0.671 | **54 ms** | **16.9 RPS** | **14x faster** than hosted baseline |
+| **`qwen35-9b`** | `hearim` | **100.0%** | 94.6% | 0.146 | 646 ms | 1.6 RPS | Balanced open enterprise model |
+| **`qwen35-4b`** | `hearim` | 93.2% | 89.3% | 0.100 | 686 ms | 1.5 RPS | Lightweight edge deployment candidate |
 
-*Full results, metrics, and raw runs are available in [`results/leaderboard.md`](results/leaderboard.md) and [`results/runs/`](results/runs/).*
+*\* **Clean Accuracy (Without Urgency\*)**: Evaluates the 44 objective multi-class routing, topic classification, churn risk, and claim verification decisions, isolating structural decision capability from conservative vs. liberal urgency labeling.*
 
----
-
-## 📊 Interactive Comparison Dashboard
-
-This repository includes a standalone, zero-dependency interactive HTML comparison dashboard in [`results/dashboard.html`](results/dashboard.html).
-
-It features:
-- **Leaderboard & KPIs**: Speed, accuracy, and MAE across all tested providers.
-- **Model Race Simulation**: Side-by-side visual race showing single forward-pass logit scoring vs standard autoregressive LLMs.
-- **Decision Disagreements Table**: Filterable win/loss matrix comparing any candidate against the baseline.
-- **Case Explorer**: Full inspection of state inputs, question instructions, and rubric criteria.
-- **Testing & Evaluation Guide**: Built-in visual guide explaining metrics and formulas.
-
-To view locally:
-```powershell
-# Open in your default browser
-Start-Process results/dashboard.html
-```
+*Full metrics and case-by-case outputs are available in [`results/leaderboard.md`](results/leaderboard.md) and [`results/runs/`](results/runs/).*
 
 ---
 
-## 🛠️ Tools that Explain Testing & Visualize Decisions
+## 📁 Public Evaluation Datasets (`benchmarks/`)
 
-This repository provides built-in CLI tools to inspect, explain, and simulate testing:
+The repository includes versioned benchmark suites formatted in JSON Lines (`.jsonl`):
 
-### 1. Interactive Model Race Simulation (`s1b race`)
-Watch a real-time side-by-side race comparing fast System 1 logit scoring (~54ms) against standard autoregressive token generation (~780ms) across a test suite:
-```powershell
-uv run s1b race --suite benchmarks/diverse_300.jsonl --cases 50
-```
-
-### 2. Inspect Any Benchmark Case (`s1b explain-case`)
-View the input scenario, questions, rubric scale, ground truth, and analyze model prediction errors:
-```powershell
-uv run s1b explain-case bank-001 --suite benchmarks/diverse_300.jsonl
-```
-
-With model error analysis:
-```powershell
-uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl --results results/runs/hearim-qwen35-4b-core.jsonl
-```
-
-### 3. Educational Metrics Guide (`s1b explain-metrics`)
-Print a comprehensive reference of decision primitives, Brier score calibration, MAE formulas, and evaluation contracts:
-```powershell
-uv run s1b explain-metrics
-```
-
-### 4. Read the Methodology Guide
-Read [`docs/HOW_TESTING_WORKS.md`](docs/HOW_TESTING_WORKS.md) for full mathematical definitions, benchmark suite hierarchies, and evaluation procedures.
+- **[`diverse_300.jsonl`](benchmarks/diverse_300.jsonl)**: 300 curated test cases across 5 diverse domains:
+  - Banking & Financial Services (PolyAI Banking77)
+  - Intent Routing & Virtual Assistants (CLINC150)
+  - Trust & Safety / Content Moderation
+  - E-Commerce Support & Retail Inquiries
+  - News & Topic Categorization (AG News)
+- **[`jev_core.jsonl`](benchmarks/jev_core.jsonl)**: Canonical 36-case benchmark covering Support Triage, Semantic Ranking, Citation Verification, and Feedback Signals.
+- **[`jev_complete.jsonl`](benchmarks/jev_complete.jsonl)**: 164 cases spanning 27 typed-decision experiment patterns.
+- **[`jev_agentic.jsonl`](benchmarks/jev_agentic.jsonl)**: Agent reasoning, plan scope, behavioral contracts, and stopping signals.
+- **[`jev_governance.jsonl`](benchmarks/jev_governance.jsonl)**: Policy compliance, safety thresholds, and instruction boundary tests.
 
 ---
 
-## 🚀 Quick Start
-
-### 1. Clone & Install
-```powershell
-git clone https://github.com/<your-username>/system1-bench.git
-cd system1-bench
-
-# Install dependencies using uv
-uv sync --extra dev
-```
-
-### 2. Run Tests
-```powershell
-uv run pytest
-```
-
-### 3. Validate Benchmark Fixtures
-```powershell
-uv run s1b validate-suite benchmarks/smoke.jsonl
-uv run s1b validate-suite benchmarks/jev_core.jsonl
-uv run s1b validate-suite benchmarks/diverse_300.jsonl
-```
-
-### 4. View Leaderboard
-```powershell
-uv run s1b leaderboard
-```
-
----
-
-## 🔒 Security & Privacy Boundary
-
-- **Zero-Secret Policy**: No API keys, authentication tokens, private IPs, or personal filesystem paths are committed to this repository.
-- **Automated Audit**: Run `uv run python scripts/check_secrets.py` to verify repository sanitization.
-- **Credential Handling**: If evaluating against external reference APIs, pass keys strictly via environment variables (`JEV_API_KEY` or `JEV_API_KEY_FILE`).
-
----
-
-## 📂 Repository Layout
+## 📂 Repository Contents
 
 ```
 system1-bench/
-├── benchmarks/               # Versioned JSONL test suites (smoke, core, complete, etc.)
-├── config/                   # Non-secret configuration & templates (.example.toml)
-├── data/registries/          # Token scoring profiles for open-source models
-├── docs/                     # Testing methodology, research reviews, and guides
-│   └── HOW_TESTING_WORKS.md  # Detailed guide on typed decisions and metrics
-├── results/                  # Curated benchmark results & artifacts
-│   ├── dashboard.html        # Interactive zero-dependency HTML dashboard
-│   ├── leaderboard.md        # Summary leaderboard table
-│   └── runs/                 # Canonical evaluation run JSONL files
-├── scripts/                  # Security scan and utility scripts
-├── src/                      # Core package and CLI (s1b / s1bench)
-├── tests/                    # Automated pytest suite
-├── LICENSE                   # MIT License
-└── pyproject.toml            # Project metadata and dependencies
+├── index.html                # Standalone interactive dashboard & model race simulation
+├── benchmarks/               # Public evaluation test suites (.jsonl)
+│   ├── diverse_300.jsonl     # 300-case multi-domain benchmark suite
+│   ├── jev_core.jsonl        # Core enterprise triage benchmark suite
+│   ├── jev_complete.jsonl    # Comprehensive 27-experiment test suite
+│   └── README.md             # Dataset documentation and question schema
+├── results/                  # Published benchmark results & artifacts
+│   ├── dashboard.html        # Interactive HTML dashboard mirror
+│   ├── leaderboard.md        # Formatted markdown leaderboard table
+│   ├── leaderboard.json      # Machine-readable evaluation metrics
+│   ├── runs/                 # Case-by-case raw evaluation logs for reproducibility
+│   └── README.md             # Results overview and reproduction notes
+└── LICENSE                   # MIT License
 ```
 
 ---
 
-## 📄 License
+## 🔒 Security & Sanitization
 
-Distributed under the [MIT License](LICENSE).
+- **Zero-Secret Policy**: All published artifacts are sanitized. No API keys, credentials, private IPs, or personal paths are stored.
+- **Evaluation Integrity**: All outputs in `results/runs/` reflect reproducible, recorded executions.

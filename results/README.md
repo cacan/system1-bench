@@ -30,23 +30,9 @@ xdg-open results/dashboard.html
 
 ---
 
-## How to Rebuild the SQLite Database Locally
+## Evaluation Runs & Reproducibility
 
-The SQLite database (`results/benchmark_lab.db`) is gitignored to avoid tracking large binary blobs. You can recreate it in seconds from the versioned benchmark fixtures and curated runs:
-
-```powershell
-# 1. Initialize DB schema
-uv run s1b db-init
-
-# 2. Sync benchmark suites into DB
-uv run s1b db-sync
-
-# 3. Import canonical runs
-Get-ChildItem results/runs/*.jsonl | ForEach-Object {
-    uv run s1b db-import-results --results $_.FullName --suite-id jev_core
-}
-
-# 4. View Leaderboard or regenerate dashboard
-uv run s1b leaderboard
-uv run s1b dashboard --output results/dashboard.html
-```
+Each `.jsonl` file in `results/runs/` corresponds to a recorded benchmark evaluation run:
+- Contains line-by-line responses, evaluated probabilities, selected categorical labels, and rubric score predictions.
+- Metrics reported on the leaderboard and dashboard are calculated directly from these canonical run files.
+- Raw outputs are audited for zero secrets, private credentials, or personal filesystem paths.
