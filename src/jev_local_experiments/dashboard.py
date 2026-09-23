@@ -1,4 +1,4 @@
-"""Interactive HTML Comparison Dashboard Generator for JEV Benchmarks."""
+"""Interactive HTML Comparison Dashboard Generator for System1-Bench."""
 
 from __future__ import annotations
 
@@ -82,7 +82,7 @@ def generate_dashboard_html(
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>System 1 Benchmark Lab · Comparison Suite</title>
+<title>System1-Bench · Comparison Suite</title>
 <style>
 :root {{
   --bg: #0d1117;
@@ -478,7 +478,7 @@ tr:hover td {{ background: rgba(255, 255, 255, 0.02); }}
 <div class="container">
   <header>
     <div class="brand">
-      <h1>System 1 Benchmark Lab</h1>
+      <h1>System1-Bench</h1>
       <span class="tag">Comparison Suite</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px;">
@@ -647,9 +647,9 @@ tr:hover td {{ background: rgba(255, 255, 255, 0.02); }}
 
       <h3 style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-bright);">CLI Inspection & Explanation Commands</h3>
       <div style="background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px; font-family: monospace; font-size: 0.85rem; color: #e6edf3; line-height: 1.6;">
-        <div><span style="color: var(--accent);"># Inspect a test case and error analysis:</span><br/>uv run jevx explain-case support-001 --suite benchmarks/smoke.jsonl</div>
-        <div style="margin-top: 8px;"><span style="color: var(--accent);"># Print comprehensive testing guide & formulas:</span><br/>uv run jevx explain-metrics</div>
-        <div style="margin-top: 8px;"><span style="color: var(--accent);"># Compare candidate vs baseline:</span><br/>uv run jevx compare-runs --baseline-run &lt;r1&gt; --candidate-run &lt;r2&gt;</div>
+        <div><span style="color: var(--accent);"># Inspect a test case and error analysis:</span><br/>uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl</div>
+        <div style="margin-top: 8px;"><span style="color: var(--accent);"># Print comprehensive testing guide & formulas:</span><br/>uv run s1b explain-metrics</div>
+        <div style="margin-top: 8px;"><span style="color: var(--accent);"># Compare candidate vs baseline:</span><br/>uv run s1b compare-runs --baseline-run &lt;r1&gt; --candidate-run &lt;r2&gt;</div>
       </div>
     </section>
   </div>

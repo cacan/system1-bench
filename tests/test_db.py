@@ -109,7 +109,7 @@ def test_compare_db_runs_and_dashboard_generation(tmp_path):
     generated_file = generate_dashboard_html(db_file, html_out, baseline_run_id="b_run", candidate_run_id="c_run")
     assert generated_file.is_file()
     content = generated_file.read_text(encoding="utf-8")
-    assert "System 1 Benchmark Lab" in content
+    assert "System1-Bench" in content
     assert "kev_local" in content
     assert "jev_reference" in content
     assert "support-001" in content

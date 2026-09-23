@@ -1,4 +1,4 @@
-# Example provider configuration for JEV Local Experiments.
+# Example provider configuration for System1-Bench.
 # Copy this file to config/providers.toml or config/providers.local.toml for local customization.
 # Never commit real credentials or private file paths to git.
 

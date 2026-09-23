@@ -31,8 +31,8 @@ For full taxonomy, descriptions of all 27 experiments, and the 50 use-cases cata
 Validate any suite file using the workspace CLI:
 
 ```powershell
-uv run jevx validate-suite benchmarks/jev_complete.jsonl
-uv run jevx validate-suite benchmarks/jev_core.jsonl
+uv run s1b validate-suite benchmarks/jev_complete.jsonl
+uv run s1b validate-suite benchmarks/jev_core.jsonl
 ```
 
 ## Policy

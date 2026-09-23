@@ -144,7 +144,7 @@ system1-bench/
 │   ├── leaderboard.md        # Summary leaderboard table
 │   └── runs/                 # Canonical evaluation run JSONL files
 ├── scripts/                  # Security scan and utility scripts
-├── src/                      # Core package and CLI (s1b / jevx)
+├── src/                      # Core package and CLI (s1b / s1bench)
 ├── tests/                    # Automated pytest suite
 ├── LICENSE                   # MIT License
 └── pyproject.toml            # Project metadata and dependencies

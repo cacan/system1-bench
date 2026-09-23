@@ -55,7 +55,7 @@ The output schema matches TypeSafe's `/v1/systemone` format down to field names 
 - **Local Machine:** NVIDIA GeForce RTX 4060 Ti 16 GB VRAM.
 - **VRAM Requirement:** ~842 MB model weights + ~300 MB KV/activations = < 1.5 GB VRAM.
 - **Installation Policy:** All dependencies and code are strictly isolated within `alternatives/laya/` (`alternatives/laya/.venv`). Model weights are fetched into Hugging Face local cache or local alternative boundary, keeping the main repository clean.
-- **Serving Architecture:** A lightweight local HTTP adapter (`alternatives/laya/serve.py`) listens on `http://127.0.0.1:8014/v1/systemone`, enabling seamless integration with the `jevx benchmark-provider` harness.
+- **Serving Architecture:** A lightweight local HTTP adapter (`alternatives/laya/serve.py`) listens on `http://127.0.0.1:8014/v1/systemone`, enabling seamless integration with the `s1b benchmark-provider` harness.
 
 ---
 

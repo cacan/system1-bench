@@ -1,10 +1,10 @@
 # Standard Operating Procedures & Workspace Policies (SOP.policies)
 
-**Workspace:** JEV Local Experiments (`d:/WebDev/VScode-projects/-ML-AI/JEV-local-experiments`)  
+**Workspace:** System1-Bench (`d:/WebDev/VScode-projects/-ML-AI/JEV-local-experiments`)  
 **Effective Date:** 2026-09-22  
 **Status:** Active  
 
-This document serves as the canonical standard operating procedure (SOP) and policy reference for the JEV local experiments workspace, specifically defining component boundaries, where code and artifacts must be installed, and candidate evaluation procedures.
+This document serves as the canonical standard operating procedure (SOP) and policy reference for the System1-Bench workspace, specifically defining component boundaries, where code and artifacts must be installed, and candidate evaluation procedures.
 
 ---
 
@@ -24,7 +24,7 @@ To prevent repository bloat, credential leaks, and accidental commits of large m
 | **Durable Research & Decisions** | `docs/research/`, `docs/plans/`, `docs/benchmarks/` | **Yes** | Markdown documentation, analysis reports, comparison findings, and plans. Also acts as the ingest source for Qdrant. |
 | **Local LLM Weights & Runtimes** | External (`LM Studio` / `vLLM` / `Ollama`) | **No** | Heavy model weights (GGUF, Safetensors) are served externally via local/network services (e.g. LM Studio on `http://127.0.0.1:1234/v1`) or placed in local machine model caches. Weights must NEVER be committed to this repository. |
 | **Secrets, Tokens & Credentials** | `~/.codex/secrets/` or Environment Variables | **No** | API keys (such as Jev API keys, provider tokens) are read at runtime from machine-local paths or environment variables (e.g. `${HEARIM_API_KEY}`). Never commit secrets or print them in logs. |
-| **Python Package & Harness** | `src/jev_local_experiments/`, `tests/` | **Yes** | Neutral schema validator, CLI (`jevx`), configuration loader, and evaluation utilities. |
+| **Python Package & Harness** | `src/jev_local_experiments/`, `tests/` | **Yes** | Neutral schema validator, CLI (`s1b`), configuration loader, and evaluation utilities. |
 
 ---
 
@@ -50,8 +50,8 @@ When adding or evaluating any new Jev-style alternative model or gateway:
 
 5. **Execute Verification & Benchmarking**:
    - Run offline test suite: `uv run pytest`.
-   - Validate workspace configuration: `uv run jevx show-config`.
-   - Test connectivity with smoke suite: `uv run jevx validate-suite benchmarks/smoke.jsonl`.
+   - Validate workspace configuration: `uv run s1b show-config`.
+   - Test connectivity with smoke suite: `uv run s1b validate-suite benchmarks/smoke.jsonl`.
    - Record candidate performance claims as unverified until reproduced locally.
 
 6. **Document Research Findings**:
