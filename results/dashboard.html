@@ -137,8 +137,20 @@
         </div>
       </div>
 
+      
+      <!-- Suite Switcher -->
+      <div class="flex items-center gap-2 bg-[var(--card-bg)] p-1.5 rounded-xl border border-[var(--border)] shadow-inner">
+        <span class="text-xs font-semibold text-[var(--text-muted)] pl-2">Suite:</span>
+        <button id="suite-btn-d300" onclick="setBenchmarkSuite('diverse_300')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5">
+          <span>🧬</span> Diverse 300 (6 Clones)
+        </button>
+        <button id="suite-btn-core" onclick="setBenchmarkSuite('jev_core')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5">
+          <span>⚡</span> JEV Core (16 Models)
+        </button>
+      </div>
+
       <!-- Global Urgency Filter Toggle -->
-      <div class="flex items-center gap-3 bg-[var(--card-bg)] p-2 rounded-xl border border-[var(--border)]">
+      <div id="urgency-filter-container" class="flex items-center gap-3 bg-[var(--card-bg)] p-2 rounded-xl border border-[var(--border)]">
         <span class="text-xs font-semibold text-[var(--text-muted)] pl-2">Ground-Truth Scope:</span>
         <button id="toggle-clean" onclick="setGlobalFilter(true)" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-emerald-600 text-white shadow-sm flex items-center gap-1.5">
           <span>🌟</span> Without Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> (44 Qs)
@@ -159,6 +171,9 @@
       </button>
       <button onclick="switchTab('tab-leaderboard')" id="btn-tab-leaderboard" class="nav-tab">
         <span>📋</span> Master Leaderboard Table
+      </button>
+      <button onclick="switchTab('tab-domains')" id="btn-tab-domains" class="nav-tab">
+        <span>🔬</span> Domains & Primitives (Diverse 300)
       </button>
       <button onclick="switchTab('tab-urgency')" id="btn-tab-urgency" class="nav-tab">
         <span>🔍</span> The Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span> Anomaly Deep-Dive
@@ -1064,7 +1079,430 @@
   </div>
 
   <script>
-    const models = [
+    const models_diverse_300 = [
+  {
+    "id": "jev_reference_d300",
+    "name": "JEV Reference (v1.13)",
+    "params": "Proprietary",
+    "vram": 0.0,
+    "device": "Cloud / Host",
+    "acc_full": 100.0,
+    "acc_clean": 100.0,
+    "acc_urgent": 100.0,
+    "urgent_correct": 12,
+    "urgent_total": 12,
+    "clean_correct": 44,
+    "clean_total": 44,
+    "full_correct": 300,
+    "full_total": 300,
+    "choice_acc": 100.0,
+    "noul_acc": 100.0,
+    "mae": 0.172,
+    "score_mae": 0.172,
+    "p50": 384.0,
+    "rps": 2.5,
+    "category": "Ground Truth Standard",
+    "tag": "\u2605 Authoritative Standard",
+    "color": "#38bdf8",
+    "is_baseline": true,
+    "eff_full": 1.0,
+    "eff_clean": 1.0,
+    "domains": {
+      "banking": {
+        "choice": 100.0,
+        "noul": 100.0,
+        "mae": 0.126,
+        "overall": 100.0
+      },
+      "ecommerce_support": {
+        "choice": 100.0,
+        "noul": 100.0,
+        "mae": 0.165,
+        "overall": 100.0
+      },
+      "trust_and_safety": {
+        "choice": 100.0,
+        "noul": 100.0,
+        "mae": 0.119,
+        "overall": 100.0
+      },
+      "news_topics": {
+        "choice": 100.0,
+        "noul": 100.0,
+        "mae": 0.223,
+        "overall": 100.0
+      },
+      "conversational_assistant": {
+        "choice": 100.0,
+        "noul": 100.0,
+        "mae": 0.224,
+        "overall": 100.0
+      }
+    }
+  },
+  {
+    "id": "laya_d300",
+    "name": "Laya Typed Decisions",
+    "params": "4B Dedicated",
+    "vram": 4.8,
+    "device": "Local RTX 4060 Ti",
+    "acc_full": 76.0,
+    "acc_clean": 76.0,
+    "acc_urgent": 76.0,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 228,
+    "clean_total": 300,
+    "full_correct": 228,
+    "full_total": 300,
+    "choice_acc": 76.0,
+    "noul_acc": 76.0,
+    "mae": 0.83,
+    "score_mae": 0.83,
+    "p50": 58.5,
+    "rps": 18.6,
+    "category": "Specialized Micro-Model",
+    "tag": "\ud83c\udfc6 Clone Shootout Champion",
+    "color": "#58a6ff",
+    "is_baseline": false,
+    "eff_full": 270.7,
+    "eff_clean": 270.7,
+    "domains": {
+      "banking": {
+        "choice": 75.0,
+        "noul": 76.7,
+        "mae": 0.936,
+        "overall": 75.8
+      },
+      "ecommerce_support": {
+        "choice": 78.3,
+        "noul": 75.0,
+        "mae": 0.86,
+        "overall": 76.7
+      },
+      "trust_and_safety": {
+        "choice": 70.0,
+        "noul": 81.7,
+        "mae": 0.915,
+        "overall": 75.8
+      },
+      "news_topics": {
+        "choice": 93.3,
+        "noul": 81.7,
+        "mae": 0.537,
+        "overall": 87.5
+      },
+      "conversational_assistant": {
+        "choice": 63.3,
+        "noul": 65.0,
+        "mae": 0.902,
+        "overall": 64.2
+      }
+    }
+  },
+  {
+    "id": "jevlike_d300",
+    "name": "Jevlike Fast",
+    "params": "2B Distilled",
+    "vram": 3.2,
+    "device": "Local Heuristic Mock",
+    "acc_full": 58.8,
+    "acc_clean": 58.8,
+    "acc_urgent": 58.8,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 176,
+    "clean_total": 300,
+    "full_correct": 176,
+    "full_total": 300,
+    "choice_acc": 51.3,
+    "noul_acc": 66.3,
+    "mae": 1.006,
+    "score_mae": 1.006,
+    "p50": 13.0,
+    "rps": 102.5,
+    "category": "Distilled Clone",
+    "tag": "Top Speed / Acc Balance",
+    "color": "#a371f7",
+    "is_baseline": false,
+    "eff_full": 1413.5,
+    "eff_clean": 1413.5,
+    "domains": {
+      "banking": {
+        "choice": 61.7,
+        "noul": 83.3,
+        "mae": 1.143,
+        "overall": 72.5
+      },
+      "ecommerce_support": {
+        "choice": 63.3,
+        "noul": 58.3,
+        "mae": 0.981,
+        "overall": 60.8
+      },
+      "trust_and_safety": {
+        "choice": 40.0,
+        "noul": 56.7,
+        "mae": 1.176,
+        "overall": 48.3
+      },
+      "news_topics": {
+        "choice": 36.7,
+        "noul": 66.7,
+        "mae": 0.841,
+        "overall": 51.7
+      },
+      "conversational_assistant": {
+        "choice": 55.0,
+        "noul": 66.7,
+        "mae": 0.887,
+        "overall": 60.8
+      }
+    }
+  },
+  {
+    "id": "bespoke_nimble_d300",
+    "name": "Bespoke Nimble 9B",
+    "params": "9B Dense",
+    "vram": 9.5,
+    "device": "Local Heuristic Mock",
+    "acc_full": 51.5,
+    "acc_clean": 51.5,
+    "acc_urgent": 51.5,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 154,
+    "clean_total": 300,
+    "full_correct": 154,
+    "full_total": 300,
+    "choice_acc": 35.7,
+    "noul_acc": 67.3,
+    "mae": 1.027,
+    "score_mae": 1.027,
+    "p50": 12.0,
+    "rps": 109.5,
+    "category": "Dense Clone",
+    "tag": "Balanced 9B Architecture",
+    "color": "#3fb950",
+    "is_baseline": false,
+    "eff_full": 451.8,
+    "eff_clean": 451.8,
+    "domains": {
+      "banking": {
+        "choice": 46.7,
+        "noul": 83.3,
+        "mae": 1.111,
+        "overall": 65.0
+      },
+      "ecommerce_support": {
+        "choice": 60.0,
+        "noul": 66.7,
+        "mae": 0.958,
+        "overall": 63.3
+      },
+      "trust_and_safety": {
+        "choice": 21.7,
+        "noul": 56.7,
+        "mae": 1.204,
+        "overall": 39.2
+      },
+      "news_topics": {
+        "choice": 25.0,
+        "noul": 63.3,
+        "mae": 0.814,
+        "overall": 44.2
+      },
+      "conversational_assistant": {
+        "choice": 25.0,
+        "noul": 66.7,
+        "mae": 1.049,
+        "overall": 45.8
+      }
+    }
+  },
+  {
+    "id": "diffusion_gemma_d300",
+    "name": "DiffusionGemmaJev",
+    "params": "26B-A4B MoE",
+    "vram": 19.44,
+    "device": "vLLM PR #57250 / Canvas Denoise",
+    "acc_full": 51.3,
+    "acc_clean": 51.3,
+    "acc_urgent": 51.3,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 154,
+    "clean_total": 300,
+    "full_correct": 154,
+    "full_total": 300,
+    "choice_acc": 36.3,
+    "noul_acc": 66.3,
+    "mae": 1.119,
+    "score_mae": 1.119,
+    "p50": 2.1,
+    "rps": 118.1,
+    "category": "Diffusion Canvas / PR #57250",
+    "tag": "\u26a1 Extreme Low Latency (2.1ms)",
+    "color": "#f59e0b",
+    "is_baseline": false,
+    "eff_full": 1256.6,
+    "eff_clean": 1256.6,
+    "domains": {
+      "banking": {
+        "choice": 55.0,
+        "noul": 83.3,
+        "mae": 1.102,
+        "overall": 69.2
+      },
+      "ecommerce_support": {
+        "choice": 46.7,
+        "noul": 65.0,
+        "mae": 0.931,
+        "overall": 55.8
+      },
+      "trust_and_safety": {
+        "choice": 25.0,
+        "noul": 56.7,
+        "mae": 1.216,
+        "overall": 40.8
+      },
+      "news_topics": {
+        "choice": 33.3,
+        "noul": 60.0,
+        "mae": 0.857,
+        "overall": 46.7
+      },
+      "conversational_assistant": {
+        "choice": 21.7,
+        "noul": 66.7,
+        "mae": 1.487,
+        "overall": 44.2
+      }
+    }
+  },
+  {
+    "id": "semif_d300",
+    "name": "SemIf (OpenJev)",
+    "params": "4B Qwen-based",
+    "vram": 4.5,
+    "device": "Local Heuristic Mock",
+    "acc_full": 48.5,
+    "acc_clean": 48.5,
+    "acc_urgent": 48.5,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 145,
+    "clean_total": 300,
+    "full_correct": 145,
+    "full_total": 300,
+    "choice_acc": 30.7,
+    "noul_acc": 66.3,
+    "mae": 0.986,
+    "score_mae": 0.986,
+    "p50": 12.6,
+    "rps": 109.2,
+    "category": "Open Architecture Clone",
+    "tag": "Sub-1.0 MAE (0.986)",
+    "color": "#f97583",
+    "is_baseline": false,
+    "eff_full": 855.4,
+    "eff_clean": 855.4,
+    "domains": {
+      "banking": {
+        "choice": 50.0,
+        "noul": 83.3,
+        "mae": 0.974,
+        "overall": 66.7
+      },
+      "ecommerce_support": {
+        "choice": 38.3,
+        "noul": 65.0,
+        "mae": 0.946,
+        "overall": 51.7
+      },
+      "trust_and_safety": {
+        "choice": 18.3,
+        "noul": 56.7,
+        "mae": 1.204,
+        "overall": 37.5
+      },
+      "news_topics": {
+        "choice": 23.3,
+        "noul": 60.0,
+        "mae": 0.818,
+        "overall": 41.7
+      },
+      "conversational_assistant": {
+        "choice": 23.3,
+        "noul": 66.7,
+        "mae": 0.989,
+        "overall": 45.0
+      }
+    }
+  },
+  {
+    "id": "kev_d300",
+    "name": "Kev 0.8B",
+    "params": "0.8B Micro",
+    "vram": 1.2,
+    "device": "Local Heuristic Mock",
+    "acc_full": 40.8,
+    "acc_clean": 40.8,
+    "acc_urgent": 40.8,
+    "urgent_correct": 0,
+    "urgent_total": 0,
+    "clean_correct": 122,
+    "clean_total": 300,
+    "full_correct": 122,
+    "full_total": 300,
+    "choice_acc": 35.0,
+    "noul_acc": 46.7,
+    "mae": 0.997,
+    "score_mae": 0.997,
+    "p50": 11.2,
+    "rps": 118.8,
+    "category": "Ultra-Micro Edge",
+    "tag": "Tiny 1.2GB Footprint",
+    "color": "#79c0ff",
+    "is_baseline": false,
+    "eff_full": 3035.7,
+    "eff_clean": 3035.7,
+    "domains": {
+      "banking": {
+        "choice": 50.0,
+        "noul": 16.7,
+        "mae": 0.983,
+        "overall": 33.3
+      },
+      "ecommerce_support": {
+        "choice": 55.0,
+        "noul": 35.0,
+        "mae": 0.95,
+        "overall": 45.0
+      },
+      "trust_and_safety": {
+        "choice": 25.0,
+        "noul": 56.7,
+        "mae": 1.25,
+        "overall": 40.8
+      },
+      "news_topics": {
+        "choice": 23.3,
+        "noul": 58.3,
+        "mae": 0.817,
+        "overall": 40.8
+      },
+      "conversational_assistant": {
+        "choice": 21.7,
+        "noul": 66.7,
+        "mae": 0.983,
+        "overall": 44.2
+      }
+    }
+  }
+];
+
+    const models_jev_core = [
   {
     "id": "jev_reference",
     "name": "JEV Reference (v1.13)",
@@ -1475,6 +1913,8 @@
     "eff_clean": 259.0
   }
 ];
+    let currentSuite = 'diverse_300';
+    let models = models_diverse_300;
     let isCleanMode = true; // true = without urgency (44 Qs), false = full suite (56 Qs)
     let currentChartType = 'bubble';
     let currentBaselineChartType = 'diverging';
@@ -1508,6 +1948,42 @@
 
     function hideUrgencyTooltip() {
       urgencyTooltip.style.display = 'none';
+    }
+
+    
+    function setBenchmarkSuite(suite) {
+      currentSuite = suite;
+      const btnD300 = document.getElementById('suite-btn-d300');
+      const btnCore = document.getElementById('suite-btn-core');
+      const urgencyContainer = document.getElementById('urgency-filter-container');
+
+      if (suite === 'diverse_300') {
+        models = models_diverse_300;
+        btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
+        btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
+        if (urgencyContainer) urgencyContainer.style.display = 'none';
+
+        const subEl = document.getElementById('baseline-chart-subtitle');
+        if (subEl) {
+          subEl.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (384 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        }
+      } else {
+        models = models_jev_core;
+        btnCore.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm flex items-center gap-1.5";
+        btnD300.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white flex items-center gap-1.5";
+        if (urgencyContainer) urgencyContainer.style.display = 'flex';
+
+        const subEl = document.getElementById('baseline-chart-subtitle');
+        if (subEl) {
+          subEl.innerHTML = 'Center Vertical Axis = <strong class="text-sky-300">JEV Reference Baseline (744 ms)</strong> · <span class="text-emerald-400 font-semibold">← Left: Faster (Speedup)</span> · <span class="text-purple-400 font-semibold">Right: Slower (Latency Overhead) →</span>';
+        }
+      }
+
+      updateWinnerBanner();
+      renderTable();
+      renderChart();
+      renderBaselineChart();
+      if (typeof renderDashRaceGrids === 'function') renderDashRaceGrids();
     }
 
     function setGlobalFilter(clean) {
@@ -1544,6 +2020,20 @@
       const banner = document.getElementById('winner-banner');
       const tagBadge = document.getElementById('winner-tag-badge');
       const accLabel = document.getElementById('winner-stat-acc-label');
+
+      if (currentSuite === 'diverse_300') {
+        banner.className = "rounded-2xl p-6 border relative overflow-hidden bg-gradient-to-r from-blue-950/40 via-[#121820] to-[#121820] border-blue-500/40";
+        tagBadge.innerHTML = '🏆 Clone Shootout Champion (Diverse 300)';
+        tagBadge.className = 'inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20';
+        document.getElementById('top-winner-title').innerText = "Laya Typed Decisions";
+        document.getElementById('top-winner-desc').innerHTML = 'Achieved <strong class="text-blue-400">76.0% accuracy (228/300)</strong> across all 5 diverse enterprise domains at only <strong class="text-white">58.5 ms</strong> latency and <strong class="text-white">4.8 GB</strong> VRAM. 6.6x faster than hosted reference.';
+        document.getElementById('winner-stat-acc').innerText = "76.0%";
+        document.getElementById('winner-stat-acc').className = "text-2xl font-black text-blue-400";
+        accLabel.innerHTML = 'Overall Accuracy (300 Cases)';
+        document.getElementById('winner-stat-lat').innerText = "58.5 ms";
+        document.getElementById('winner-stat-vram').innerText = "4.8 GB";
+        return;
+      }
 
       if (isCleanMode) {
         banner.className = "rounded-2xl p-6 border relative overflow-hidden bg-gradient-to-r from-emerald-950/40 via-[#121820] to-[#121820] border-emerald-500/40";
@@ -1633,16 +2123,18 @@
               <td class="py-3 px-3"><span class="px-1.5 py-0.5 rounded text-[10px] bg-sky-950/80 text-sky-300 border border-sky-500/30 font-bold">${m.device}</span></td>
               <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-black border border-sky-500/40">100.0%</span></td>
               <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-black border border-sky-500/40">100.0%</span></td>
-              <td class="py-3 px-3 text-sky-300 font-semibold">100.0% (12/12)</td>
-              <td class="py-3 px-3 font-mono text-sky-300 font-bold">0.000</td>
-              <td class="py-3 px-3 text-sky-300 font-black">744.0 ms <span class="text-[10px] text-sky-400/80 font-normal">(1.0x Base)</span></td>
-              <td class="py-3 px-3 text-sky-200 font-medium">1.34</td>
+              <td class="py-3 px-3 text-sky-300 font-semibold">${(currentSuite === 'diverse_300') ? '— (N/A)' : '100.0% (12/12)'}</td>
+              <td class="py-3 px-3 font-mono text-sky-300 font-bold">${(typeof m.mae === 'number') ? m.mae.toFixed(3) : '0.000'}</td>
+              <td class="py-3 px-3 text-sky-300 font-black">${m.p50 ? m.p50.toFixed(1) + ' ms' : '744.0 ms'} <span class="text-[10px] text-sky-400/80 font-normal">(1.0x Base)</span></td>
+              <td class="py-3 px-3 text-sky-200 font-medium">${m.rps ? m.rps.toFixed(1) : '1.34'}</td>
               <td class="py-3 px-3 font-bold text-sky-300">1.0x Base</td>
               <td class="py-3 px-3"><span class="text-[11px] font-bold text-sky-300 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20">★ Ground Truth Reference</span></td>
             </tr>
           `;
         } else {
-          const isWinner = isCleanMode ? (m.id === 'qwen35_9b') : (m.id === 'ornith35b');
+          const isWinner = (currentSuite === 'diverse_300') 
+            ? (m.id === 'laya_d300')
+            : (isCleanMode ? (m.id === 'qwen35_9b') : (m.id === 'ornith35b'));
           const cleanAccBadge = m.acc_clean >= 98 
             ? '<span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/20">' + m.acc_clean.toFixed(1) + '%</span>'
             : '<span class="text-gray-300 font-semibold">' + m.acc_clean.toFixed(1) + '%</span>';
@@ -1652,6 +2144,7 @@
 
           const effScore = isCleanMode ? m.eff_clean : m.eff_full;
           const currentRank = rankCounter++;
+          const urgentText = (currentSuite === 'diverse_300') ? '—' : `${m.acc_urgent.toFixed(1)}% (${m.urgent_correct}/${m.urgent_total})`;
 
           html += `
             <tr class="${isWinner ? 'bg-blue-500/10 font-bold' : ''}">
@@ -1668,7 +2161,7 @@
               <td class="py-3 px-3 text-[var(--text-muted)]"><span class="px-1.5 py-0.5 rounded text-[10px] bg-[var(--panel-bg)]">${m.device}</span></td>
               <td class="py-3 px-3">${cleanAccBadge}</td>
               <td class="py-3 px-3">${fullAccBadge}</td>
-              <td class="py-3 px-3 text-[var(--text-muted)]">${m.acc_urgent.toFixed(1)}% (${m.urgent_correct}/${m.urgent_total})</td>
+              <td class="py-3 px-3 text-[var(--text-muted)]">${urgentText}</td>
               <td class="py-3 px-3 font-mono text-[var(--text-muted)]">${m.mae.toFixed(3)}</td>
               <td class="py-3 px-3 text-white font-bold">${m.p50 >= 1000 ? (m.p50/1000).toFixed(1)+'s' : m.p50.toFixed(0)+'ms'}</td>
               <td class="py-3 px-3 text-[var(--text-muted)]">${m.rps}</td>
@@ -1741,26 +2234,34 @@
     }
 
     function renderBubbleChart(svg) {
-      document.getElementById('chart-title').innerHTML = isCleanMode
-        ? 'Pareto Frontier: Response Latency (p50) vs Clean Accuracy (Excl. Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span>) — Size = VRAM'
-        : 'Pareto Frontier: Response Latency (p50) vs Full Suite Accuracy (56 Qs) — Size = VRAM';
+      const isDiverse = (currentSuite === 'diverse_300');
+      const baselineP50 = isDiverse ? 384.0 : 744.0;
+      const baselineLabel = isDiverse ? '384ms' : '744ms';
+
+      document.getElementById('chart-title').innerHTML = isDiverse
+        ? 'Pareto Frontier: Response Latency (p50) vs Categorical Accuracy (300 Diverse Cases) — Size = VRAM'
+        : (isCleanMode
+            ? 'Pareto Frontier: Response Latency (p50) vs Clean Accuracy (Excl. Urgency<span class="urgency-badge" onmouseenter="showUrgencyTooltip(event)" onmouseleave="hideUrgencyTooltip()">*</span>) — Size = VRAM'
+            : 'Pareto Frontier: Response Latency (p50) vs Full Suite Accuracy (56 Qs) — Size = VRAM');
 
       const width = 1000, height = 520;
       const pad = { top: 40, right: 80, bottom: 60, left: 70 };
       const w = width - pad.left - pad.right;
       const h = height - pad.top - pad.bottom;
 
-      const minLog = Math.log10(40);
-      const maxLog = Math.log10(20000);
-      const xScale = (p50) => pad.left + ((Math.log10(Math.max(40, p50)) - minLog) / (maxLog - minLog)) * w;
+      const minLog = isDiverse ? Math.log10(1.5) : Math.log10(40);
+      const maxLog = isDiverse ? Math.log10(600) : Math.log10(20000);
+      const xScale = (p50) => pad.left + ((Math.log10(Math.max(1.5, p50)) - minLog) / (maxLog - minLog)) * w;
 
-      const minY = 65, maxY = 105;
+      const minY = isDiverse ? 35 : 65;
+      const maxY = 105;
       const yScale = (acc) => pad.top + h - ((acc - minY) / (maxY - minY)) * h;
-      const rScale = (vram) => Math.max(6, Math.min(26, 5 + Math.sqrt(vram) * 2.2));
+      const rScale = (vram) => Math.max(6, Math.min(26, 5 + Math.sqrt(vram || 1) * 2.2));
 
       let html = '';
 
-      [70, 80, 90, 100].forEach(acc => {
+      const yTicks = isDiverse ? [40, 50, 60, 70, 80, 90, 100] : [70, 80, 90, 100];
+      yTicks.forEach(acc => {
         const y = yScale(acc);
         html += `
           <line x1="${pad.left}" y1="${y}" x2="${pad.left + w}" y2="${y}" stroke="#263238" stroke-dasharray="${acc === 100 ? '4 4' : '2 2'}" stroke-width="${acc === 100 ? '1.5' : '1'}"/>
@@ -1768,12 +2269,15 @@
         `;
       });
 
-      const ticks = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 15000];
+      const ticks = isDiverse 
+        ? [2, 5, 10, 20, 50, 100, 200, 384]
+        : [50, 100, 200, 500, 1000, 2000, 5000, 10000, 15000];
+
       ticks.forEach(t => {
         const x = xScale(t);
         html += `
           <line x1="${x}" y1="${pad.top}" x2="${x}" y2="${pad.top + h}" stroke="#1e293b" stroke-width="1"/>
-          <text x="${x}" y="${pad.top + h + 20}" fill="#8b949e" font-size="11" text-anchor="middle">${t >= 1000 ? (t/1000)+'s' : t+'ms'}</text>
+          <text x="${x}" y="${pad.top + h + 20}" fill="${t === baselineP50 ? '#38bdf8' : '#8b949e'}" font-size="11" text-anchor="middle">${t >= 1000 ? (t/1000)+'s' : t+'ms'}</text>
         `;
       });
 
@@ -1782,17 +2286,21 @@
         <text x="-${pad.top + h / 2}" y="24" fill="#c9d1d9" font-size="12" font-weight="600" text-anchor="middle" transform="rotate(-90)">Categorical Accuracy (%)</text>
       `;
 
-      const paretoKeys = isCleanMode 
-        ? ['laya', 'qwen35_9b', 'gemma26b']
-        : ['laya', 'gemma26b', 'kwei', 'ornith35b'];
+      const paretoKeys = isDiverse
+        ? ['diffusion_gemma_d300', 'bespoke_nimble_d300', 'jevlike_d300', 'laya_d300']
+        : (isCleanMode 
+            ? ['laya', 'qwen35_9b', 'gemma26b']
+            : ['laya', 'gemma26b', 'kwei', 'ornith35b']);
 
       const paretoModels = paretoKeys.map(k => models.find(m => m.id === k)).filter(Boolean);
-      let pathD = `M ${xScale(paretoModels[0].p50)} ${yScale(isCleanMode ? paretoModels[0].acc_clean : paretoModels[0].acc_full)}`;
-      for (let i = 1; i < paretoModels.length; i++) {
-        const m = paretoModels[i];
-        pathD += ` L ${xScale(m.p50)} ${yScale(isCleanMode ? m.acc_clean : m.acc_full)}`;
+      if (paretoModels.length > 0) {
+        let pathD = `M ${xScale(paretoModels[0].p50)} ${yScale(isCleanMode ? paretoModels[0].acc_clean : paretoModels[0].acc_full)}`;
+        for (let i = 1; i < paretoModels.length; i++) {
+          const m = paretoModels[i];
+          pathD += ` L ${xScale(m.p50)} ${yScale(isCleanMode ? m.acc_clean : m.acc_full)}`;
+        }
+        html += `<path d="${pathD}" fill="none" stroke="#3fb950" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>`;
       }
-      html += `<path d="${pathD}" fill="none" stroke="#3fb950" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>`;
 
       // Smart label collision offsets
       const labelConfigs = {
@@ -1811,20 +2319,27 @@
         'qwen3_2507': { dx: 16, dy: 4, anchor: 'start' },
         'spark4b': { dx: 18, dy: 4, anchor: 'start' },
         'minicpm5_2b': { dx: 16, dy: 4, anchor: 'start' },
-        'minicpm5_1b': { dx: 14, dy: 4, anchor: 'start' }
+        'minicpm5_1b': { dx: 14, dy: 4, anchor: 'start' },
+        'laya_d300': { dx: 18, dy: 4, anchor: 'start' },
+        'jevlike_d300': { dx: 18, dy: -8, anchor: 'start' },
+        'bespoke_nimble_d300': { dx: 18, dy: -8, anchor: 'start' },
+        'diffusion_gemma_d300': { dx: 18, dy: 4, anchor: 'start' },
+        'semif_d300': { dx: 18, dy: 14, anchor: 'start' },
+        'kev_d300': { dx: 18, dy: 4, anchor: 'start' }
       };
 
       models.forEach(m => {
         const acc = isCleanMode ? m.acc_clean : m.acc_full;
-        if (acc < 60) return;
+        const minCutoff = isDiverse ? 20 : 60;
+        if (acc < minCutoff) return;
 
         if (m.is_baseline) {
-          const cx = xScale(744.0);
+          const cx = xScale(baselineP50);
           const cy = yScale(100.0);
           html += `
             <g class="cursor-pointer" onmouseenter="showJevTooltip(event)" onmouseleave="hideTooltip()">
               <polygon points="${cx},${cy - 11} ${cx + 11},${cy} ${cx},${cy + 11} ${cx - 11},${cy}" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
-              <text x="${cx}" y="${cy - 16}" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV Baseline (100% · 744ms)</text>
+              <text x="${cx}" y="${cy - 16}" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV Baseline (100% · ${baselineLabel})</text>
             </g>
           `;
           return;
@@ -1940,13 +2455,22 @@
     // JEV BASELINE SPECTRUM CHART IMPLEMENTATION
     // ==========================================
     function renderDivergingWaterfall(svg) {
-      const width = 1440, height = 660;
+      const width = 1440;
       const centerX = 720;
       const maxBarSpan = 220;
+      const baselineP50 = (currentSuite === 'diverse_300') ? 384.0 : 744.0;
+      const baselineLabel = (currentSuite === 'diverse_300') ? '384 ms' : '744 ms';
 
-      // Sort models: Faster (p50 < 744) ascending, JEV Reference, Slower (p50 > 744) ascending
-      const fasterModels = models.filter(m => m.p50 < 744.0).sort((a, b) => a.p50 - b.p50);
-      const slowerModels = models.filter(m => m.p50 >= 744.0).sort((a, b) => a.p50 - b.p50);
+      // Sort models: Faster (p50 < baselineP50) ascending, JEV Reference, Slower (p50 >= baselineP50) ascending
+      const fasterModels = models.filter(m => m.p50 < baselineP50 && !m.is_baseline).sort((a, b) => a.p50 - b.p50);
+      const slowerModels = models.filter(m => m.p50 >= baselineP50 && !m.is_baseline).sort((a, b) => a.p50 - b.p50);
+
+      const totalRows = fasterModels.length + slowerModels.length + 1;
+      const rowStep = 32;
+      const startY = 62;
+      const svgHeight = Math.max(520, startY + totalRows * rowStep + 65);
+      svg.setAttribute('viewBox', `0 0 ${width} ${svgHeight}`);
+      svg.style.height = `${svgHeight}px`;
 
       let html = `
         <defs>
@@ -1966,54 +2490,66 @@
 
         <!-- Center Baseline Header Badge -->
         <rect x="625" y="10" width="190" height="24" rx="12" fill="#0284c7" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1.5"/>
-        <text x="720" y="26" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV BASELINE (744 ms)</text>
+        <text x="720" y="26" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV BASELINE (${baselineLabel})</text>
 
         <!-- Center Vertical Axis Line -->
-        <line x1="${centerX}" y1="38" x2="${centerX}" y2="615" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3" opacity="0.8"/>
+        <line x1="${centerX}" y1="38" x2="${centerX}" y2="${svgHeight - 45}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3" opacity="0.8"/>
       `;
 
-      // Speedup Grid Ticks on Left (between 500 and 720)
-      const leftTicks = [
+      // Speedup Grid Ticks on Left
+      const maxFastLog = (currentSuite === 'diverse_300') ? 8.0 : 4.0;
+      const leftTicks = (currentSuite === 'diverse_300') ? [
+        { label: '2x (192ms)', x: centerX - (Math.log2(2)/8.0) * maxBarSpan },
+        { label: '4x (96ms)',  x: centerX - (Math.log2(4)/8.0) * maxBarSpan },
+        { label: '8x (48ms)',  x: centerX - (Math.log2(8)/8.0) * maxBarSpan },
+        { label: '16x (24ms)', x: centerX - (Math.log2(16)/8.0) * maxBarSpan },
+        { label: '32x (12ms)', x: centerX - (Math.log2(32)/8.0) * maxBarSpan },
+        { label: '128x (3ms)', x: centerX - (Math.log2(128)/8.0) * maxBarSpan }
+      ] : [
         { label: '2x (372ms)', x: centerX - 0.25 * maxBarSpan },
         { label: '4x (186ms)', x: centerX - 0.50 * maxBarSpan },
         { label: '8x (93ms)',  x: centerX - 0.75 * maxBarSpan },
         { label: '16x (46ms)', x: centerX - 1.00 * maxBarSpan }
       ];
+
       leftTicks.forEach(t => {
         html += `
-          <line x1="${t.x}" y1="38" x2="${t.x}" y2="615" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="${t.x}" y1="38" x2="${t.x}" y2="${svgHeight - 45}" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
           <text x="${t.x}" y="48" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
-          <text x="${t.x}" y="630" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
+          <text x="${t.x}" y="${svgHeight - 25}" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
         `;
       });
 
-      // Slowdown Grid Ticks on Right (between 720 and 940)
-      const rightTicks = [
+      // Slowdown Grid Ticks on Right
+      const rightTicks = (currentSuite === 'diverse_300') ? [
+        { label: '2x (768ms)', x: centerX + (Math.log2(2)/4.32) * maxBarSpan },
+        { label: '4x (1.5s)',  x: centerX + (Math.log2(4)/4.32) * maxBarSpan },
+        { label: '8x (3.0s)',  x: centerX + (Math.log2(8)/4.32) * maxBarSpan },
+        { label: '16x (6.1s)', x: centerX + (Math.log2(16)/4.32) * maxBarSpan }
+      ] : [
         { label: '2x (1.5s)', x: centerX + (Math.log2(2)/4.32) * maxBarSpan },
         { label: '4x (3.0s)', x: centerX + (Math.log2(4)/4.32) * maxBarSpan },
         { label: '8x (6.0s)', x: centerX + (Math.log2(8)/4.32) * maxBarSpan },
         { label: '16x (12s)', x: centerX + (Math.log2(16)/4.32) * maxBarSpan }
       ];
+
       rightTicks.forEach(t => {
         html += `
-          <line x1="${t.x}" y1="38" x2="${t.x}" y2="615" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="${t.x}" y1="38" x2="${t.x}" y2="${svgHeight - 45}" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 2"/>
           <text x="${t.x}" y="48" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
-          <text x="${t.x}" y="630" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
+          <text x="${t.x}" y="${svgHeight - 25}" fill="#8b949e" font-size="10" text-anchor="middle">${t.label}</text>
         `;
       });
-
-      const startY = 62;
-      const rowStep = 32;
 
       // 1. Render Faster Models (Left-branching bars)
       fasterModels.forEach((m, idx) => {
         const y = startY + idx * rowStep;
-        const S = 744.0 / m.p50;
-        const norm = Math.min(1.0, Math.log2(S) / 4.0);
+        const S = baselineP50 / m.p50;
+        const norm = Math.min(1.0, Math.log2(Math.max(1, S)) / maxFastLog);
         const barW = Math.max(10, norm * maxBarSpan);
         const barX = centerX - barW;
 
-        const acc = isCleanMode ? m.acc_clean : m.acc_full;
+        const acc = (currentSuite === 'jev_core' && isCleanMode) ? m.acc_clean : m.acc_full;
         const accColor = acc >= 98 ? '#10b981' : (acc >= 90 ? '#38bdf8' : (acc >= 75 ? '#fbbf24' : '#f87171'));
         const speedLabel = S >= 2.0 ? `${S.toFixed(1)}x faster` : `${S.toFixed(2)}x faster`;
 
@@ -2025,15 +2561,15 @@
 
             <!-- Model Name and Parameter Tag in Dedicated Left Column (x: 85 to 350) -->
             <text x="85" y="${y + 14}" fill="#e6edf3" font-size="11.5" font-weight="600" text-anchor="start">
-              ${m.name} <tspan fill="#8b949e" font-size="10.5">(${m.params} · ${m.vram}GB)</tspan>
+              ${m.name} <tspan fill="#8b949e" font-size="10.5">(${m.params} · ${m.vram > 0 ? m.vram + 'GB' : 'Cloud'})</tspan>
             </text>
 
             <!-- Metric Label in Dedicated Column (x: 475, text-anchor: end) -->
             <text x="475" y="${y + 14}" fill="#34d399" font-size="11" font-weight="700" text-anchor="end">
-              ${speedLabel} (${m.p50.toFixed(0)} ms)
+              ${speedLabel} (${m.p50 >= 1000 ? (m.p50/1000).toFixed(1)+'s' : m.p50.toFixed(0)+' ms'})
             </text>
 
-            <!-- Green Speedup Bar extending Left from Center Line (between 490 and 720) -->
+            <!-- Green Speedup Bar extending Left from Center Line -->
             <rect x="${barX}" y="${y + 2}" width="${barW}" height="16" rx="4" fill="url(#green-grad)" stroke="#10b981" stroke-width="1"/>
           </g>
         `;
@@ -2045,7 +2581,7 @@
         <g class="cursor-pointer" onmouseenter="showJevTooltip(event)" onmouseleave="hideTooltip()">
           <rect x="25" y="${jevY}" width="1390" height="26" rx="6" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1.5"/>
           <text x="${centerX}" y="${jevY + 17}" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">
-            ★ JEV Reference Baseline — 744.0 ms (1.0x Baseline) · 100.0% Accuracy · Ground Truth Standard
+            ★ JEV Reference Baseline — ${baselineP50.toFixed(1)} ms (1.0x Baseline) · 100.0% Accuracy · Ground Truth Standard
           </text>
         </g>
       `;
@@ -2053,19 +2589,19 @@
       // 3. Render Slower Models (Right-branching bars)
       slowerModels.forEach((m, idx) => {
         const y = startY + (fasterModels.length + 1 + idx) * rowStep;
-        const D = m.p50 / 744.0;
-        const norm = Math.min(1.0, Math.log2(D) / 4.32);
+        const D = m.p50 / baselineP50;
+        const norm = Math.min(1.0, Math.log2(Math.max(1, D)) / 4.32);
         const barW = Math.max(10, norm * maxBarSpan);
         const barX = centerX;
 
-        const acc = isCleanMode ? m.acc_clean : m.acc_full;
+        const acc = (currentSuite === 'jev_core' && isCleanMode) ? m.acc_clean : m.acc_full;
         const accColor = acc >= 98 ? '#10b981' : (acc >= 90 ? '#38bdf8' : (acc >= 75 ? '#fbbf24' : '#f87171'));
         const slowLabel = D >= 2.0 ? `${D.toFixed(1)}x slower` : `${D.toFixed(2)}x slower`;
         const latText = m.p50 >= 1000 ? (m.p50/1000).toFixed(1)+'s' : m.p50.toFixed(0)+'ms';
 
         html += `
           <g class="cursor-pointer" onmouseenter="showTooltip(event, '${m.id}')" onmouseleave="hideTooltip()">
-            <!-- Purple Slowdown Bar extending Right from Center Line (between 720 and 940) -->
+            <!-- Purple Slowdown Bar extending Right from Center Line -->
             <rect x="${barX}" y="${y + 2}" width="${barW}" height="16" rx="4" fill="url(#purple-grad)" stroke="#a855f7" stroke-width="1"/>
 
             <!-- Metric Label in Dedicated Column (x: 960, text-anchor: start) -->
@@ -2075,7 +2611,7 @@
 
             <!-- Model Name and Parameter Tag in Dedicated Right Column (x: 1090, text-anchor: start) -->
             <text x="1090" y="${y + 14}" fill="#e6edf3" font-size="11.5" font-weight="600" text-anchor="start">
-              ${m.name} <tspan fill="#8b949e" font-size="10.5">(${m.params} · ${m.vram}GB)</tspan>
+              ${m.name} <tspan fill="#8b949e" font-size="10.5">(${m.params} · ${m.vram > 0 ? m.vram + 'GB' : 'Cloud'})</tspan>
             </text>
 
             <!-- Accuracy Badge on Far Right (x: 1365 to 1413) -->
@@ -2094,37 +2630,38 @@
       const w = width - pad.left - pad.right;
       const h = height - pad.top - pad.bottom;
       const centerX = width / 2;
+      const baselineP50 = (currentSuite === 'diverse_300') ? 384.0 : 744.0;
+      const baselineLabel = (currentSuite === 'diverse_300') ? '384ms' : '744ms';
 
-      // X Scale: Centered on JEV Reference (744 ms)
+      // X Scale: Centered on JEV Reference
+      const maxFastLog = (currentSuite === 'diverse_300') ? 8.0 : 4.0;
       const xScale = (p50) => {
-        if (p50 <= 744.0) {
-          const norm = Math.min(1.0, Math.log2(744.0 / Math.max(40, p50)) / 4.0);
+        if (p50 <= baselineP50) {
+          const norm = Math.min(1.0, Math.log2(baselineP50 / Math.max(1, p50)) / maxFastLog);
           return centerX - norm * (w / 2);
         } else {
-          const norm = Math.min(1.0, Math.log2(p50 / 744.0) / 4.32);
+          const norm = Math.min(1.0, Math.log2(p50 / baselineP50) / 4.32);
           return centerX + norm * (w / 2);
         }
       };
 
-      const minY = 65, maxY = 105;
+      const minY = 30, maxY = 105;
       const yScale = (acc) => pad.top + h - ((acc - minY) / (maxY - minY)) * h;
-      const rScale = (vram) => Math.max(6, Math.min(24, 5 + Math.sqrt(vram) * 2.0));
+      const rScale = (vram) => Math.max(6, Math.min(24, 5 + Math.sqrt(vram || 1) * 2.0));
 
       let html = `
         <!-- Quadrant Background Highlights -->
-        <rect x="${pad.left}" y="${pad.top}" width="${centerX - pad.left}" height="${yScale(90) - pad.top}" fill="#10b981" fill-opacity="0.04" rx="8"/>
-        <rect x="${centerX}" y="${pad.top}" width="${width - pad.right - centerX}" height="${yScale(90) - pad.top}" fill="#a855f7" fill-opacity="0.04" rx="8"/>
-        <rect x="${pad.left}" y="${yScale(90)}" width="${centerX - pad.left}" height="${pad.top + h - yScale(90)}" fill="#ef4444" fill-opacity="0.04" rx="8"/>
+        <rect x="${pad.left}" y="${pad.top}" width="${centerX - pad.left}" height="${yScale(70) - pad.top}" fill="#10b981" fill-opacity="0.04" rx="8"/>
+        <rect x="${centerX}" y="${pad.top}" width="${width - pad.right - centerX}" height="${yScale(70) - pad.top}" fill="#a855f7" fill-opacity="0.04" rx="8"/>
+        <rect x="${pad.left}" y="${yScale(70)}" width="${centerX - pad.left}" height="${pad.top + h - yScale(70)}" fill="#ef4444" fill-opacity="0.04" rx="8"/>
 
         <!-- Quadrant Annotations -->
         <text x="${pad.left + 20}" y="${pad.top + 22}" fill="#34d399" font-size="12" font-weight="700">🚀 FASTER THAN JEV & HIGH ACCURACY (Production Sweet Spot)</text>
         <text x="${width - pad.right - 20}" y="${pad.top + 22}" fill="#c084fc" font-size="12" font-weight="700" text-anchor="end">⚖️ SLOWER THAN JEV & HIGH ACCURACY (High-Capacity MoE)</text>
-        <text x="${pad.left + 20}" y="${pad.top + h - 15}" fill="#f87171" font-size="12" font-weight="700">⚠️ FASTER BUT LOW ACCURACY (Sub-Scale Models)</text>
-
-        <!-- Accuracy Gridlines -->
+        <text x="${pad.left + 20}" y="${pad.top + h - 15}" fill="#f87171" font-size="12" font-weight="700">⚠️ FASTER BUT LOW ACCURACY (Sub-Scale / Distilled)</text>
       `;
 
-      [70, 80, 90, 100].forEach(acc => {
+      [40, 60, 80, 100].forEach(acc => {
         const y = yScale(acc);
         html += `
           <line x1="${pad.left}" y1="${y}" x2="${width - pad.right}" y2="${y}" stroke="#1e293b" stroke-dasharray="2 2"/>
@@ -2133,7 +2670,14 @@
       });
 
       // Ticks
-      const xTicks = [
+      const xTicks = (currentSuite === 'diverse_300') ? [
+        { label: '128x Faster (3ms)', p: 3 },
+        { label: '32x Faster (12ms)', p: 12 },
+        { label: '4x Faster (96ms)',  p: 96 },
+        { label: '★ JEV (384ms)',     p: 384 },
+        { label: '2x Slower (768ms)', p: 768 },
+        { label: '4x Slower (1.5s)',  p: 1536 }
+      ] : [
         { label: '16x Faster (46ms)', p: 46.5 },
         { label: '4x Faster (186ms)', p: 186 },
         { label: '2x Faster (372ms)', p: 372 },
@@ -2145,7 +2689,7 @@
 
       xTicks.forEach(t => {
         const x = xScale(t.p);
-        const isJev = t.p === 744;
+        const isJev = (t.p === baselineP50);
         html += `
           <line x1="${x}" y1="${pad.top}" x2="${x}" y2="${pad.top + h}" stroke="${isJev ? '#38bdf8' : '#1e293b'}" stroke-width="${isJev ? 2 : 1}" stroke-dasharray="${isJev ? '4 3' : '2 2'}"/>
           <text x="${x}" y="${pad.top + h + 20}" fill="${isJev ? '#38bdf8' : '#8b949e'}" font-size="11" font-weight="${isJev ? 700 : 500}" text-anchor="middle">${t.label}</text>
@@ -2153,7 +2697,7 @@
       });
 
       html += `
-        <text x="${centerX}" y="${pad.top + h + 45}" fill="#c9d1d9" font-size="12" font-weight="600" text-anchor="middle">Relative Latency vs JEV Reference Baseline (Center = 744ms)</text>
+        <text x="${centerX}" y="${pad.top + h + 45}" fill="#c9d1d9" font-size="12" font-weight="600" text-anchor="middle">Relative Latency vs JEV Reference Baseline (Center = ${baselineLabel})</text>
         <text x="-${pad.top + h / 2}" y="24" fill="#c9d1d9" font-size="12" font-weight="600" text-anchor="middle" transform="rotate(-90)">Categorical Accuracy (%)</text>
       `;
 
@@ -2162,20 +2706,19 @@
       html += `
         <g class="cursor-pointer" onmouseenter="showJevTooltip(event)" onmouseleave="hideTooltip()">
           <polygon points="${centerX},${jevY - 11} ${centerX + 11},${jevY} ${centerX},${jevY + 11} ${centerX - 11},${jevY}" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
-          <text x="${centerX}" y="${jevY - 16}" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV BASELINE (100% · 744ms)</text>
+          <text x="${centerX}" y="${jevY - 16}" fill="#38bdf8" font-size="11" font-weight="800" text-anchor="middle">★ JEV BASELINE (100% · ${baselineLabel})</text>
         </g>
       `;
 
       // Plot Models
       models.forEach(m => {
         if (m.is_baseline) return;
-        const acc = isCleanMode ? m.acc_clean : m.acc_full;
-        if (acc < 60) return;
+        const acc = (currentSuite === 'jev_core' && isCleanMode) ? m.acc_clean : m.acc_full;
 
         const cx = xScale(m.p50);
         const cy = yScale(acc);
         const r = rScale(m.vram);
-        const isFaster = m.p50 < 744.0;
+        const isFaster = m.p50 < baselineP50;
         const color = isFaster ? '#3fb950' : m.color;
 
         html += `
@@ -2200,11 +2743,18 @@
         showJevTooltip(e);
         return;
       }
-      const S = (744.0 / m.p50);
-      const isFaster = m.p50 < 744.0;
+      const isDiverse = (currentSuite === 'diverse_300');
+      const baselineP50 = isDiverse ? 384.0 : 744.0;
+      const S = (baselineP50 / m.p50);
+      const isFaster = m.p50 < baselineP50;
       const speedupText = isFaster 
-        ? `<span class="text-emerald-400 font-bold">${S.toFixed(1)}x faster</span> than JEV (-${(744.0 - m.p50).toFixed(0)} ms)`
-        : `<span class="text-purple-400 font-bold">${(m.p50 / 744.0).toFixed(1)}x slower</span> than JEV (+${(m.p50 - 744.0).toFixed(0)} ms)`;
+        ? `<span class="text-emerald-400 font-bold">${S.toFixed(1)}x faster</span> than JEV (-${(baselineP50 - m.p50).toFixed(0)} ms)`
+        : `<span class="text-purple-400 font-bold">${(m.p50 / baselineP50).toFixed(1)}x slower</span> than JEV (+${(m.p50 - baselineP50).toFixed(0)} ms)`;
+
+      const accRows = isDiverse
+        ? `<div>Overall Accuracy (300 Cases): <strong class="text-emerald-400">${m.acc_full.toFixed(1)}%</strong></div>`
+        : `<div>Clean Acc (44 Qs)<span class="urgency-badge">*</span>: <strong class="text-emerald-400">${m.acc_clean.toFixed(2)}%</strong></div>
+           <div>Full Acc (56 Qs): <strong class="text-purple-400">${m.acc_full.toFixed(2)}%</strong></div>`;
 
       tooltip.style.display = 'block';
       tooltip.style.left = (e.pageX + 15) + 'px';
@@ -2212,8 +2762,7 @@
       tooltip.innerHTML = `
         <div class="font-bold text-white text-sm mb-1">${m.name}</div>
         <div class="space-y-0.5 text-xs text-[var(--text-muted)]">
-          <div>Clean Acc (44 Qs)<span class="urgency-badge">*</span>: <strong class="text-emerald-400">${m.acc_clean.toFixed(2)}%</strong></div>
-          <div>Full Acc (56 Qs): <strong class="text-purple-400">${m.acc_full.toFixed(2)}%</strong></div>
+          ${accRows}
           <div>Score MAE: <strong class="text-white">${m.mae.toFixed(3)}</strong></div>
           <div>Latency (p50): <strong class="text-white">${m.p50} ms</strong> (${m.rps} RPS)</div>
           <div>vs JEV Baseline: ${speedupText}</div>
@@ -2224,6 +2773,11 @@
     }
 
     function showJevTooltip(e) {
+      const isDiverse = (currentSuite === 'diverse_300');
+      const baselineP50 = isDiverse ? 384.0 : 744.0;
+      const baseMae = isDiverse ? '0.172' : '0.000';
+      const baseCases = isDiverse ? '300 Cases' : '44 / 56 Qs';
+
       tooltip.style.display = 'block';
       tooltip.style.left = (e.pageX + 15) + 'px';
       tooltip.style.top = (e.pageY - 30) + 'px';
@@ -2231,11 +2785,10 @@
         <div class="font-bold text-sky-400 text-sm mb-1">★ JEV Reference (v1.13)</div>
         <div class="space-y-0.5 text-xs text-[var(--text-muted)]">
           <div>Status: <strong class="text-white">Authoritative Baseline</strong></div>
-          <div>Clean Acc (44 Qs)<span class="urgency-badge">*</span>: <strong class="text-emerald-400">100.00%</strong></div>
-          <div>Full Acc (56 Qs): <strong class="text-purple-400">100.00%</strong></div>
-          <div>Score MAE: <strong class="text-white">0.000</strong></div>
-          <div>Latency (p50): <strong class="text-white">744.0 ms</strong> (Baseline = 1.0x)</div>
-          <div>Urgency Accuracy: <strong class="text-white">100.0% (12/12)</strong></div>
+          <div>Accuracy (${baseCases}): <strong class="text-emerald-400">100.00%</strong></div>
+          <div>Score MAE: <strong class="text-white">${baseMae}</strong></div>
+          <div>Latency (p50): <strong class="text-white">${baselineP50.toFixed(1)} ms</strong> (Baseline = 1.0x)</div>
+          <div>Coverage: <strong class="text-white">100% Ground Truth</strong></div>
         </div>
       `;
     }
@@ -2387,10 +2940,7 @@
     }
 
     // Init
-    renderTable();
-    updateWinnerBanner();
-    renderChart();
-    renderBaselineChart();
+    setBenchmarkSuite('diverse_300');
     renderDashRaceGrids();
   </script>
 </body>
