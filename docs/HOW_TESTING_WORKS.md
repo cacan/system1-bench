@@ -151,17 +151,33 @@ Ensure all test cases in a `.jsonl` file follow the strict schema:
 uv run s1b validate-suite benchmarks/jev_core.jsonl
 ```
 
-### 4. Side-by-Side Model Comparison (`s1b compare-results`)
+### 4. Interactive Model Race Simulation (`s1b race`)
+Run a live side-by-side terminal race comparing single forward-pass logit scoring against autoregressive token generation:
+```powershell
+uv run s1b race --suite benchmarks/diverse_300.jsonl --cases 50
+```
+
+### 5. Side-by-Side Model Comparison (`s1b compare-results`)
 Compare two models with per-question win/loss delta:
 ```powershell
 uv run s1b compare-results --baseline results/runs/jev-core-baseline.jsonl --candidate results/runs/hearim-qwen35-4b-core.jsonl --suite benchmarks/jev_core.jsonl
 ```
 
-### 5. Interactive Visual Dashboard (`results/dashboard.html`)
-Generate a self-contained, interactive HTML dashboard with interactive charts, confusion matrices, and testing guides:
+### 6. Interactive Visual Dashboard (`results/dashboard.html`)
+Open the zero-dependency interactive dashboard featuring the **Parallel Model Race Simulation**, tradeoff plots, and leaderboards:
 ```powershell
-uv run s1b dashboard --output results/dashboard.html
+Start-Process results/dashboard.html
 ```
+
+---
+
+## 5. Benchmark Suites
+
+| Suite | File | Cases | Domains / Scope |
+| :--- | :--- | :---: | :--- |
+| **Diverse 300** | `benchmarks/diverse_300.jsonl` | **300** | **5 domains** (60 each): Banking77 (Fintech), CLINC150 (Conversational Assistant), Trust & Safety (Moderation), E-Commerce Retail, AG News (Business/Tech) |
+| **JEV Core** | `benchmarks/jev_core.jsonl` | 37 | Customer support ticket triage, urgent escalation, and severity rating |
+| **Smoke** | `benchmarks/smoke.jsonl` | 2 | Fast sanity check for pipeline verification |
 
 ---
 

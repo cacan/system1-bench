@@ -47,6 +47,7 @@ This repository includes a standalone, zero-dependency interactive HTML comparis
 
 It features:
 - **Leaderboard & KPIs**: Speed, accuracy, and MAE across all tested providers.
+- **Model Race Simulation**: Side-by-side visual race showing single forward-pass logit scoring vs standard autoregressive LLMs.
 - **Decision Disagreements Table**: Filterable win/loss matrix comparing any candidate against the baseline.
 - **Case Explorer**: Full inspection of state inputs, question instructions, and rubric criteria.
 - **Testing & Evaluation Guide**: Built-in visual guide explaining metrics and formulas.
@@ -59,14 +60,20 @@ Start-Process results/dashboard.html
 
 ---
 
-## 🛠️ Tools that Explain Testing
+## 🛠️ Tools that Explain Testing & Visualize Decisions
 
-This repository provides built-in CLI tools to inspect, explain, and understand testing:
+This repository provides built-in CLI tools to inspect, explain, and simulate testing:
 
-### 1. Inspect Any Benchmark Case
+### 1. Interactive Model Race Simulation (`s1b race`)
+Watch a real-time side-by-side race comparing fast System 1 logit scoring (~54ms) against standard autoregressive token generation (~780ms) across a test suite:
+```powershell
+uv run s1b race --suite benchmarks/diverse_300.jsonl --cases 50
+```
+
+### 2. Inspect Any Benchmark Case (`s1b explain-case`)
 View the input scenario, questions, rubric scale, ground truth, and analyze model prediction errors:
 ```powershell
-uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl
+uv run s1b explain-case bank-001 --suite benchmarks/diverse_300.jsonl
 ```
 
 With model error analysis:
@@ -74,13 +81,13 @@ With model error analysis:
 uv run s1b explain-case support-001 --suite benchmarks/smoke.jsonl --results results/runs/hearim-qwen35-4b-core.jsonl
 ```
 
-### 2. Educational Metrics Guide
+### 3. Educational Metrics Guide (`s1b explain-metrics`)
 Print a comprehensive reference of decision primitives, Brier score calibration, MAE formulas, and evaluation contracts:
 ```powershell
 uv run s1b explain-metrics
 ```
 
-### 3. Read the Methodology Guide
+### 4. Read the Methodology Guide
 Read [`docs/HOW_TESTING_WORKS.md`](docs/HOW_TESTING_WORKS.md) for full mathematical definitions, benchmark suite hierarchies, and evaluation procedures.
 
 ---
@@ -105,6 +112,7 @@ uv run pytest
 ```powershell
 uv run s1b validate-suite benchmarks/smoke.jsonl
 uv run s1b validate-suite benchmarks/jev_core.jsonl
+uv run s1b validate-suite benchmarks/diverse_300.jsonl
 ```
 
 ### 4. View Leaderboard

@@ -26,6 +26,7 @@ from .explain import (
     get_metrics_explanation_text,
 )
 from .provider_client import ProviderClientError, SystemOneHttpClient, run_provider_benchmark
+from .race import run_terminal_race
 from .schema import ValidationError, load_suite
 
 
@@ -404,7 +405,7 @@ def _explain_metrics() -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="jevx", description="Jev local experiments workspace tools")
+    parser = argparse.ArgumentParser(prog="s1b", description="System1-Bench workspace tools")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate = subparsers.add_parser("validate-suite", help="validate a JSONL benchmark suite")
@@ -484,6 +485,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("explain-metrics", help="comprehensive educational guide to typed decisions and evaluation metrics")
 
+    race_cmd = subparsers.add_parser("race", help="run interactive side-by-side speed and accuracy race simulation")
+    race_cmd.add_argument("--suite", type=Path, default=_default_path("benchmarks/diverse_300.jsonl"), help="benchmark suite path")
+    race_cmd.add_argument("--cases", type=int, default=50, help="number of cases to race")
+    race_cmd.add_argument("--model-a", type=str, default="System 1 (Logit Head)", help="name of model A")
+    race_cmd.add_argument("--model-b", type=str, default="Standard LLM (Autoregressive)", help="name of model B")
+    race_cmd.add_argument("--speedup", type=float, default=6.0, help="terminal animation time compression factor")
+
     return parser
 
 
@@ -525,6 +533,14 @@ def main(argv: list[str] | None = None) -> int:
         return _explain_case(args.case_id, args.suite, args.benchmarks_dir, args.results, args.json)
     if args.command == "explain-metrics":
         return _explain_metrics()
+    if args.command == "race":
+        return run_terminal_race(
+            suite_path=args.suite,
+            num_cases=args.cases,
+            model_a_name=args.model_a,
+            model_b_name=args.model_b,
+            demo_speedup=args.speedup,
+        )
     raise AssertionError(f"unhandled command: {args.command}")
 
 
