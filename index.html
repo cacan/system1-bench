@@ -435,7 +435,7 @@
 
 <section id="baseline-scatter-panel" class="tradeoff-fullwidth-panel bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-6 relative space-y-4" aria-labelledby="baseline-scatter-title">
         <div>
-          <h2 id="baseline-scatter-title" class="text-base font-bold text-white">2D Accuracy vs Speedup Map</h2>
+          <h2 id="baseline-scatter-title" class="text-base font-bold text-white">2D Accuracy vs Speedup Map · local VRAM size, hosted API diamond</h2>
           <p class="text-xs text-[var(--text-muted)] mt-0.5">Scatter comparison of combined accuracy against relative speed versus JEV; shown last because it is a 2D map rather than a waterfall</p>
         </div>
         <div class="w-full overflow-x-auto">
@@ -1347,12 +1347,13 @@
     "provider": "openai_decisions",
     "model": "gpt-6-luna",
     "category": "Hosted Decision API",
-    "tag": "Public beta · JEV-aligned result only",
+    "tag": "Public beta · hosted evaluated candidate",
     "color": "#38bdf8",
     "rps": 2.35,
     "runtime": "OpenAI Decisions API",
-    "is_baseline": true,
-    "evaluation_status": "verified_reference",
+    "is_baseline": false,
+    "is_hosted": true,
+    "evaluation_status": "verified_hosted",
     "available_bases": [
       "jev_aligned"
     ],
@@ -5341,7 +5342,7 @@
     function getDiverseModels() {
       const summaries = diverseResultsByReference[currentDiverseReference] || {};
       const aliases = {};
-      return models_diverse_300.filter(model => !Array.isArray(model.available_bases) || model.available_bases.includes(currentDiverseReference)).map(model => { const summary = summaries[aliases[model.id] || model.id]; if (!summary) return model; const efficiency = model.vram > 0 && model.p50 > 0 ? Math.round((summary.acc_full / (model.p50 / 1000 * model.vram)) * 10) / 10 : 1.0; return { ...model, ...summary, p50: model.p50, rps: model.rps, eff_full: efficiency, eff_clean: efficiency }; });
+      return models_diverse_300.filter(model => !Array.isArray(model.available_bases) || model.available_bases.includes(currentDiverseReference)).map(model => { const summary = summaries[aliases[model.id] || model.id]; if (!summary) return model; const efficiency = model.is_hosted ? null : model.vram > 0 && model.p50 > 0 ? Math.round((summary.acc_full / (model.p50 / 1000 * model.vram)) * 10) / 10 : 1.0; return { ...model, ...summary, p50: model.p50, rps: model.rps, eff_full: efficiency, eff_clean: efficiency }; });
     }
     function updateResultsBasisControls() {
       const original = currentDiverseReference === 'original'; const active = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm'; const idle = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white'; const jev = document.getElementById('basis-btn-jev'); const raw = document.getElementById('basis-btn-original');
@@ -5353,6 +5354,7 @@
       const basis = document.getElementById('recent-runs-basis');
       if (!container) return;
       const recentIds = [
+        'openai_decisions_d300',
         'clm_rocm_fp16_d300', 'jev_omni_q4_d300', 'hopper_bnb_nf4_d300', 'hopper_bnb_int8_d300',
         'decision2b_bnb_nf4_d300', 'decision2b_bnb_int8_d300', 'ling3_tiny_q4_k_m_d300',
         'ling3_tiny_q8_0_d300', 'ling3_tiny_q4_pointer_readout_d300', 'ling3_tiny_q8_pointer_readout_d300',
@@ -5438,6 +5440,9 @@
       if (!model || model.is_baseline) {
         return '<span class="vram-unavailable" title="Hosted reference; no local VRAM">—</span>';
       }
+      if (model.is_hosted) {
+        return '<span class="vram-unavailable" title="Hosted API; local VRAM is not measured">Hosted API</span>';
+      }
       const vram = Number(model.vram);
       const group = getVramGroup(vram);
       if (!group) return '<span class="vram-unavailable" title="VRAM usage unavailable">—</span>';
@@ -5450,6 +5455,7 @@
       if (!model || model.is_baseline) {
         return '<tspan class="vram-unavailable">Cloud</tspan>';
       }
+      if (model.is_hosted) return '<tspan class="vram-unavailable">Hosted API</tspan>';
       if (model.vram === null || model.vram === undefined || model.vram === '') {
         return '<tspan class="vram-unavailable">VRAM unavailable</tspan>';
       }
@@ -6011,10 +6017,11 @@
       const matrixModels = [...models].sort((a, b) =>
         Number(b.acc_full) - Number(a.acc_full) || a.name.localeCompare(b.name)
       );
-      const localCount = matrixModels.filter(model => !model.is_baseline).length;
+      const localCount = matrixModels.filter(model => !model.is_baseline && !model.is_hosted).length;
+      const hostedCount = matrixModels.filter(model => model.is_hosted).length;
       const referenceCount = matrixModels.filter(model => model.is_baseline).length;
       const count = document.getElementById('feature-model-count');
-      if (count) count.textContent = `${localCount} local result configurations + ${referenceCount} hosted JEV reference`;
+      if (count) count.textContent = `${localCount} local result configurations + ${hostedCount} hosted API + ${referenceCount} hosted JEV reference`;
 
       const hasNumber = value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
       const percent = value => hasNumber(value) ? `${Number(value).toFixed(1)}%` : '—';
@@ -6032,7 +6039,7 @@
         const runtime = diagnosticEscape(model.device || 'Runtime not recorded');
         const precision = diagnosticEscape(model.precision || 'Precision not recorded');
         const evidence = diagnosticEscape(model.tag || model.evaluation_status || 'Evidence not recorded');
-        const kindClass = model.is_baseline ? 'text-sky-300' : 'text-emerald-300';
+        const kindClass = model.is_baseline ? 'text-sky-300' : model.is_hosted ? 'text-cyan-300' : 'text-emerald-300';
         const latency = hasNumber(model.p50) ? formatLatency(Number(model.p50)) : '—';
         return `<tr class="hover:bg-[#1a2332] transition-colors">
           <td class="py-2.5 px-3 font-semibold text-white whitespace-nowrap" title="${name}">${name}</td>
@@ -6135,7 +6142,7 @@
       const container = document.getElementById('vram-budget-winners');
       if (!container) return;
       const candidates = models.filter(function (model) {
-        return !model.is_baseline && Number.isFinite(Number(model.vram));
+        return !model.is_baseline && !model.is_hosted && Number.isFinite(Number(model.vram));
       });
       const vramBudgetCaps = [4, 8, 16, 32, 128];
       container.innerHTML = vramBudgetCaps.map(function (cap) {
@@ -6205,7 +6212,7 @@
         const selectedElsewhere = new Set(compareSelectedModelIds.filter((id, index) => index !== slot && id));
         select.innerHTML = '<option value="">Add a model…</option>' + sortedModels.map(function (model) {
           const id = diagnosticEscape(model.id);
-          const name = diagnosticEscape(model.name + (model.is_baseline ? ' · hosted reference' : ''));
+          const name = diagnosticEscape(model.name + (model.is_baseline ? ' · hosted reference' : model.is_hosted ? ' · hosted API' : ''));
           const disabled = selectedElsewhere.has(model.id) ? ' disabled' : '';
           return `<option value="${id}"${disabled}>${name}</option>`;
         }).join('');
@@ -6233,10 +6240,12 @@
         { key: 'noul_acc', label: 'Noul accuracy', direction: 'high', format: model => `${Number(model.noul_acc).toFixed(1)}%` },
         { key: 'mae', label: 'Score MAE', direction: 'low', format: model => Number(model.mae).toFixed(3) },
         { key: 'p50', label: 'p50 latency', direction: 'low', format: model => formatLatency(Number(model.p50)) },
-        { key: 'vram', label: 'VRAM', direction: 'low', skipBaseline: true, format: model => model.is_baseline ? '—' : formatVram(model) },
+        { key: 'vram', label: 'VRAM', direction: 'low', skipBaseline: true, skipHosted: true, format: model => model.is_baseline || model.is_hosted ? '—' : formatVram(model) },
         { key: 'rps', label: 'Throughput (RPS)', direction: 'high', format: model => Number(model.rps).toFixed(2) },
-        { key: 'eff_full', label: 'ROI score', direction: 'high', skipBaseline: true, format: model => model.is_baseline ? '—' : Number(model.eff_full || 0).toFixed(1) }
+        { key: 'eff_full', label: 'ROI score', direction: 'high', skipBaseline: true, skipHosted: true, format: model => model.is_baseline || model.is_hosted ? '—' : Number(model.eff_full || 0).toFixed(1) }
       ];
+      const skipMetric = (model, metric) =>
+        (metric.skipBaseline && model.is_baseline) || (metric.skipHosted && model.is_hosted);
       const headers = selected.map(model => {
         const id = diagnosticEscape(model.id);
         const name = diagnosticEscape(model.name);
@@ -6244,11 +6253,11 @@
         return `<th scope="col" class="min-w-[180px] p-3 text-center align-top"><button type="button" class="font-bold text-white cursor-help focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400" onmouseenter="showCompareEvidenceTooltip(event, '${id}', 'overview')" onmouseleave="hideTooltip()" onfocus="showCompareEvidenceTooltip(event, '${id}', 'overview')" onblur="hideTooltip()">${name}</button><span class="block mt-1 text-[10px] leading-relaxed font-normal text-[var(--text-muted)]">${method}</span></th>`;
       }).join('');
       const body = rows.map(metric => {
-        const comparable = selected.filter(model => !(metric.skipBaseline && model.is_baseline) && Number.isFinite(Number(model[metric.key])));
+        const comparable = selected.filter(model => !skipMetric(model, metric) && Number.isFinite(Number(model[metric.key])));
         const best = comparable.length ? (metric.direction === 'high' ? Math.max(...comparable.map(model => Number(model[metric.key]))) : Math.min(...comparable.map(model => Number(model[metric.key])))) : null;
         const cells = selected.map(model => {
           const value = model[metric.key];
-          const hasValue = !(metric.skipBaseline && model.is_baseline) && value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
+          const hasValue = !skipMetric(model, metric) && value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
           const bestCell = hasValue && best !== null && Math.abs(Number(value) - best) < 0.000001;
           const id = diagnosticEscape(model.id);
           const colorClass = bestCell ? 'text-emerald-300 font-bold bg-emerald-500/10' : 'text-white';
@@ -6354,7 +6363,7 @@
       const matched = models.filter(model => {
         const matchesSearch = [model.name, model.params, model.device, model.tag]
           .join(' ').toLowerCase().includes(search);
-        const matchesVram = vramLimit === null || model.is_baseline ||
+        const matchesVram = vramLimit === null || model.is_baseline || model.is_hosted ||
           (Number.isFinite(Number(model.vram)) && Number(model.vram) < vramLimit);
         return matchesSearch && matchesVram;
       });
@@ -6392,7 +6401,7 @@
           <td class="py-3 px-3 font-mono text-[var(--text-muted)]">${Number(model.mae).toFixed(3)}</td>
           <td class="py-3 px-3 text-white font-bold">${model.p50 >= 1000 ? (model.p50/1000).toFixed(1)+'s' : model.p50.toFixed(0)+'ms'}</td>
           <td class="py-3 px-3 text-[var(--text-muted)]">${model.rps}</td>
-          <td class="py-3 px-3 font-bold text-amber-400">${model.eff_full || 0}</td>
+          <td class="py-3 px-3 font-bold text-amber-400">${model.is_hosted ? '—' : (model.eff_full || 0)}</td>
         </tr>`;
       }).join('');
     }
@@ -6437,7 +6446,7 @@
       const baselineP50 = 384.0;
       const baselineLabel = '384ms';
 
-      document.getElementById('chart-title').innerHTML = 'Pareto Frontier: Response Latency (p50) vs Combined Accuracy (300 Diverse Cases) — Size = VRAM';
+      document.getElementById('chart-title').innerHTML = 'Pareto Frontier: Response Latency (p50) vs Combined Accuracy (300 Diverse Cases) — local VRAM size; hosted API diamond';
 
       const width = 1000, height = 520;
       const pad = { top: 40, right: 80, bottom: 60, left: 70 };
@@ -6525,17 +6534,20 @@
 
         const cx = xScale(m.p50);
         const cy = yScale(acc);
-        const r = rScale(m.vram);
         const isPareto = paretoModels.some(model => model.id === m.id);
         const color = isPareto ? '#3fb950' : m.color;
+        const r = m.is_hosted ? 8 : rScale(m.vram);
+        const marker = m.is_hosted
+          ? `<polygon points="${cx},${cy - r - 2} ${cx + r + 2},${cy} ${cx},${cy + r + 2} ${cx - r - 2},${cy}" fill="${color}" fill-opacity="0.35" stroke="${color}" stroke-width="2" stroke-dasharray="3 2"/>`
+          : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="${isPareto ? '0.45' : '0.25'}" stroke="${color}" stroke-width="${isPareto ? '2.5' : '1.5'}"/>`;
         const cfg = labelConfigs[m.id] || { dx: r + 6, dy: 4, anchor: 'start' };
 
         html += `
           <g class="cursor-pointer" onmouseenter="showTooltip(event, '${m.id}')" onmouseleave="hideTooltip()">
-            <circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="${isPareto ? '0.45' : '0.25'}" stroke="${color}" stroke-width="${isPareto ? '2.5' : '1.5'}"/>
+            ${marker}
             <circle cx="${cx}" cy="${cy}" r="3" fill="#ffffff"/>
             <text x="${cx + cfg.dx}" y="${cy + cfg.dy}" fill="#e6edf3" font-size="11" font-weight="${isPareto ? '700' : '500'}" text-anchor="${cfg.anchor}">
-              ${m.name} ${isPareto ? '★' : ''}
+              ${m.name}${m.is_hosted ? ' · HOSTED API' : ''} ${isPareto ? '★' : ''}
             </text>
           </g>
         `;
@@ -6577,7 +6589,7 @@
       `;
 
       models.forEach(m => {
-        if (m.is_baseline || m.vram === 0 || m.vram > 35) return;
+        if (m.is_baseline || m.is_hosted || m.vram === 0 || m.vram > 35) return;
         const acc = m.acc_full;
         const cx = xScale(m.vram);
         const cy = yScale(m.p50);
@@ -6600,7 +6612,7 @@
       const w = width - pad.left - pad.right;
       const h = height - pad.top - pad.bottom;
 
-      const scored = models.filter(m => !m.is_baseline).map(m => {
+      const scored = models.filter(m => !m.is_baseline && !m.is_hosted).map(m => {
         const eff = m.eff_full;
         const acc = m.acc_full;
         return { ...m, eff, acc };
@@ -6895,16 +6907,19 @@
 
         const cx = xScale(m.p50);
         const cy = yScale(acc);
-        const r = rScale(m.vram);
         const isFaster = m.p50 < baselineP50;
         const color = isFaster ? '#3fb950' : m.color;
+        const r = m.is_hosted ? 8 : rScale(m.vram);
+        const marker = m.is_hosted
+          ? `<polygon points="${cx},${cy - r - 2} ${cx + r + 2},${cy} ${cx},${cy + r + 2} ${cx - r - 2},${cy}" fill="${color}" fill-opacity="0.35" stroke="${color}" stroke-width="2" stroke-dasharray="3 2"/>`
+          : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.35" stroke="${color}" stroke-width="1.5"/>`;
 
         html += `
           <g class="cursor-pointer" onmouseenter="showTooltip(event, '${m.id}')" onmouseleave="hideTooltip()">
-            <circle cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.35" stroke="${color}" stroke-width="1.5"/>
+            ${marker}
             <circle cx="${cx}" cy="${cy}" r="3" fill="#ffffff"/>
             <text x="${cx + (isFaster ? -r - 8 : r + 8)}" y="${cy + 4}" fill="#e6edf3" font-size="11" font-weight="600" text-anchor="${isFaster ? 'end' : 'start'}">
-              ${m.name}
+              ${m.name}${m.is_hosted ? ' · HOSTED API' : ''}
             </text>
           </g>
         `;
@@ -6919,7 +6934,7 @@
       const maxBarSpan = 270;
       const budget = Number(document.getElementById('baseline-vram-budget')?.value || 8);
       const candidates = models.filter(model =>
-        !model.is_baseline && Number.isFinite(Number(model.vram))
+        !model.is_baseline && !model.is_hosted && Number.isFinite(Number(model.vram))
       ).sort((a, b) => Number(a.vram) - Number(b.vram) || a.name.localeCompare(b.name));
       const maxDelta = Math.max(1, ...candidates.map(model => Math.abs(Number(model.vram) - budget)));
       const rowStep = 30;
@@ -7034,7 +7049,7 @@
           </div>`,
         'vram-budget-rules': `
           <div class="font-bold text-white text-sm mb-1">How the VRAM caps work</div>
-          <div class="text-xs text-[var(--text-muted)] leading-relaxed">Caps are cumulative and strict: each card selects the highest combined Choice + Noul accuracy among local models below that VRAM cap. Ties go to lower Score MAE, then faster p50. Hosted JEV is excluded; ≈ marks estimated VRAM.</div>`
+          <div class="text-xs text-[var(--text-muted)] leading-relaxed">Caps are cumulative and strict: each card selects the highest combined Choice + Noul accuracy among local models below that VRAM cap. Ties go to lower Score MAE, then faster p50. Hosted APIs and the JEV reference are excluded; ≈ marks estimated VRAM.</div>`
       }[key];
       if (!content) return;
       tooltip.innerHTML = content;
