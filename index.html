@@ -1113,25 +1113,13 @@
             <div>
               <label class="block text-[10px] font-semibold text-emerald-400 uppercase mb-1">Result Set A</label>
               <select id="dashRaceModelA" onchange="renderDashRaceGrids()" class="bg-[var(--panel-bg)] border border-emerald-500/40 rounded-lg px-3 py-1.5 text-xs text-white outline-none">
-                <option value="laya_d300">Laya Typed Decisions</option>
-                <option value="kev_0_8b_d300">Kev 0.8B</option>
-                <option value="kev_4b_d300">Kev 4B</option>
-                <option value="bespoke_nimble_9b_d300">Bespoke Nimble 9B</option>
-                <option value="semif_4b_d300">SemIf 4B</option>
-                <option value="semif_2b_d300">SemIf 2B</option>
-                <option value="semif_0_8b_d300">SemIf 0.8B</option>
+                <option value="">Choose a saved model</option>
               </select>
             </div>
             <div>
               <label class="block text-[10px] font-semibold text-blue-400 uppercase mb-1">Result Set B</label>
               <select id="dashRaceModelB" onchange="renderDashRaceGrids()" class="bg-[var(--panel-bg)] border border-blue-500/40 rounded-lg px-3 py-1.5 text-xs text-white outline-none">
-                <option value="kev_4b_d300">Kev 4B</option>
-                <option value="bespoke_nimble_9b_d300">Bespoke Nimble 9B</option>
-                <option value="kev_0_8b_d300">Kev 0.8B</option>
-                <option value="laya_d300">Laya Typed Decisions</option>
-                <option value="semif_4b_d300">SemIf 4B</option>
-                <option value="semif_2b_d300">SemIf 2B</option>
-                <option value="semif_0_8b_d300">SemIf 0.8B</option>
+                <option value="">Choose a saved model</option>
               </select>
             </div>
             <div>
@@ -1247,14 +1235,14 @@
       <section class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
         <h2 class="text-xl font-bold text-white">All recent test results</h2>
         <p class="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">
-          This table lists every complete 300-case run from the recent model tests. Its scores follow the result-basis buttons above;
+          This table lists every registered complete 300-case run, with the latest registry additions first. Its scores follow the result-basis buttons above;
           the main leaderboard, comparisons, domain charts, and diagnostics use the same runs. Latency and throughput stay fixed when the label basis changes.
         </p>
       </section>
 
       <section class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
         <div>
-          <h3 class="text-base font-bold text-white">Recent Diverse 300 runs</h3>
+          <h3 class="text-base font-bold text-white">Saved Diverse 300 runs</h3>
           <p id="recent-runs-basis" class="text-[11px] text-[var(--text-muted)] mt-1"></p>
         </div>
         <div id="recent-runs-table" class="overflow-x-auto rounded-xl border border-[var(--border)]" aria-live="polite"></div>
@@ -1367,7 +1355,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "run_id": "openai_decisions_gpt6luna_diverse_300_20261007",
@@ -1447,7 +1436,8 @@
     "noul_total": 300,
     "score_total": 300,
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "run_id": "kev_diverse_300_1790196194",
@@ -1515,7 +1505,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "bespoke_nimble_diverse_300_1790198700",
@@ -1583,7 +1574,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "semif_diverse_300_1790195275",
@@ -1651,7 +1643,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "semif_diverse_300_1790194582",
@@ -1719,7 +1712,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "semif_diverse_300_1790194168",
@@ -1787,7 +1781,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "kev_diverse_300_1790192895",
@@ -1855,7 +1850,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "run_id": "laya_diverse_300_1790173904",
@@ -1923,7 +1919,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_2b_d300",
@@ -1989,7 +1986,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_4b_d300",
@@ -2055,7 +2053,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_0_8b_q8_d300",
@@ -2121,7 +2120,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_0_8b_iq4_xs_d300",
@@ -2187,7 +2187,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_0_8b_q4_k_s_d300",
@@ -2253,7 +2254,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_0_8b_q4_k_m_d300",
@@ -2319,7 +2321,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_2b_q8_d300",
@@ -2385,7 +2388,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_2b_iq4_nl_d300",
@@ -2451,7 +2455,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_4b_q8_d300",
@@ -2517,7 +2522,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_4b_iq4_xs_d300",
@@ -2583,7 +2589,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_4b_q4_k_s_d300",
@@ -2649,7 +2656,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_4b_q4_k_m_d300",
@@ -2715,7 +2723,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "kev_4b_q8_d300",
@@ -2781,7 +2790,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "kev_4b_ud_q4_k_m_d300",
@@ -2847,7 +2857,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "jeff_d300",
@@ -2913,7 +2924,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "jevk5_d300",
@@ -2979,7 +2991,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "lfm2_350m_d300",
@@ -3045,7 +3058,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "lfm2_6b_d300",
@@ -3111,7 +3125,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "metask_jev_d300",
@@ -3177,7 +3192,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "mini_jev_d300",
@@ -3243,7 +3259,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "nanojev_d300",
@@ -3309,7 +3326,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "open_jev_pngwn_d300",
@@ -3375,7 +3393,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "openjev_verdict_d300",
@@ -3441,7 +3460,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "openvons_d300",
@@ -3507,7 +3527,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "qwen25_rlcd_d300",
@@ -3573,7 +3594,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "reflex_d300",
@@ -3639,7 +3661,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "clm_rocm_fp16_d300",
@@ -3705,7 +3728,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "jev_omni_q4_d300",
@@ -3771,7 +3795,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "hopper_bnb_nf4_d300",
@@ -3837,7 +3862,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "hopper_bnb_int8_d300",
@@ -3903,7 +3929,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decision2b_bnb_nf4_d300",
@@ -3969,7 +3996,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decision2b_bnb_int8_d300",
@@ -4035,7 +4063,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "ling3_tiny_q4_k_m_d300",
@@ -4101,7 +4130,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "ling3_tiny_q8_0_d300",
@@ -4167,7 +4197,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "ling3_tiny_q4_pointer_readout_d300",
@@ -4233,7 +4264,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "ling3_tiny_q8_pointer_readout_d300",
@@ -4299,7 +4331,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider4b_hip_probe_d300",
@@ -4365,7 +4398,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "open_jev_deberta_v3_large_d300",
@@ -4431,7 +4465,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "decider_2b_v11_d300",
@@ -4497,7 +4532,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "decider_2b_vision_d300",
@@ -4563,7 +4599,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": false
   },
   {
     "id": "ornith_1_5_9b_q8_0_d300",
@@ -4629,7 +4666,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "ornith_1_5_9b_q4_k_m_d300",
@@ -4695,7 +4733,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "open_jev_deberta_v3_large_bnb4_nf4_d300",
@@ -4761,7 +4800,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "opendecider_small_q4_k_m_d300",
@@ -4827,7 +4867,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "opendecider_small_q8_0_d300",
@@ -4893,7 +4934,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "opendecider_small_td_q4_k_m_d300",
@@ -4959,7 +5001,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "opendecider_small_td_q8_0_d300",
@@ -5025,7 +5068,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "bongard_mini_bnb4_nf4_d300",
@@ -5091,7 +5135,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "jeff_gemma4_e2b_bnb4_nf4_d300",
@@ -5157,7 +5202,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "od1_typed_decisions_bnb4_nf4_d300",
@@ -5223,7 +5269,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "opendecider_nano_bnb8_int8_d300",
@@ -5289,7 +5336,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "soft_decider_421m_f16_d300",
@@ -5355,7 +5403,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   },
   {
     "id": "strands_decider_v21_bnb_nf4_d300",
@@ -5422,7 +5471,8 @@
       }
     },
     "eff_full": 0.0,
-    "eff_clean": 0.0
+    "eff_clean": 0.0,
+    "result_file_available": true
   }
 ]
     // BEGIN GENERATED DIVERSE RESULTS DATA
@@ -5444,38 +5494,52 @@
     function getDiverseModels() {
       const summaries = diverseResultsByReference[currentDiverseReference] || {};
       const aliases = {};
-      return models_diverse_300.filter(model => !Array.isArray(model.available_bases) || model.available_bases.includes(currentDiverseReference)).map(model => { const summary = summaries[aliases[model.id] || model.id]; if (!summary) return model; const efficiency = model.is_hosted ? null : model.vram > 0 && model.p50 > 0 ? Math.round((summary.acc_full / (model.p50 / 1000 * model.vram)) * 10) / 10 : 1.0; return { ...model, ...summary, p50: model.p50, rps: model.rps, eff_full: efficiency, eff_clean: efficiency }; });
+      return models_diverse_300.filter(model =>
+        (!Array.isArray(model.available_bases) || model.available_bases.includes(currentDiverseReference)) &&
+        summaries[aliases[model.id] || model.id]
+      ).map(model => {
+        const summary = summaries[aliases[model.id] || model.id];
+        const efficiency = model.is_hosted ? null : model.vram > 0 && model.p50 > 0
+          ? Math.round((summary.acc_full / (model.p50 / 1000 * model.vram)) * 10) / 10 : 1.0;
+        return { ...model, ...summary, p50: model.p50, rps: model.rps, eff_full: efficiency, eff_clean: efficiency };
+      });
     }
     function updateResultsBasisControls() {
       const original = currentDiverseReference === 'original'; const active = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow-sm'; const idle = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-[var(--text-muted)] hover:text-white'; const jev = document.getElementById('basis-btn-jev'); const raw = document.getElementById('basis-btn-original');
       if (jev) { jev.className = original ? idle : active; jev.setAttribute('aria-selected', String(!original)); } if (raw) { raw.className = original ? active : idle; raw.setAttribute('aria-selected', String(original)); }
     }
     function setDiverseReference(reference) { if (reference !== 'jev_aligned' && reference !== 'original') return; currentDiverseReference = reference; setBenchmarkSuite('diverse_300'); }
+    function dashboardFileUrl(relativePath) {
+      const path = String(relativePath || '').replace(/\\/g, '/');
+      return (/\/results\/dashboard\.html$/i.test(location.pathname) ? '../' : '') + path;
+    }
     function renderRecentRuns() {
       const container = document.getElementById('recent-runs-table');
       const basis = document.getElementById('recent-runs-basis');
       if (!container) return;
-      const recentIds = [
-        'openai_decisions_d300',
-        'clm_rocm_fp16_d300', 'jev_omni_q4_d300', 'hopper_bnb_nf4_d300', 'hopper_bnb_int8_d300',
-        'decision2b_bnb_nf4_d300', 'decision2b_bnb_int8_d300', 'ling3_tiny_q4_k_m_d300',
-        'ling3_tiny_q8_0_d300', 'ling3_tiny_q4_pointer_readout_d300', 'ling3_tiny_q8_pointer_readout_d300',
-        'decider4b_hip_probe_d300'
-      ];
+      const recentModels = [...models].filter(model => model.result_file).reverse();
       const summaries = diverseResultsByReference[currentDiverseReference] || {};
       const labelBasis = currentDiverseReference === 'original' ? 'Original Dataset labels' : 'JEV-aligned labels';
-      if (basis) basis.textContent = `Active scoring basis: ${labelBasis}. Change it with the buttons at the top of the dashboard.`;
-      const rows = recentIds.map(id => {
-        const model = models_diverse_300.find(item => item.id === id);
-        const result = summaries[id];
+      if (basis) basis.textContent = `${recentModels.length} saved result profiles · ${labelBasis} · latest registry additions first. Change labels with the buttons at the top of the dashboard.`;
+      const rows = recentModels.map(model => {
+        const result = summaries[model.id];
         if (!model || !result) return '';
-        const relativeFile = String(model.result_file || '').startsWith('results/') ? String(model.result_file).slice(8) : String(model.result_file || '');
-        const fileLink = relativeFile ? `<a class="text-blue-300 hover:text-white underline" href="${diagnosticEscape(relativeFile)}" target="_blank" rel="noopener">JSONL</a>` : '—';
+        const relativeFile = dashboardFileUrl(model.result_file);
+        const fileLink = model.result_file_available === false ? '<span class="text-[var(--text-muted)]">JSONL unavailable</span>'
+          : relativeFile ? `<a class="text-blue-300 hover:text-white underline" href="${diagnosticEscape(relativeFile)}" target="_blank" rel="noopener">JSONL</a>` : '—';
         return `<tr class="border-t border-[var(--border)]"><td class="px-3 py-2"><div class="font-semibold text-white">${diagnosticEscape(model.name)}</div><div class="text-[10px] text-[var(--text-muted)]">${diagnosticEscape(model.tag || model.category || '')}</div></td><td class="px-3 py-2">${Number(result.acc_full).toFixed(1)}%</td><td class="px-3 py-2">${Number(result.choice_acc).toFixed(1)}% / ${Number(result.noul_acc).toFixed(1)}%</td><td class="px-3 py-2">${Number(result.score_mae).toFixed(3)}</td><td class="px-3 py-2">${formatLatency(Number(model.p50) || 0)}</td><td class="px-3 py-2">${Number(model.rps || 0).toFixed(2)}</td><td class="px-3 py-2">${fileLink}</td></tr>`;
       }).join('');
       container.innerHTML = `<table class="w-full min-w-[920px] text-left text-xs"><thead class="bg-[var(--panel-bg)] text-[var(--text-muted)] uppercase tracking-wider"><tr><th class="px-3 py-2">Model / run</th><th class="px-3 py-2">Choice + Noul</th><th class="px-3 py-2">Choice / Noul</th><th class="px-3 py-2">Score MAE</th><th class="px-3 py-2">p50</th><th class="px-3 py-2">RPS</th><th class="px-3 py-2">Saved run</th></tr></thead><tbody class="text-[var(--text)]">${rows || '<tr><td colspan="7" class="px-3 py-4 text-[var(--text-muted)]">No recent run data is available.</td></tr>'}</tbody></table>`;
     }
-    function setBenchmarkSuite() { currentSuite = 'diverse_300'; models = getDiverseModels(); updateResultsBasisControls(); updateWinnerBanner(); renderWinnerArchetypes(); renderFeatureModelMatrix(); renderModelComparison(); renderDomainMatrix(); renderVramBudgetWinners(); renderTable(); renderChart(); renderBaselineChart(); renderDiagnosticCharts(); renderRecentRuns(); syncSidebarClearance(); if (typeof renderDashRaceGrids === 'function') renderDashRaceGrids(); }
+    function setBenchmarkSuite() {
+      currentSuite = 'diverse_300'; models = getDiverseModels();
+      updateResultsBasisControls(); updateWinnerBanner(); renderWinnerArchetypes();
+      renderFeatureModelMatrix(); renderModelComparison(); renderDomainMatrix();
+      renderVramBudgetWinners(); renderTable(); renderChart(); renderBaselineChart();
+      renderDiagnosticCharts(); renderRecentRuns(); syncSidebarClearance();
+      syncRaceModelOptions();
+      if (typeof renderDashRaceGrids === 'function') renderDashRaceGrids();
+    }
     function switchTab(tabId) {
       document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.nav-tab').forEach(el => {
@@ -5575,11 +5639,12 @@
     };
 
     function diagnosticModels() {
-      const known = new Set(
-        Array.isArray(diverseCaseDiagnostics) && diverseCaseDiagnostics.length
-          ? Object.keys(diverseCaseDiagnostics[0].models || {})
-          : []
-      );
+      const known = new Set();
+      (Array.isArray(diverseCaseDiagnostics) ? diverseCaseDiagnostics : []).forEach(row => {
+        Object.entries(row.models || {}).forEach(([id, result]) => {
+          if (result[currentDiverseReference]) known.add(id);
+        });
+      });
       return models.filter(function (model) { return known.has(model.id); });
     }
 
@@ -5610,8 +5675,16 @@
         document.getElementById('diagnostics-reliability-model'),
         document.getElementById('diagnostics-score-model')
       ].forEach(function (select) {
-        if (!select || select.dataset.ready) return;
-        const availableModels = diagnosticModels();
+        if (!select) return;
+        const metric = select.id === 'diagnostics-reliability-model' ? 'choice' : 'score';
+        const field = metric === 'choice' ? 'confidence' : 'predicted';
+        const availableModels = diagnosticModels().filter(model => diverseCaseDiagnostics.some(row =>
+          Number.isFinite(row.models?.[model.id]?.[currentDiverseReference]?.[metric]?.[field])
+        ));
+        const signature = currentDiverseReference + '|' + availableModels.map(model => model.id).join('|');
+        if (select.dataset.modelsSignature === signature) return;
+        const previous = select.value;
+        select.replaceChildren();
         if (select.id === 'diagnostics-reliability-model') {
           const allOption = document.createElement('option');
           allOption.value = 'all';
@@ -5624,12 +5697,16 @@
           option.textContent = model.name;
           select.appendChild(option);
         });
-        if (select.id === 'diagnostics-score-model') {
+        if (availableModels.some(model => model.id === previous)) {
+          select.value = previous;
+        } else if (select.id === 'diagnostics-reliability-model') {
+          select.value = 'all';
+        } else {
           const preferred = availableModels.filter(function (model) { return !model.is_baseline; })
             .sort(function (a, b) { return Number(b.acc_full) - Number(a.acc_full); })[0];
           if (preferred) select.value = preferred.id;
         }
-        select.dataset.ready = 'true';
+        select.dataset.modelsSignature = signature;
       });
     }
 
@@ -7299,6 +7376,21 @@
     let dashTotalCases = 100;
     const RACE_CASE_COUNTS = { all: 300, banking77: 60, clinc: 60, moderation: 60, ecommerce: 60, news: 60 };
 
+    function syncRaceModelOptions() {
+      const availableModels = [...models].filter(model => Number.isFinite(Number(model.p50)))
+        .sort((a, b) => Number(b.is_baseline) - Number(a.is_baseline) || a.name.localeCompare(b.name));
+      ['dashRaceModelA', 'dashRaceModelB'].forEach((id, index) => {
+        const select = document.getElementById(id);
+        if (!select) return;
+        const previous = select.value;
+        select.innerHTML = availableModels.map(model =>
+          `<option value="${diagnosticEscape(model.id)}">${diagnosticEscape(model.name)}</option>`
+        ).join('');
+        const preferred = index === 0 ? 'laya_d300' : 'kev_4b_d300';
+        select.value = availableModels.some(model => model.id === previous) ? previous
+          : (availableModels.find(model => model.id === preferred) || availableModels[0])?.id || '';
+      });
+    }
     function syncRaceSampleOptions() {
       const dataset = document.getElementById('dashRaceDataset');
       const countSelect = document.getElementById('dashRaceCount');
