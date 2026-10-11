@@ -37,6 +37,21 @@ xdg-open index.html
 
 ---
 
+## Microsoft-Decision-1 hosted baseline (2026-10-11)
+
+Microsoft-Decision-1 completed all 300 Diverse 300 cases and 900 typed decisions through OpenRouter/Azure, with zero failures or refusals. The served snapshot was `microsoft/microsoft-decision-1-20261009`.
+
+| Label basis | Choice + Noul accuracy | Score MAE |
+| --- | ---: | ---: |
+| JEV-aligned | 92.00% | 0.2946 |
+| Original dataset | 86.33% | 0.5623 |
+
+Client HTTP latency was 443.79 ms p50 / 520.71 ms p95. API-reported suite cost was $0.002692788 for 64,114 input tokens. These are one-run observations; the older provider results do not establish a controlled speed comparison. Server VRAM and precision are undisclosed.
+
+The master leaderboard, Compare, Recent Tests, domain results, diagnostics, Features, and simulator include Microsoft under both label bases. [Raw predictions](results/runs/microsoft_decision1_diverse_300_20261011.jsonl), [run evidence](results/runs/microsoft_decision1_diverse_300_20261011.evidence.json), and [original-label fixture](benchmarks/diverse_300_original.jsonl) are available for auditing.
+
+---
+
 ## ⚡ What are Typed Decisions?
 
 Traditional LLM workflows force language models to output free-form text or JSON strings via auto-regressive decoding. This approach suffers from non-deterministic latency, high token costs, JSON syntax errors, and hallucinations.

@@ -1,0 +1,410 @@
+{
+  "run_id": "microsoft-decision1-20261011T003005Z",
+  "started_at_utc": "2026-10-11T00:30:05.465674+00:00",
+  "host": "12HeadPila",
+  "host_os": "Windows-10-10.0.19045-SP0",
+  "client_python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "client_git_revision": "ba5dfd819c2999995886114806bf1148554f1718",
+  "client_files_sha256": {
+    "src\\jev_local_experiments\\provider_client.py": "39dd7f7f4878445da07c0e2c5722dd205accbddb63b03f6fbee61edeed8ac20c",
+    "src\\jev_local_experiments\\baseline.py": "d76ca9d0ab8827770249f47d87b5e4599363568b8cbb431770a8f94c0f6fc0e9",
+    "src\\jev_local_experiments\\schema.py": "ef450e6e9b905a3d770e9619febc40e530ac4102595f7a80c1585db770430ef7",
+    "src\\jev_local_experiments\\evaluate.py": "f0d67f6c34fe9a47557f482a91a31c5597538ac2a755357f339913c8378dd3b0",
+    "alternatives\\microsoft-decision-1\\run_baseline.py": "d617ca05ce0f05b62eaf282a2122ef67c3ae3acc1260f7568c743b259cd2337a"
+  },
+  "requested_model": "microsoft/microsoft-decision-1",
+  "expected_resolved_model": "microsoft/microsoft-decision-1-20261009",
+  "backend": "OpenRouter -> Azure hosted decision API",
+  "endpoint": "https://openrouter.ai/api/v1/systemone",
+  "client": "Existing SystemOneHttpClient and run_provider_benchmark; checked native responses",
+  "timeout_seconds": 30,
+  "concurrency": 1,
+  "automatic_retries": 0,
+  "state_and_questions_only": true,
+  "labels_sent": false,
+  "server_runtime_version": "not exposed",
+  "server_gpu": "not exposed",
+  "weight_artifact_sha256": "not exposed; hosted model",
+  "precision_compute_dtype_head": "not exposed",
+  "context_limit": 32768,
+  "reasoning": "dedicated scoring endpoint; no generative reasoning requested",
+  "local_gpu": "NVIDIA GeForce RTX 4060 Ti 16 GB; not used for this hosted run",
+  "local_vram_delta": null,
+  "vram_basis": "Not applicable to client-only hosted inference; server VRAM is not exposed",
+  "precision_variants": {
+    "FP16/BF16": "Unavailable: no released compatible decision weights or selectable precision",
+    "Q8": "Unavailable: no released compatible decision weights or selectable precision",
+    "Q4": "Unavailable: no released compatible decision weights or selectable precision"
+  },
+  "suite_sha256": {
+    "benchmarks/smoke.jsonl": "d3180b8f3b112c8d9f461a2e3f765eb826d89984b969982d2929ddae353b1d20",
+    "benchmarks/diverse_300.jsonl": "9c28855727dc183ded104d871b1785c833fdc863b3a5d5d3e1b42ae0d9ce0db2",
+    "benchmarks/diverse_300_original.jsonl": "14f6ed18e111fe6ed0efe4c76df2c5df29f988406bc823514b15a6395a9a837a"
+  },
+  "catalog": {
+    "id": "microsoft/microsoft-decision-1",
+    "name": "Microsoft: Microsoft-Decision-1",
+    "created": 1791584978,
+    "description": "Microsoft-Decision-1 is a small model built for fast decision-making. Instead of generating text, it reads the provided content and returns a calibrated probability for each fixed answer option, so the...",
+    "architecture": {
+      "tokenizer": "Other",
+      "instruct_type": null,
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ]
+    },
+    "endpoints": [
+      {
+        "name": "Azure | microsoft/microsoft-decision-1-20261009",
+        "model_id": "microsoft/microsoft-decision-1",
+        "model_name": "Microsoft: Microsoft-Decision-1",
+        "context_length": 32768,
+        "pricing": {
+          "prompt": "0.000000042",
+          "completion": "0",
+          "discount": 0
+        },
+        "provider_name": "Azure",
+        "tag": "azure",
+        "quantization": "unknown",
+        "max_completion_tokens": 29491,
+        "max_prompt_tokens": null,
+        "supported_parameters": [],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "latency_last_30m": {
+          "p50": 289,
+          "p75": 313,
+          "p90": 410.90000000000055,
+          "p99": 835
+        },
+        "throughput_last_30m": {
+          "p50": 0,
+          "p75": 0,
+          "p90": 0,
+          "p99": 0
+        },
+        "perf_last_30m_by_workload": {
+          "decisions": {
+            "latency": {
+              "p50": 289,
+              "p75": 313,
+              "p90": 410.90000000000055,
+              "p99": 835
+            },
+            "throughput": null,
+            "request_count": 25054
+          }
+        }
+      }
+    ]
+  },
+  "prior_unsaved_probe": {
+    "requests": 1,
+    "case_id": "support-001",
+    "resolved_model": "microsoft/microsoft-decision-1-20261009",
+    "input_tokens": 119,
+    "output_tokens": 3,
+    "cost_usd": 4.998e-06
+  },
+  "completed_at_utc": "2026-10-11T00:32:22.576025+00:00",
+  "resolved_models": [
+    "microsoft/microsoft-decision-1-20261009"
+  ],
+  "inference_providers": [
+    "Azure"
+  ],
+  "smoke_cases": 2,
+  "suite_cases": 300,
+  "questions": 900,
+  "explicit_refusals": 0,
+  "http_failures": 0,
+  "schema_failures": 0,
+  "raw_jsonl": "results/runs/microsoft_decision1_diverse_300_20261011.jsonl",
+  "raw_sha256": "6d1318f1f8b555092e63f20338eea3593ae42edbdc5d9108a695fe1cb72fd98f",
+  "smoke_sha256": "68f8f64b6599c1636c29bca13080d988ee7d514358d2a48b5f69c5f69a90847e",
+  "full_suite_reported_cost_usd": 0.0026927879999999998,
+  "all_inference_requests_including_probe": 303,
+  "all_reported_cost_usd_including_smoke_and_probe": 0.0027062699999999998,
+  "usage_output_note": "API output token counters represent decision response units; advertised output price is zero",
+  "reports": {
+    "jev_aligned": {
+      "provider": "microsoft_decision1",
+      "model": "microsoft/microsoft-decision-1-20261009",
+      "suite_path": "benchmarks/diverse_300.jsonl",
+      "total_cases": 300,
+      "successful_cases": 300,
+      "failed_cases": 0,
+      "categorical_accuracy": 0.92,
+      "score_mae": 0.2946,
+      "latency": {
+        "count": 300,
+        "mean_ms": 450.12,
+        "p50_ms": 443.79,
+        "p90_ms": 499.53,
+        "p95_ms": 520.71,
+        "min_ms": 379.62,
+        "max_ms": 711.72
+      },
+      "token_usage": {
+        "input_tokens": 64114,
+        "output_tokens": 900
+      },
+      "questions": {
+        "department": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9167
+        },
+        "urgent_fraud": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.9333,
+          "precision": 0.7143,
+          "recall": 1.0,
+          "f1": 0.8333,
+          "brier_score": 0.0504
+        },
+        "severity": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.7833,
+          "mae": 0.238,
+          "exact_accuracy": 0.7833
+        },
+        "domain": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9167
+        },
+        "oos_fallback": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.75,
+          "precision": 0.6667,
+          "recall": 0.5,
+          "f1": 0.5714,
+          "brier_score": 0.1388
+        },
+        "complexity": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.65,
+          "mae": 0.3809,
+          "exact_accuracy": 0.65
+        },
+        "violation_type": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 1.0
+        },
+        "policy_violation": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.9167,
+          "precision": 0.9565,
+          "recall": 0.8462,
+          "f1": 0.898,
+          "brier_score": 0.0611
+        },
+        "enforcement_action": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.75,
+          "mae": 0.3016,
+          "exact_accuracy": 0.75
+        },
+        "routing": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9833
+        },
+        "urgent_escalation": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.8333,
+          "precision": 0.8235,
+          "recall": 0.6667,
+          "f1": 0.7368,
+          "brier_score": 0.1036
+        },
+        "churn_risk": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.85,
+          "mae": 0.2057,
+          "exact_accuracy": 0.85
+        },
+        "topic": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 1.0
+        },
+        "financial_relevance": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.95,
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333,
+          "brier_score": 0.0328
+        },
+        "breaking_urgency": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.7,
+          "mae": 0.347,
+          "exact_accuracy": 0.7
+        }
+      }
+    },
+    "original_labels": {
+      "provider": "microsoft_decision1",
+      "model": "microsoft/microsoft-decision-1-20261009",
+      "suite_path": "benchmarks/diverse_300_original.jsonl",
+      "total_cases": 300,
+      "successful_cases": 300,
+      "failed_cases": 0,
+      "categorical_accuracy": 0.8633,
+      "score_mae": 0.5623,
+      "latency": {
+        "count": 300,
+        "mean_ms": 450.12,
+        "p50_ms": 443.79,
+        "p90_ms": 499.53,
+        "p95_ms": 520.71,
+        "min_ms": 379.62,
+        "max_ms": 711.72
+      },
+      "token_usage": {
+        "input_tokens": 64114,
+        "output_tokens": 900
+      },
+      "questions": {
+        "department": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9333
+        },
+        "urgent_fraud": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.9333,
+          "precision": 0.7857,
+          "recall": 0.9167,
+          "f1": 0.8462,
+          "brier_score": 0.0495
+        },
+        "severity": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.45,
+          "mae": 0.5963,
+          "exact_accuracy": 0.45
+        },
+        "domain": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.8833
+        },
+        "oos_fallback": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.6167,
+          "precision": 0.1333,
+          "recall": 0.1667,
+          "f1": 0.1481,
+          "brier_score": 0.2378
+        },
+        "complexity": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.3667,
+          "mae": 1.0921,
+          "exact_accuracy": 0.3667
+        },
+        "violation_type": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9833
+        },
+        "policy_violation": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.6333,
+          "precision": 1.0,
+          "recall": 0.5111,
+          "f1": 0.6765,
+          "brier_score": 0.2763
+        },
+        "enforcement_action": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.7667,
+          "mae": 0.2667,
+          "exact_accuracy": 0.7667
+        },
+        "routing": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9833
+        },
+        "urgent_escalation": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.85,
+          "precision": 0.9412,
+          "recall": 0.6667,
+          "f1": 0.7805,
+          "brier_score": 0.0843
+        },
+        "churn_risk": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.75,
+          "mae": 0.3256,
+          "exact_accuracy": 0.75
+        },
+        "topic": {
+          "kind": "choice",
+          "total": 60,
+          "accuracy": 0.9167
+        },
+        "financial_relevance": {
+          "kind": "noul",
+          "total": 60,
+          "accuracy": 0.9,
+          "precision": 0.7143,
+          "recall": 1.0,
+          "f1": 0.8333,
+          "brier_score": 0.0885
+        },
+        "breaking_urgency": {
+          "kind": "score",
+          "total": 60,
+          "accuracy": 0.5167,
+          "mae": 0.5308,
+          "exact_accuracy": 0.5167
+        }
+      }
+    }
+  },
+  "experimental_raw_jsonl": "alternatives/microsoft-decision-1/runs/microsoft-decision1-20261011T003005Z/diverse_300.jsonl"
+}
